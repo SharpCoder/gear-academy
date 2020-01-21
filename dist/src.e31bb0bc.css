@@ -1,8 +1,17 @@
 :root {
     --main-bg-color: #fff;
     --main-fg-color: #000;
-    --accent-bg-color: #3e5165;
+
+    --archive-cool-color: #0f0f17;
+
+    --accent-bg-color: #0f0f17;
     --accent-fg-color: #fff;
+
+    --big-size: 28px;
+    --med-size: 24px;
+    --small-size: 14px;
+
+    --page-boundary-padding: 120px;
 }
 
 body {
@@ -10,32 +19,63 @@ body {
     background-image: url("/axiom-pattern.720b160e.png");
 }
 
+body,
+#app {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
 * {
     padding: 0;
     margin: 0;
 }
 
+.flexy {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .header {
-    text-align: center;
     padding: 12px;
+    padding-left: var(--page-boundary-padding);
     background-color: var(--main-bg-color);
     color: var(--main-fg-color);
+}
+
+.header .title {
+    font-size: var(--big-size);
+}
+
+.footer {
+    padding: 12px;
+    background-color: var(--accent-bg-color);
+    color: var(--accent-fg-color);
+    font-size: var(--small-size);
+    text-align: right;
+    padding-right: var(--page-boundary-padding);
 }
 
 .section {
     background-color: var(--accent-bg-color);
     color: var(--accent-fg-color);
     padding: 12px;
-    padding-left: 120px;
+    padding-left: var(--page-boundary-padding);
 }
 
 .section .category {
-    font-size: 14px;
-    font-style: italic;
+    font-size: var(--small-size);
 }
 
 .section .heading {
-    font-size: 24px;
+    font-size: var(--med-size);
+}
+
+.tutorial-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 

@@ -1,15 +1,21 @@
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
+
 import { Header } from "./header";
 import { TutorialViewer } from "./tutorialViewer";
-import "./index.css";
+import { Footer } from "./footer";
+
+import learningContent from "./tutorialContent";
 
 class WebApp extends React.Component {
     render() {
         return (
-            <div>
-                <Header title="Gears Academy" />
-                <TutorialViewer />
+            <div className="flexy">
+                <Header title="Gear Academy" />
+                <TutorialViewer learningContent={learningContent} />
+                <Footer>Fork us on github! etc etc.</Footer>
             </div>
         );
     }
