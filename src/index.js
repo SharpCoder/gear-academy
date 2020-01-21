@@ -1,11 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Header } from "./header";
+import { TutorialViewer } from "./tutorialViewer";
+import "./index.css";
 
-class HelloMessage extends React.Component {
+class WebApp extends React.Component {
     render() {
-        return <h1>Hello {this.props.name}</h1>;
+        return (
+            <div>
+                <Header title="Gears Academy" />
+                <TutorialViewer />
+            </div>
+        );
     }
 }
 
 var mountNode = document.getElementById("app");
-ReactDOM.render(<HelloMessage name="Kosh" />, mountNode);
+ReactDOM.render(<WebApp />, mountNode);

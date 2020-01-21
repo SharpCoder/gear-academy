@@ -1,0 +1,42 @@
+:root {
+    --main-bg-color: #fff;
+    --main-fg-color: #000;
+    --accent-bg-color: #3e5165;
+    --accent-fg-color: #fff;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url("/axiom-pattern.720b160e.png");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    text-align: center;
+    padding: 12px;
+    background-color: var(--main-bg-color);
+    color: var(--main-fg-color);
+}
+
+.section {
+    background-color: var(--accent-bg-color);
+    color: var(--accent-fg-color);
+    padding: 12px;
+    padding-left: 120px;
+}
+
+.section .category {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.section .heading {
+    font-size: 24px;
+}
+
+
+/*# sourceMappingURL=/src.e31bb0bc.css.map */

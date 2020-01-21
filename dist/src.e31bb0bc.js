@@ -31730,12 +31730,199 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"index.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"header/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Header = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = function Header(_ref) {
+  var title = _ref.title;
+  return _react.default.createElement("div", {
+    className: "header"
+  }, _react.default.createElement("h1", null, title));
+};
+
+exports.Header = Header;
+},{"react":"../node_modules/react/index.js"}],"header/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Header", {
+  enumerable: true,
+  get: function () {
+    return _component.Header;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"header/component.js"}],"tutorialViewer/sectionHeader/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SectionHeader = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SectionHeader = function SectionHeader(_ref) {
+  var category = _ref.category,
+      heading = _ref.heading;
+  return _react.default.createElement("div", {
+    className: "section"
+  }, _react.default.createElement("div", {
+    className: "category"
+  }, category), _react.default.createElement("div", {
+    className: "heading"
+  }, heading));
+};
+
+exports.SectionHeader = SectionHeader;
+},{"react":"../node_modules/react/index.js"}],"tutorialViewer/sectionHeader/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "SectionHeader", {
+  enumerable: true,
+  get: function () {
+    return _component.SectionHeader;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"tutorialViewer/sectionHeader/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TutorialViewer = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _sectionHeader = require("./sectionHeader");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TutorialViewer = function TutorialViewer() {
+  return _react.default.createElement("div", null, _react.default.createElement(_sectionHeader.SectionHeader, {
+    category: "Spur Gears",
+    heading: "Diametral Pitch"
+  }));
+};
+
+exports.TutorialViewer = TutorialViewer;
+},{"react":"../node_modules/react/index.js","./sectionHeader":"tutorialViewer/sectionHeader/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "TutorialViewer", {
+  enumerable: true,
+  get: function () {
+    return _component.TutorialViewer;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"tutorialViewer/component.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./assets/axiom-pattern.png":[["axiom-pattern.720b160e.png","assets/axiom-pattern.png"],"assets/axiom-pattern.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _header = require("./header");
+
+var _tutorialViewer = require("./tutorialViewer");
+
+require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31757,33 +31944,33 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var HelloMessage =
+var WebApp =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(HelloMessage, _React$Component);
+  _inherits(WebApp, _React$Component);
 
-  function HelloMessage() {
-    _classCallCheck(this, HelloMessage);
+  function WebApp() {
+    _classCallCheck(this, WebApp);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(HelloMessage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(WebApp).apply(this, arguments));
   }
 
-  _createClass(HelloMessage, [{
+  _createClass(WebApp, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("h1", null, "Hello ", this.props.name);
+      return _react.default.createElement("div", null, _react.default.createElement(_header.Header, {
+        title: "Gears Academy"
+      }), _react.default.createElement(_tutorialViewer.TutorialViewer, null));
     }
   }]);
 
-  return HelloMessage;
+  return WebApp;
 }(_react.default.Component);
 
 var mountNode = document.getElementById("app");
 
-_reactDom.default.render(_react.default.createElement(HelloMessage, {
-  name: "Kosh"
-}), mountNode);
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render(_react.default.createElement(WebApp, null), mountNode);
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./tutorialViewer":"tutorialViewer/index.js","./index.css":"index.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -31811,7 +31998,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59542" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61241" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
