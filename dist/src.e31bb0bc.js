@@ -51172,7 +51172,188 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"tutorialContent/views/pitch.js":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"components/gearSlider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GearSlider = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var GearSlider = function GearSlider() {
+  return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", null, "Yes"));
+};
+
+exports.GearSlider = GearSlider;
+},{"react":"../node_modules/react/index.js"}],"components/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "GearSlider", {
+  enumerable: true,
+  get: function () {
+    return _gearSlider.GearSlider;
+  }
+});
+
+var _gearSlider = require("./gearSlider");
+},{"./gearSlider":"components/gearSlider.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+// Unique ID creation requires a high quality random # generator.  In the
+// browser this is a little complicated due to unknown quality of Math.random()
+// and inconsistent support for the `crypto` API.  We do the best we can via
+// feature-detection
+
+// getRandomValues needs to be invoked in a context where "this" is a Crypto
+// implementation. Also, find the complete implementation of crypto on IE11.
+var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
+                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
+
+if (getRandomValues) {
+  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
+
+  module.exports = function whatwgRNG() {
+    getRandomValues(rnds8);
+    return rnds8;
+  };
+} else {
+  // Math.random()-based (RNG)
+  //
+  // If all else fails, use Math.random().  It's fast, but is of unspecified
+  // quality.
+  var rnds = new Array(16);
+
+  module.exports = function mathRNG() {
+    for (var i = 0, r; i < 16; i++) {
+      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+    }
+
+    return rnds;
+  };
+}
+
+},{}],"../node_modules/uuid/lib/bytesToUuid.js":[function(require,module,exports) {
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+var byteToHex = [];
+for (var i = 0; i < 256; ++i) {
+  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+}
+
+function bytesToUuid(buf, offset) {
+  var i = offset || 0;
+  var bth = byteToHex;
+  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+  return ([
+    bth[buf[i++]], bth[buf[i++]],
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]],
+    bth[buf[i++]], bth[buf[i++]],
+    bth[buf[i++]], bth[buf[i++]]
+  ]).join('');
+}
+
+module.exports = bytesToUuid;
+
+},{}],"../node_modules/uuid/v4.js":[function(require,module,exports) {
+var rng = require('./lib/rng');
+var bytesToUuid = require('./lib/bytesToUuid');
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+},{"./lib/rng":"../node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"../node_modules/uuid/lib/bytesToUuid.js"}],"utils/markdown-it/reactPostProcessor.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = transformHtml;
+
+var componentLibrary = _interopRequireWildcard(require("../../components"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var uuidv4 = require("uuid/v4"); // This is not an actual markdown-it plugin :P
+// This is just a post-processor on the raw HTML because it's about as
+// complicated to write this way as it is to make a real plugin...
+// And this way at least we have more control. Or maybe just clearer control.
+
+
+function transformHtml(html) {
+  var beginToken = "@{";
+  var endToken = "}"; // Response object
+
+  var response = {
+    html: "",
+    reactComponents: {}
+  }; // Tokenize the HTML
+
+  var result = "";
+  var inLoop = false;
+  var component = "";
+
+  for (var i = 0; i < (html || "").length; i++) {
+    var c = html.charAt(i);
+    var p = i < html.length - 1 ? html.charAt(i + 1) : "";
+
+    if (c + p == beginToken) {
+      inLoop = true;
+      i++;
+      component = "";
+    } else if (inLoop && c == endToken) {
+      var id = uuidv4();
+      response.reactComponents[id] = componentLibrary[component];
+      result += "<div id=\"".concat(id, "\" />");
+    } else if (inLoop) {
+      component += c;
+    } else {
+      result += c;
+    }
+  }
+
+  response.html = result;
+  return response;
+}
+},{"../../components":"components/index.js","uuid/v4":"../node_modules/uuid/v4.js"}],"tutorialContent/views/pitch.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51223,7 +51404,19 @@ var view = function view(component) {
 var _default = crumb("Gear Tutorials", [crumb("Spur Gears", [crumb("Pitch", view(_pitch.default)), crumb("Pressure Angle", null), crumb("Parameters", null)]), crumb("Involute Curve")]);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./views/pitch":"tutorialContent/views/pitch.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./views/pitch":"tutorialContent/views/pitch.js"}],"../_learningContent/pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  meta: {
+    category: "Spur Gears",
+    title: "Diametral Pitch"
+  }
+};
+},{}],"../_learningContent/**/*.md":[function(require,module,exports) {
+module.exports = {
+  "pitch": require("./../pitch.md")
+};
+},{"./../pitch.md":"../_learningContent/pitch.md"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./index.css");
@@ -51238,7 +51431,17 @@ var _tutorialViewer = require("./tutorialViewer");
 
 var _footer = require("./footer");
 
+var _reactPostProcessor = _interopRequireDefault(require("./utils/markdown-it/reactPostProcessor"));
+
 var _tutorialContent = _interopRequireDefault(require("./tutorialContent"));
+
+var Contents = _interopRequireWildcard(require("../_learningContent/**/*.md"));
+
+var _pitch = require("../_learningContent/pitch.md");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51260,6 +51463,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+var transformed = (0, _reactPostProcessor.default)(_pitch.html);
+console.log(Contents);
+
 var WebApp =
 /*#__PURE__*/
 function (_React$Component) {
@@ -51280,7 +51486,18 @@ function (_React$Component) {
         title: "Gear Academy"
       }), _react.default.createElement(_tutorialViewer.TutorialViewer, {
         learningContent: _tutorialContent.default
+      }), _react.default.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: transformed.html
+        }
       }), _react.default.createElement(_footer.Footer, null, "Fork us on github! etc etc."));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      for (var prop in transformed.reactComponents) {
+        _reactDom.default.render(transformed.reactComponents[prop](), document.getElementById(prop));
+      }
     }
   }]);
 
@@ -51290,7 +51507,7 @@ function (_React$Component) {
 var mountNode = document.getElementById("app");
 
 _reactDom.default.render(_react.default.createElement(WebApp, null), mountNode);
-},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./tutorialViewer":"tutorialViewer/index.js","./footer":"footer/index.js","./tutorialContent":"tutorialContent/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./tutorialViewer":"tutorialViewer/index.js","./footer":"footer/index.js","./utils/markdown-it/reactPostProcessor":"utils/markdown-it/reactPostProcessor.js","./tutorialContent":"tutorialContent/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","../_learningContent/pitch.md":"../_learningContent/pitch.md"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -51318,7 +51535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57100" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54737" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
