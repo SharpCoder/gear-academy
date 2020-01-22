@@ -3,3 +3,44 @@
     flex-direction: column;
     flex-grow: 1;
 }
+
+.explorer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: var(--main-bg-color);
+    border-right: 2px solid black;
+    margin: 0;
+    padding-top: 42px;
+}
+
+.explorer a {
+    padding: 12px 2px;
+    margin: 0px 0px;
+    padding-left: var(--page-boundary-padding);
+    width: 220px;
+}
+
+.explorer a:visited {
+    color: var(--main-fg-color);
+}
+
+.explorer a:hover {
+    cursor: pointer;
+    color: #cecece;
+}
+
+.explorer .selected {
+    background-color: var(--accent-bg-color);
+    color: var(--accent-fg-color) !important;
+}
+
+.mid-wrapper {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+}

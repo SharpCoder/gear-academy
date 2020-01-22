@@ -31838,7 +31838,104 @@ Object.defineProperty(exports, "Header", {
 });
 
 var _component = require("./component");
-},{"./component":"header/component.js"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./component":"header/component.js"}],"footer/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Footer = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Footer = function Footer(_ref) {
+  var children = _ref.children;
+  return _react.default.createElement("div", {
+    className: "footer"
+  }, children);
+};
+
+exports.Footer = Footer;
+},{"react":"../node_modules/react/index.js"}],"footer/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Footer", {
+  enumerable: true,
+  get: function () {
+    return _component.Footer;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"footer/component.js"}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+module.exports = {
+  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "Different Types of Gears"
+  }
+};
+},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
+module.exports = {
+  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  meta: {
+    index: 1,
+    category: ["Spur Gears"],
+    title: "Pressure Angle"
+  }
+};
+},{}],"../_learningContent/intro.md":[function(require,module,exports) {
+module.exports = {
+  html: "",
+  meta: {
+    index: 0,
+    category: [],
+    title: "Intro!"
+  }
+};
+},{}],"../_learningContent/pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  meta: {
+    index: 0,
+    category: ["Spur Gears"],
+    title: "Diametral Pitch"
+  }
+};
+},{}],"../_learningContent/tooth-count.md":[function(require,module,exports) {
+module.exports = {
+  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  meta: {
+    index: 2,
+    category: ["Spur Gears"],
+    title: "Tooth Count"
+  }
+};
+},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
+module.exports = {
+  html: "",
+  meta: {
+    index: 0,
+    category: [],
+    title: "What is a gear?"
+  }
+};
+},{}],"../_learningContent/**/*.md":[function(require,module,exports) {
+module.exports = {
+  "gear-types": require("./../gear-types.md"),
+  "pressure-angle": require("./../pressure-angle.md"),
+  "intro": require("./../intro.md"),
+  "pitch": require("./../pitch.md"),
+  "tooth-count": require("./../tooth-count.md"),
+  "what-is-a-gear": require("./../what-is-a-gear.md")
+};
+},{"./../gear-types.md":"../_learningContent/gear-types.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../intro.md":"../_learningContent/intro.md","./../pitch.md":"../_learningContent/pitch.md","./../tooth-count.md":"../_learningContent/tooth-count.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51039,7 +51136,18 @@ var define;
   }
 }.call(this));
 
-},{"buffer":"../node_modules/buffer/index.js"}],"tutorialViewer/explorer/component.js":[function(require,module,exports) {
+},{"buffer":"../node_modules/buffer/index.js"}],"tutorialViewer/utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.pathize = pathize;
+
+function pathize(title) {
+  return (title || "").toLowerCase().replace(/[^a-z0-9 ]/gi, "").split(" ").join("-");
+}
+},{}],"tutorialViewer/explorer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51051,35 +51159,49 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _lodash = require("lodash");
 
+var _utils = require("../utils");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var spaces = function spaces(depth) {
-  return (0, _lodash.map)((0, _lodash.range)(0, depth), function () {
-    return "-";
-  }).join("");
-};
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Explorer = function Explorer(_ref) {
-  var crumb = _ref.crumb,
-      _ref$depth = _ref.depth,
-      depth = _ref$depth === void 0 ? 0 : _ref$depth;
+  var tutorials = _ref.tutorials;
+  var crumbs = (0, _lodash.map)(tutorials, function (_) {
+    return (0, _lodash.get)(_, "meta.title");
+  });
 
-  var _ref2 = crumb || {},
-      children = _ref2.children,
-      title = _ref2.title;
+  var _useState = (0, _react.useState)(window.location.hash),
+      _useState2 = _slicedToArray(_useState, 2),
+      selected = _useState2[0],
+      setSelected = _useState2[1];
 
-  return _react.default.createElement("div", null, _react.default.createElement("b", null, title && spaces(depth) + title), (0, _lodash.map)(children, function (child) {
-    return _react.default.createElement("div", null, _react.default.createElement(Explorer, {
-      crumb: child,
-      depth: depth + 1
-    }));
+  return _react.default.createElement("div", {
+    className: "explorer"
+  }, (0, _lodash.map)(crumbs, function (tutorialTitle) {
+    var href = "#".concat((0, _utils.pathize)(tutorialTitle));
+    var isSelected = selected === href;
+    return _react.default.createElement("a", {
+      key: href,
+      className: isSelected ? "selected" : null,
+      onClick: function onClick() {
+        return setSelected(href);
+      },
+      href: href
+    }, tutorialTitle);
   }));
 };
 
 exports.Explorer = Explorer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js"}],"tutorialViewer/explorer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../utils":"tutorialViewer/utils.js"}],"tutorialViewer/explorer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51110,15 +51232,19 @@ var _explorer = require("./explorer");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TutorialViewer = function TutorialViewer(_ref) {
-  var learningContent = _ref.learningContent;
+  var tutorials = _ref.tutorials;
   return _react.default.createElement("div", {
     className: "tutorial-wrapper"
   }, _react.default.createElement(_sectionHeader.SectionHeader, {
     category: "Spur Gears",
     heading: "Diametral Pitch"
-  }), _react.default.createElement(_explorer.Explorer, {
-    crumb: learningContent
-  }));
+  }), _react.default.createElement("div", {
+    className: "mid-wrapper"
+  }, _react.default.createElement(_explorer.Explorer, {
+    tutorials: tutorials
+  }), _react.default.createElement("div", {
+    className: "content"
+  })));
 };
 
 exports.TutorialViewer = TutorialViewer;
@@ -51138,285 +51264,7 @@ Object.defineProperty(exports, "TutorialViewer", {
 require("./tutorialViewer.css");
 
 var _component = require("./component");
-},{"./tutorialViewer.css":"tutorialViewer/tutorialViewer.css","./component":"tutorialViewer/component.js"}],"footer/component.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Footer = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Footer = function Footer(_ref) {
-  var children = _ref.children;
-  return _react.default.createElement("div", {
-    className: "footer"
-  }, children);
-};
-
-exports.Footer = Footer;
-},{"react":"../node_modules/react/index.js"}],"footer/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Footer", {
-  enumerable: true,
-  get: function () {
-    return _component.Footer;
-  }
-});
-
-var _component = require("./component");
-},{"./component":"footer/component.js"}],"components/gearSlider.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.GearSlider = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var GearSlider = function GearSlider() {
-  return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", null, "Yes"));
-};
-
-exports.GearSlider = GearSlider;
-},{"react":"../node_modules/react/index.js"}],"components/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "GearSlider", {
-  enumerable: true,
-  get: function () {
-    return _gearSlider.GearSlider;
-  }
-});
-
-var _gearSlider = require("./gearSlider");
-},{"./gearSlider":"components/gearSlider.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
-// Unique ID creation requires a high quality random # generator.  In the
-// browser this is a little complicated due to unknown quality of Math.random()
-// and inconsistent support for the `crypto` API.  We do the best we can via
-// feature-detection
-
-// getRandomValues needs to be invoked in a context where "this" is a Crypto
-// implementation. Also, find the complete implementation of crypto on IE11.
-var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
-                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
-
-if (getRandomValues) {
-  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-
-  module.exports = function whatwgRNG() {
-    getRandomValues(rnds8);
-    return rnds8;
-  };
-} else {
-  // Math.random()-based (RNG)
-  //
-  // If all else fails, use Math.random().  It's fast, but is of unspecified
-  // quality.
-  var rnds = new Array(16);
-
-  module.exports = function mathRNG() {
-    for (var i = 0, r; i < 16; i++) {
-      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-    }
-
-    return rnds;
-  };
-}
-
-},{}],"../node_modules/uuid/lib/bytesToUuid.js":[function(require,module,exports) {
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-}
-
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-  return ([
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]]
-  ]).join('');
-}
-
-module.exports = bytesToUuid;
-
-},{}],"../node_modules/uuid/v4.js":[function(require,module,exports) {
-var rng = require('./lib/rng');
-var bytesToUuid = require('./lib/bytesToUuid');
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
-},{"./lib/rng":"../node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"../node_modules/uuid/lib/bytesToUuid.js"}],"utils/markdown-it/reactPostProcessor.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = transformHtml;
-
-var componentLibrary = _interopRequireWildcard(require("../../components"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var uuidv4 = require("uuid/v4"); // This is not an actual markdown-it plugin :P
-// This is just a post-processor on the raw HTML because it's about as
-// complicated to write this way as it is to make a real plugin...
-// And this way at least we have more control. Or maybe just clearer control.
-
-
-function transformHtml(html) {
-  var beginToken = "@{";
-  var endToken = "}"; // Response object
-
-  var response = {
-    html: "",
-    reactComponents: {}
-  }; // Tokenize the HTML
-
-  var result = "";
-  var inLoop = false;
-  var component = "";
-
-  for (var i = 0; i < (html || "").length; i++) {
-    var c = html.charAt(i);
-    var p = i < html.length - 1 ? html.charAt(i + 1) : "";
-
-    if (c + p == beginToken) {
-      inLoop = true;
-      i++;
-      component = "";
-    } else if (inLoop && c == endToken) {
-      var id = uuidv4();
-      response.reactComponents[id] = componentLibrary[component];
-      result += "<div id=\"".concat(id, "\" />");
-    } else if (inLoop) {
-      component += c;
-    } else {
-      result += c;
-    }
-  }
-
-  response.html = result;
-  return response;
-}
-},{"../../components":"components/index.js","uuid/v4":"../node_modules/uuid/v4.js"}],"tutorialContent/views/pitch.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Pitch = function Pitch() {
-  return _react.default.createElement("div", null, "Pitch is awesome!");
-};
-
-var _default = Pitch;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"tutorialContent/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _pitch = _interopRequireDefault(require("./views/pitch"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var crumb = function crumb(title, children) {
-  return {
-    type: "crumb",
-    title: title,
-    children: children
-  };
-};
-
-var view = function view(component) {
-  return {
-    type: "view",
-    component: component
-  };
-}; // TODO: something slightly less horribly formatted.
-
-
-var _default = crumb("Gear Tutorials", [crumb("Spur Gears", [crumb("Pitch", view(_pitch.default)), crumb("Pressure Angle", null), crumb("Parameters", null)]), crumb("Involute Curve")]);
-
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","./views/pitch":"tutorialContent/views/pitch.js"}],"../_learningContent/pitch.md":[function(require,module,exports) {
-module.exports = {
-  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
-  meta: {
-    category: "Spur Gears",
-    title: "Diametral Pitch"
-  }
-};
-},{}],"../_learningContent/**/*.md":[function(require,module,exports) {
-module.exports = {
-  "pitch": require("./../pitch.md")
-};
-},{"./../pitch.md":"../_learningContent/pitch.md"}],"index.js":[function(require,module,exports) {
+},{"./tutorialViewer.css":"tutorialViewer/tutorialViewer.css","./component":"tutorialViewer/component.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./index.css");
@@ -51427,17 +51275,11 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _header = require("./header");
 
-var _tutorialViewer = require("./tutorialViewer");
-
 var _footer = require("./footer");
 
-var _reactPostProcessor = _interopRequireDefault(require("./utils/markdown-it/reactPostProcessor"));
+var tutorials = _interopRequireWildcard(require("../_learningContent/**/*.md"));
 
-var _tutorialContent = _interopRequireDefault(require("./tutorialContent"));
-
-var Contents = _interopRequireWildcard(require("../_learningContent/**/*.md"));
-
-var _pitch = require("../_learningContent/pitch.md");
+var _tutorialViewer = require("./tutorialViewer");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -51463,8 +51305,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var transformed = (0, _reactPostProcessor.default)(_pitch.html);
-console.log(Contents);
+console.log(tutorials);
 
 var WebApp =
 /*#__PURE__*/
@@ -51485,20 +51326,14 @@ function (_React$Component) {
       }, _react.default.createElement(_header.Header, {
         title: "Gear Academy"
       }), _react.default.createElement(_tutorialViewer.TutorialViewer, {
-        learningContent: _tutorialContent.default
-      }), _react.default.createElement("div", {
-        dangerouslySetInnerHTML: {
-          __html: transformed.html
-        }
+        tutorials: tutorials
       }), _react.default.createElement(_footer.Footer, null, "Fork us on github! etc etc."));
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      for (var prop in transformed.reactComponents) {
-        _reactDom.default.render(transformed.reactComponents[prop](), document.getElementById(prop));
-      }
-    }
+    } // componentDidMount() {
+    //     // for (const prop in transformed.reactComponents) {
+    //     //     //ReactDOM.render(transformed.reactComponents[prop](), document.getElementById(prop));
+    //     // }
+    // }
+
   }]);
 
   return WebApp;
@@ -51507,7 +51342,7 @@ function (_React$Component) {
 var mountNode = document.getElementById("app");
 
 _reactDom.default.render(_react.default.createElement(WebApp, null), mountNode);
-},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./tutorialViewer":"tutorialViewer/index.js","./footer":"footer/index.js","./utils/markdown-it/reactPostProcessor":"utils/markdown-it/reactPostProcessor.js","./tutorialContent":"tutorialContent/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","../_learningContent/pitch.md":"../_learningContent/pitch.md"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./footer":"footer/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","./tutorialViewer":"tutorialViewer/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -51535,7 +51370,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55927" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

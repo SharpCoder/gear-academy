@@ -1,21 +1,28 @@
-import React, { useRef, useEffect } from "react";
-import { map, range } from "lodash";
+import React, { useState, useEffect } from "react";
+import { map, range, reduce, get } from "lodash";
+import { pathize } from "../utils";
 
-const spaces = depth => {
-    return map(range(0, depth), () => "-").join("");
-};
+const Explorer = ({ tutorials }) => {
+    const crumbs = map(tutorials, _ => {
+        return get(_, "meta.title");
+    });
 
-const Explorer = ({ crumb, depth = 0 }) => {
-    const { children, title } = crumb || {};
+    const [selected, setSelected] = useState(window.location.hash);
 
     return (
-        <div>
-            <b>{title && spaces(depth) + title}</b>
-            {map(children, child => {
+        <div className="explorer">
+            {map(crumbs, tutorialTitle => {
+                const href = `#${pathize(tutorialTitle)}`;
+                const isSelected = selected === href;
+
                 return (
-                    <div>
-                        <Explorer crumb={child} depth={depth + 1} />
-                    </div>
+                    <a
+                        key={href}
+                        className={isSelected ? "selected" : null}
+                        onClick={() => setSelected(href)}
+                        href={href}>
+                        {tutorialTitle}
+                    </a>
                 );
             })}
         </div>

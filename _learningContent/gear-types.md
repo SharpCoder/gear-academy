@@ -1,7 +1,7 @@
 ---
 index: 0
-category: [Spur Gears]
-title: Diametral Pitch
+category: []
+title: Different Types of Gears
 ---
 
 Hello

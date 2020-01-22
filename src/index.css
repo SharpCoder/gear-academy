@@ -1,8 +1,10 @@
 :root {
-    --main-bg-color: #fff;
+    --main-bg-color: #fafafa;
     --main-fg-color: #000;
 
     --archive-cool-color: #0f0f17;
+
+    --secondary-border-color: #0055ff;
 
     --accent-bg-color: #0f0f17;
     --accent-fg-color: #fff;
@@ -11,7 +13,7 @@
     --med-size: 24px;
     --small-size: 14px;
 
-    --page-boundary-padding: 120px;
+    --page-boundary-padding: 80px;
 }
 
 body {

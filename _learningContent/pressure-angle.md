@@ -1,7 +1,7 @@
 ---
-index: 0
+index: 1
 category: [Spur Gears]
-title: Diametral Pitch
+title: Pressure Angle
 ---
 
 Hello

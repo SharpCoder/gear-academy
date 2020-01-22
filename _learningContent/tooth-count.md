@@ -1,7 +1,7 @@
 ---
-index: 0
+index: 2
 category: [Spur Gears]
-title: Diametral Pitch
+title: Tooth Count
 ---
 
 Hello
