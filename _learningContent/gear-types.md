@@ -4,12 +4,6 @@ category: []
 title: Different Types of Gears
 ---
 
-Hello
+## Different types of Gears
 
-@{GearSlider}
-
-Hello
-
-++Inc1++
-
-How are you?
+There are many types of gears. Helical, spur, etc.

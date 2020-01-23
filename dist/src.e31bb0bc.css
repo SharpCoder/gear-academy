@@ -1,12 +1,12 @@
 :root {
-    --main-bg-color: #fafafa;
+    --main-bg-color: #f3f3f3;
     --main-fg-color: #000;
 
     --archive-cool-color: #0f0f17;
 
     --secondary-border-color: #0055ff;
 
-    --accent-bg-color: #0f0f17;
+    --accent-bg-color: #32323f;
     --accent-fg-color: #fff;
 
     --big-size: 28px;
@@ -40,7 +40,7 @@ body,
 }
 
 .header {
-    padding: 12px;
+    padding: 8px;
     padding-left: var(--page-boundary-padding);
     background-color: var(--main-bg-color);
     color: var(--main-fg-color);
@@ -51,7 +51,7 @@ body,
 }
 
 .footer {
-    padding: 12px;
+    padding: 8px;
     background-color: var(--accent-bg-color);
     color: var(--accent-fg-color);
     font-size: var(--small-size);
@@ -62,7 +62,7 @@ body,
 .section {
     background-color: var(--accent-bg-color);
     color: var(--accent-fg-color);
-    padding: 12px;
+    padding: 8px;
     padding-left: var(--page-boundary-padding);
 }
 
@@ -85,23 +85,23 @@ body,
     flex-direction: column;
     flex-grow: 1;
     background-color: var(--main-bg-color);
-    border-right: 2px solid black;
+    border-right: 1px solid var(--accent-bg-color);
     margin: 0;
     padding-top: 42px;
 }
 
-.explorer a {
+.explorer div {
     padding: 12px 2px;
     margin: 0px 0px;
     padding-left: var(--page-boundary-padding);
     width: 220px;
 }
 
-.explorer a:visited {
+.explorer div:visited {
     color: var(--main-fg-color);
 }
 
-.explorer a:hover {
+.explorer div:hover {
     cursor: pointer;
     color: #cecece;
 }

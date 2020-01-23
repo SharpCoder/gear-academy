@@ -31872,54 +31872,54 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
 module.exports = {
-  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
-  meta: {
-    index: 0,
-    category: [],
-    title: "Different Types of Gears"
-  }
-};
-},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
-module.exports = {
-  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
-  meta: {
-    index: 1,
-    category: ["Spur Gears"],
-    title: "Pressure Angle"
-  }
-};
-},{}],"../_learningContent/intro.md":[function(require,module,exports) {
-module.exports = {
-  html: "",
-  meta: {
-    index: 0,
-    category: [],
-    title: "Intro!"
-  }
-};
-},{}],"../_learningContent/pitch.md":[function(require,module,exports) {
-module.exports = {
-  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
   meta: {
     index: 0,
     category: ["Spur Gears"],
     title: "Diametral Pitch"
   }
 };
-},{}],"../_learningContent/tooth-count.md":[function(require,module,exports) {
+},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
 module.exports = {
-  html: "<p>Hello</p>\n<p>@{GearSlider}</p>\n<p>Hello</p>\n<p>++Inc1++</p>\n<p>How are you?</p>\n",
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
   meta: {
     index: 2,
     category: ["Spur Gears"],
-    title: "Tooth Count"
+    title: "Gearing Ratios"
+  }
+};
+},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "Different Types of Gears"
+  }
+};
+},{}],"../_learningContent/intro.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Welcome!</h2>\n<p>We\u2019re so happy you are interested in learning about gears.</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "Intro!"
+  }
+};
+},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
+  meta: {
+    index: 1,
+    category: ["Spur Gears"],
+    title: "Pressure Angle"
   }
 };
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
-  html: "",
+  html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
   meta: {
     index: 0,
     category: [],
@@ -31928,14 +31928,14 @@ module.exports = {
 };
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
+  "diametral-pitch": require("./../diametral-pitch.md"),
+  "gear-ratios": require("./../gear-ratios.md"),
   "gear-types": require("./../gear-types.md"),
-  "pressure-angle": require("./../pressure-angle.md"),
   "intro": require("./../intro.md"),
-  "pitch": require("./../pitch.md"),
-  "tooth-count": require("./../tooth-count.md"),
+  "pressure-angle": require("./../pressure-angle.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../gear-types.md":"../_learningContent/gear-types.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../intro.md":"../_learningContent/intro.md","./../pitch.md":"../_learningContent/pitch.md","./../tooth-count.md":"../_learningContent/tooth-count.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51165,35 +51165,23 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 var Explorer = function Explorer(_ref) {
-  var tutorials = _ref.tutorials;
+  var tutorials = _ref.tutorials,
+      setSelectedTutorial = _ref.setSelectedTutorial,
+      selected = _ref.selected;
   var crumbs = (0, _lodash.map)(tutorials, function (_) {
     return (0, _lodash.get)(_, "meta.title");
   });
-
-  var _useState = (0, _react.useState)(window.location.hash),
-      _useState2 = _slicedToArray(_useState, 2),
-      selected = _useState2[0],
-      setSelected = _useState2[1];
-
   return _react.default.createElement("div", {
     className: "explorer"
   }, (0, _lodash.map)(crumbs, function (tutorialTitle) {
     var href = "#".concat((0, _utils.pathize)(tutorialTitle));
-    var isSelected = selected === href;
-    return _react.default.createElement("a", {
+    var isSelected = href != "#" && selected === href;
+    return _react.default.createElement("div", {
       key: href,
       className: isSelected ? "selected" : null,
       onClick: function onClick() {
-        return setSelected(href);
+        return setSelectedTutorial(href);
       },
       href: href
     }, tutorialTitle);
@@ -51215,7 +51203,240 @@ Object.defineProperty(exports, "Explorer", {
 });
 
 var _component = require("./component");
-},{"./component":"tutorialViewer/explorer/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
+},{"./component":"tutorialViewer/explorer/component.js"}],"components/gearSlider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GearSlider = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var GearSlider = function GearSlider() {
+  return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", null, "Yes"));
+};
+
+exports.GearSlider = GearSlider;
+},{"react":"../node_modules/react/index.js"}],"components/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "GearSlider", {
+  enumerable: true,
+  get: function () {
+    return _gearSlider.GearSlider;
+  }
+});
+
+var _gearSlider = require("./gearSlider");
+},{"./gearSlider":"components/gearSlider.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+// Unique ID creation requires a high quality random # generator.  In the
+// browser this is a little complicated due to unknown quality of Math.random()
+// and inconsistent support for the `crypto` API.  We do the best we can via
+// feature-detection
+
+// getRandomValues needs to be invoked in a context where "this" is a Crypto
+// implementation. Also, find the complete implementation of crypto on IE11.
+var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
+                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
+
+if (getRandomValues) {
+  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
+
+  module.exports = function whatwgRNG() {
+    getRandomValues(rnds8);
+    return rnds8;
+  };
+} else {
+  // Math.random()-based (RNG)
+  //
+  // If all else fails, use Math.random().  It's fast, but is of unspecified
+  // quality.
+  var rnds = new Array(16);
+
+  module.exports = function mathRNG() {
+    for (var i = 0, r; i < 16; i++) {
+      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+    }
+
+    return rnds;
+  };
+}
+
+},{}],"../node_modules/uuid/lib/bytesToUuid.js":[function(require,module,exports) {
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+var byteToHex = [];
+for (var i = 0; i < 256; ++i) {
+  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+}
+
+function bytesToUuid(buf, offset) {
+  var i = offset || 0;
+  var bth = byteToHex;
+  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+  return ([
+    bth[buf[i++]], bth[buf[i++]],
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]], '-',
+    bth[buf[i++]], bth[buf[i++]],
+    bth[buf[i++]], bth[buf[i++]],
+    bth[buf[i++]], bth[buf[i++]]
+  ]).join('');
+}
+
+module.exports = bytesToUuid;
+
+},{}],"../node_modules/uuid/v4.js":[function(require,module,exports) {
+var rng = require('./lib/rng');
+var bytesToUuid = require('./lib/bytesToUuid');
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+},{"./lib/rng":"../node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"../node_modules/uuid/lib/bytesToUuid.js"}],"utils/markdown-it/reactPostProcessor.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = transformHtml;
+
+var componentLibrary = _interopRequireWildcard(require("../../components"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var uuidv4 = require("uuid/v4"); // This is not an actual markdown-it plugin :P
+// This is just a post-processor on the raw HTML because it's about as
+// complicated to write this way as it is to make a real plugin...
+// And this way at least we have more control. Or maybe just clearer control.
+
+
+function transformHtml(html) {
+  var beginToken = "@{";
+  var endToken = "}"; // Response object
+
+  var response = {
+    html: "",
+    reactComponents: {}
+  }; // Tokenize the HTML
+
+  var result = "";
+  var inLoop = false;
+  var component = "";
+
+  for (var i = 0; i < (html || "").length; i++) {
+    var c = html.charAt(i);
+    var p = i < html.length - 1 ? html.charAt(i + 1) : "";
+
+    if (c + p == beginToken) {
+      inLoop = true;
+      i++;
+      component = "";
+    } else if (inLoop && c == endToken) {
+      var id = uuidv4();
+      response.reactComponents[id] = componentLibrary[component];
+      result += "<div id=\"".concat(id, "\" />");
+    } else if (inLoop) {
+      component += c;
+    } else {
+      result += c;
+    }
+  }
+
+  response.html = result;
+  return response;
+}
+},{"../../components":"components/index.js","uuid/v4":"../node_modules/uuid/v4.js"}],"tutorialViewer/contentViewer/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ContentViewer = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _lodash = require("lodash");
+
+var _reactPostProcessor = _interopRequireDefault(require("../../utils/markdown-it/reactPostProcessor"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var ContentViewer = function ContentViewer(_ref) {
+  var tutorial = _ref.tutorial;
+  var postProcessed = (0, _reactPostProcessor.default)((0, _lodash.get)(tutorial, "html"));
+  (0, _react.useEffect)(function () {
+    for (var prop in postProcessed.reactComponents) {
+      _reactDom.default.render(postProcessed.reactComponents[prop](), document.getElementById(prop));
+    }
+  }, [postProcessed]);
+  return _react.default.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: postProcessed.html
+    }
+  });
+};
+
+exports.ContentViewer = ContentViewer;
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils/markdown-it/reactPostProcessor":"utils/markdown-it/reactPostProcessor.js"}],"tutorialViewer/contentViewer/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "ContentViewer", {
+  enumerable: true,
+  get: function () {
+    return _component.ContentViewer;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"tutorialViewer/contentViewer/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51223,32 +51444,81 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TutorialViewer = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _sectionHeader = require("./sectionHeader");
 
 var _explorer = require("./explorer");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _lodash = require("lodash");
+
+var _utils = require("./utils");
+
+var _contentViewer = require("./contentViewer");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+// TODO: this seems unnecessarily complicated
+var findSelectedTutorial = function findSelectedTutorial(tutorials, selection) {
+  var result = (0, _lodash.get)((0, _lodash.map)((0, _lodash.filter)((0, _lodash.keys)(tutorials), function (key) {
+    var title = (0, _lodash.get)(tutorials[key], "meta.title");
+    return "#".concat((0, _utils.pathize)(title)) === selection;
+  }), function (key) {
+    return tutorials[key];
+  }), "[0]");
+  return result;
+};
 
 var TutorialViewer = function TutorialViewer(_ref) {
   var tutorials = _ref.tutorials;
+
+  var _useState = (0, _react.useState)(window.location.hash),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedTutorialKey = _useState2[0],
+      setSelectedTutorialKey = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(findSelectedTutorial(tutorials, window.location.hash)),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentTutorial = _useState4[0],
+      setCurrentTutorial = _useState4[1];
+
+  (0, _react.useEffect)(function () {
+    setCurrentTutorial(findSelectedTutorial(tutorials, selectedTutorialKey));
+  }, [selectedTutorialKey]);
   return _react.default.createElement("div", {
     className: "tutorial-wrapper"
   }, _react.default.createElement(_sectionHeader.SectionHeader, {
-    category: "Spur Gears",
-    heading: "Diametral Pitch"
+    category: "",
+    heading: (0, _lodash.get)(currentTutorial, "meta.title")
   }), _react.default.createElement("div", {
     className: "mid-wrapper"
   }, _react.default.createElement(_explorer.Explorer, {
-    tutorials: tutorials
+    selected: selectedTutorialKey,
+    tutorials: tutorials,
+    setSelectedTutorial: function setSelectedTutorial(key) {
+      // TODO: actual navigation handler
+      window.location.hash = key;
+      setSelectedTutorialKey(key);
+    }
   }), _react.default.createElement("div", {
     className: "content"
-  })));
+  }, _react.default.createElement(_contentViewer.ContentViewer, {
+    tutorial: currentTutorial
+  }))));
 };
 
 exports.TutorialViewer = TutorialViewer;
-},{"react":"../node_modules/react/index.js","./sectionHeader":"tutorialViewer/sectionHeader/index.js","./explorer":"tutorialViewer/explorer/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./sectionHeader":"tutorialViewer/sectionHeader/index.js","./explorer":"tutorialViewer/explorer/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"tutorialViewer/utils.js","./contentViewer":"tutorialViewer/contentViewer/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51370,7 +51640,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55927" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51824" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

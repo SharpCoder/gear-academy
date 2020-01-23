@@ -4,12 +4,6 @@ category: [Spur Gears]
 title: Pressure Angle
 ---
 
-Hello
+## Pressure Angle
 
-@{GearSlider}
-
-Hello
-
-++Inc1++
-
-How are you?
+This is the pressure on which the gear teeth connect.

@@ -9,23 +9,23 @@
     flex-direction: column;
     flex-grow: 1;
     background-color: var(--main-bg-color);
-    border-right: 2px solid black;
+    border-right: 1px solid var(--accent-bg-color);
     margin: 0;
     padding-top: 42px;
 }
 
-.explorer a {
+.explorer div {
     padding: 12px 2px;
     margin: 0px 0px;
     padding-left: var(--page-boundary-padding);
     width: 220px;
 }
 
-.explorer a:visited {
+.explorer div:visited {
     color: var(--main-fg-color);
 }
 
-.explorer a:hover {
+.explorer div:hover {
     cursor: pointer;
     color: #cecece;
 }

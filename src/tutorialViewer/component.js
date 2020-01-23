@@ -1,14 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SectionHeader } from "./sectionHeader";
 import { Explorer } from "./explorer";
+import { filter, get, keys, map } from "lodash";
+import { pathize } from "./utils";
+import { ContentViewer } from "./contentViewer";
+
+// TODO: this seems unnecessarily complicated
+const findSelectedTutorial = (tutorials, selection) => {
+    const result = get(
+        map(
+            filter(keys(tutorials), key => {
+                const title = get(tutorials[key], "meta.title");
+                return `#${pathize(title)}` === selection;
+            }),
+            key => tutorials[key],
+        ),
+        "[0]",
+    );
+
+    return result;
+};
 
 const TutorialViewer = ({ tutorials }) => {
+    const [selectedTutorialKey, setSelectedTutorialKey] = useState(window.location.hash);
+    const [currentTutorial, setCurrentTutorial] = useState(findSelectedTutorial(tutorials, window.location.hash));
+
+    useEffect(() => {
+        setCurrentTutorial(findSelectedTutorial(tutorials, selectedTutorialKey));
+    }, [selectedTutorialKey]);
+
     return (
         <div className="tutorial-wrapper">
-            <SectionHeader category="Spur Gears" heading="Diametral Pitch" />
+            <SectionHeader category="" heading={get(currentTutorial, "meta.title")} />
             <div className="mid-wrapper">
-                <Explorer tutorials={tutorials} />
-                <div className="content"></div>
+                <Explorer
+                    selected={selectedTutorialKey}
+                    tutorials={tutorials}
+                    setSelectedTutorial={key => {
+                        // TODO: actual navigation handler
+                        window.location.hash = key;
+                        setSelectedTutorialKey(key);
+                    }}
+                />
+                <div className="content">
+                    <ContentViewer tutorial={currentTutorial} />
+                </div>
             </div>
         </div>
     );
