@@ -1,4 +1,4 @@
-import * as componentLibrary from "../../components";
+import * as componentLibrary from "../components";
 
 const uuidv4 = require("uuid/v4");
 

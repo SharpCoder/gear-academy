@@ -21,7 +21,7 @@ const findSelectedTutorial = (tutorials, selection) => {
     return result;
 };
 
-const TutorialViewer = ({ tutorials }) => {
+const TutorialViewer = ({ tutorials, context }) => {
     const [selectedTutorialKey, setSelectedTutorialKey] = useState(window.location.hash);
     const [currentTutorial, setCurrentTutorial] = useState(findSelectedTutorial(tutorials, window.location.hash));
 
@@ -43,7 +43,7 @@ const TutorialViewer = ({ tutorials }) => {
                     }}
                 />
                 <div className="content">
-                    <ContentViewer tutorial={currentTutorial} />
+                    <ContentViewer context={context} tutorial={currentTutorial} />
                 </div>
             </div>
         </div>

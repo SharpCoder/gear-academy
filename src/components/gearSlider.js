@@ -1,9 +1,15 @@
 import React from "react";
 
-const GearSlider = () => {
+const GearSlider = ({ context }) => {
     return (
         <h1>
-            I am a gear slider<button>Yes</button>
+            I am a gear slider
+            <button
+                onClick={() => {
+                    context.setPitch(24);
+                }}>
+                Yes
+            </button>
         </h1>
     );
 };

@@ -51155,15 +51155,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Explorer = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _lodash = require("lodash");
 
 var _utils = require("../utils");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Explorer = function Explorer(_ref) {
   var tutorials = _ref.tutorials,
@@ -51176,8 +51174,8 @@ var Explorer = function Explorer(_ref) {
     className: "explorer"
   }, (0, _lodash.map)(crumbs, function (tutorialTitle) {
     var href = "#".concat((0, _utils.pathize)(tutorialTitle));
-    var isSelected = href != "#" && selected === href;
-    return _react.default.createElement("div", {
+    var isSelected = selected === href;
+    return tutorialTitle && _react.default.createElement("div", {
       key: href,
       className: isSelected ? "selected" : null,
       onClick: function onClick() {
@@ -51215,8 +51213,13 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GearSlider = function GearSlider() {
-  return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", null, "Yes"));
+var GearSlider = function GearSlider(_ref) {
+  var context = _ref.context;
+  return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", {
+    onClick: function onClick() {
+      context.setPitch(24);
+    }
+  }, "Yes"));
 };
 
 exports.GearSlider = GearSlider;
@@ -51329,7 +51332,7 @@ function v4(options, buf, offset) {
 
 module.exports = v4;
 
-},{"./lib/rng":"../node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"../node_modules/uuid/lib/bytesToUuid.js"}],"utils/markdown-it/reactPostProcessor.js":[function(require,module,exports) {
+},{"./lib/rng":"../node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"../node_modules/uuid/lib/bytesToUuid.js"}],"utils/reactPostProcessor.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51337,7 +51340,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = transformHtml;
 
-var componentLibrary = _interopRequireWildcard(require("../../components"));
+var componentLibrary = _interopRequireWildcard(require("../components"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -51384,7 +51387,7 @@ function transformHtml(html) {
   response.html = result;
   return response;
 }
-},{"../../components":"components/index.js","uuid/v4":"../node_modules/uuid/v4.js"}],"tutorialViewer/contentViewer/component.js":[function(require,module,exports) {
+},{"../components":"components/index.js","uuid/v4":"../node_modules/uuid/v4.js"}],"tutorialViewer/contentViewer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51398,7 +51401,7 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _lodash = require("lodash");
 
-var _reactPostProcessor = _interopRequireDefault(require("../../utils/markdown-it/reactPostProcessor"));
+var _reactPostProcessor = _interopRequireDefault(require("../../utils/reactPostProcessor"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51407,11 +51410,16 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var ContentViewer = function ContentViewer(_ref) {
-  var tutorial = _ref.tutorial;
+  var tutorial = _ref.tutorial,
+      context = _ref.context;
   var postProcessed = (0, _reactPostProcessor.default)((0, _lodash.get)(tutorial, "html"));
   (0, _react.useEffect)(function () {
     for (var prop in postProcessed.reactComponents) {
-      _reactDom.default.render(postProcessed.reactComponents[prop](), document.getElementById(prop));
+      var Element = postProcessed.reactComponents[prop];
+
+      _reactDom.default.render(_react.default.createElement(Element, {
+        context: context
+      }), document.getElementById(prop));
     }
   }, [postProcessed]);
   return _react.default.createElement("div", {
@@ -51422,7 +51430,7 @@ var ContentViewer = function ContentViewer(_ref) {
 };
 
 exports.ContentViewer = ContentViewer;
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils/markdown-it/reactPostProcessor":"utils/markdown-it/reactPostProcessor.js"}],"tutorialViewer/contentViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils/reactPostProcessor":"utils/reactPostProcessor.js"}],"tutorialViewer/contentViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51480,7 +51488,8 @@ var findSelectedTutorial = function findSelectedTutorial(tutorials, selection) {
 };
 
 var TutorialViewer = function TutorialViewer(_ref) {
-  var tutorials = _ref.tutorials;
+  var tutorials = _ref.tutorials,
+      context = _ref.context;
 
   var _useState = (0, _react.useState)(window.location.hash),
       _useState2 = _slicedToArray(_useState, 2),
@@ -51513,6 +51522,7 @@ var TutorialViewer = function TutorialViewer(_ref) {
   }), _react.default.createElement("div", {
     className: "content"
   }, _react.default.createElement(_contentViewer.ContentViewer, {
+    context: context,
     tutorial: currentTutorial
   }))));
 };
@@ -51534,7 +51544,58 @@ Object.defineProperty(exports, "TutorialViewer", {
 require("./tutorialViewer.css");
 
 var _component = require("./component");
-},{"./tutorialViewer.css":"tutorialViewer/tutorialViewer.css","./component":"tutorialViewer/component.js"}],"index.js":[function(require,module,exports) {
+},{"./tutorialViewer.css":"tutorialViewer/tutorialViewer.css","./component":"tutorialViewer/component.js"}],"utils/context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _lodash = require("lodash");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Context =
+/*#__PURE__*/
+function () {
+  function Context() {
+    _classCallCheck(this, Context);
+
+    this.listeners = {};
+    this.pitch = 12;
+  }
+
+  _createClass(Context, [{
+    key: "setPitch",
+    value: function setPitch(number) {
+      this.pitch = number;
+      this.fireEvent("onGearUpdated");
+    }
+  }, {
+    key: "addEventListener",
+    value: function addEventListener(event, cb) {
+      this.listeners[event] = this.listeners[event] || [];
+      cb && this.listeners[event].push(cb);
+    }
+  }, {
+    key: "fireEvent",
+    value: function fireEvent(event, args) {
+      this.listeners[event] && (0, _lodash.map)(this.listeners[event], function (method) {
+        method(args);
+      });
+    }
+  }]);
+
+  return Context;
+}();
+
+exports.default = Context;
+},{"lodash":"../node_modules/lodash/lodash.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./index.css");
@@ -51550,6 +51611,8 @@ var _footer = require("./footer");
 var tutorials = _interopRequireWildcard(require("../_learningContent/**/*.md"));
 
 var _tutorialViewer = require("./tutorialViewer");
+
+var _context = _interopRequireDefault(require("./utils/context"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -51575,7 +51638,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-console.log(tutorials);
+var appContext = new _context.default();
+appContext.addEventListener("onGearUpdated", function () {
+  console.log("on gear updated");
+});
 
 var WebApp =
 /*#__PURE__*/
@@ -51591,19 +51657,16 @@ function (_React$Component) {
   _createClass(WebApp, [{
     key: "render",
     value: function render() {
+      console.log(this.context);
       return _react.default.createElement("div", {
         className: "flexy"
       }, _react.default.createElement(_header.Header, {
         title: "Gear Academy"
       }), _react.default.createElement(_tutorialViewer.TutorialViewer, {
+        context: appContext,
         tutorials: tutorials
       }), _react.default.createElement(_footer.Footer, null, "Fork us on github! etc etc."));
-    } // componentDidMount() {
-    //     // for (const prop in transformed.reactComponents) {
-    //     //     //ReactDOM.render(transformed.reactComponents[prop](), document.getElementById(prop));
-    //     // }
-    // }
-
+    }
   }]);
 
   return WebApp;
@@ -51612,7 +51675,7 @@ function (_React$Component) {
 var mountNode = document.getElementById("app");
 
 _reactDom.default.render(_react.default.createElement(WebApp, null), mountNode);
-},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./footer":"footer/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","./tutorialViewer":"tutorialViewer/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./header":"header/index.js","./footer":"footer/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","./tutorialViewer":"tutorialViewer/index.js","./utils/context":"utils/context.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -51640,7 +51703,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64315" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

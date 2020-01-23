@@ -4,7 +4,7 @@
 
     --archive-cool-color: #0f0f17;
 
-    --secondary-border-color: #0055ff;
+    --secondary-border-color: #32323f;
 
     --accent-bg-color: #32323f;
     --accent-fg-color: #fff;
@@ -72,4 +72,9 @@ body,
 
 .section .heading {
     font-size: var(--med-size);
+}
+
+.content {
+    padding: 20px;
+    background-color: cornsilk;
 }
