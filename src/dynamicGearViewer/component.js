@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { get } from "lodash";
-import { spurGear } from "./utils";
+import { spurGear } from "./gearUtils";
+import { BGFill } from "./constants";
+import BGImage from "../assets/batthern.png";
 
 const DynamicGearViewer = ({ context }) => {
     const canvasRef = useRef(null);
     const [screenSize, setScreenSize] = useState();
+    const [bgImage, setBgImage] = useState(null);
 
     useEffect(() => {
         const fn = () => {
@@ -18,6 +21,8 @@ const DynamicGearViewer = ({ context }) => {
         };
     }, []);
 
+    const img = new Image();
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
@@ -29,7 +34,7 @@ const DynamicGearViewer = ({ context }) => {
         canvas.height = height - padding;
 
         ctx.globalAlpha = 1;
-        ctx.fillStyle = "#0077ff";
+        ctx.fillStyle = BGFill;
 
         // Create basic fill
         ctx.clearRect(0, 0, width, height);
@@ -37,8 +42,25 @@ const DynamicGearViewer = ({ context }) => {
 
         // Generate a spur gear
         ctx.translate(width / 2, height / 2);
-        spurGear(ctx, width, height, 18, 6, 20);
-    }, [canvasRef, screenSize]);
+
+        // Render
+        spurGear(ctx, width, height, 24, 4, 14.5);
+
+        if (bgImage) {
+            // create pattern
+            ctx.translate(-width / 2, -height / 2);
+            var ptrn = ctx.createPattern(bgImage, "repeat");
+            ctx.fillStyle = ptrn;
+            ctx.fillRect(0, 0, width, height);
+        }
+    }, [canvasRef, screenSize, bgImage]);
+
+    useEffect(() => {
+        img.onload = () => {
+            setBgImage(img);
+        };
+        img.src = BGImage;
+    }, [canvasRef]);
 
     return <canvas style={{ flexGrow: 1, padding: 10 }} ref={canvasRef} id="gearViewer" />;
 };

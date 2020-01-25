@@ -1,4 +1,5 @@
 import { range, map, concat, reverse } from "lodash";
+import { BGFill, GearFill } from "./constants";
 
 /* Constants */
 const PI = Math.PI;
@@ -124,15 +125,18 @@ export function computeGearAttributes(N, P, pa) {
 
 export function spurGear(ctx, width, height, N, P, pa) {
     ctx.save();
+    ctx.fillStyle = GearFill;
 
+    // Compute properties
     const { db, dp, a, b, p, alpha, beta } = computeGearAttributes(N, P, pa);
 
-    ctx.fillStyle = "#000";
-    ctx.strokeStyle = "#000";
+    // Draw the inversion layer
+    ctx.fillStyle = GearFill;
+    drawCircle(ctx, dp + 1.9 * a);
+    ctx.fill();
 
-    drawCircle(ctx, dp + 2 * a);
-
-    ctx.fillStyle = "#0077ff";
+    // Draw the involute curves
+    ctx.fillStyle = BGFill;
     circular_mirror(
         ctx,
         0,
@@ -140,8 +144,15 @@ export function spurGear(ctx, width, height, N, P, pa) {
     )(() => {
         drawInvoluteTooth(ctx, db, beta);
     });
+    ctx.fill();
 
-    ctx.fillStyle = "#000";
+    // Draw the base gear clip region
+    ctx.fillStyle = GearFill;
     drawCircle(ctx, dp - 2 * b);
+
+    // Draw a bore, for variety
+    ctx.fillStyle = BGFill;
+    drawCircle(ctx, 35);
+
     ctx.restore();
 }

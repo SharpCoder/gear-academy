@@ -31872,13 +31872,13 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
   meta: {
-    index: 2,
+    index: 0,
     category: ["Spur Gears"],
-    title: "Gearing Ratios"
+    title: "Diametral Pitch"
   }
 };
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
@@ -31890,6 +31890,15 @@ module.exports = {
     title: "Different Types of Gears"
   }
 };
+},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  meta: {
+    index: 2,
+    category: ["Spur Gears"],
+    title: "Gearing Ratios"
+  }
+};
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Welcome!</h2>\n<p>We\u2019re so happy you are interested in learning about gears.</p>\n",
@@ -31897,15 +31906,6 @@ module.exports = {
     index: 0,
     category: [],
     title: "Intro!"
-  }
-};
-},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
-  meta: {
-    index: 1,
-    category: ["Spur Gears"],
-    title: "Pressure Angle"
   }
 };
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
@@ -31917,25 +31917,25 @@ module.exports = {
     title: "What is a gear?"
   }
 };
-},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
   meta: {
-    index: 0,
+    index: 1,
     category: ["Spur Gears"],
-    title: "Diametral Pitch"
+    title: "Pressure Angle"
   }
 };
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
-  "gear-ratios": require("./../gear-ratios.md"),
+  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-types": require("./../gear-types.md"),
+  "gear-ratios": require("./../gear-ratios.md"),
   "intro": require("./../intro.md"),
-  "pressure-angle": require("./../pressure-angle.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md"),
-  "diametral-pitch": require("./../diametral-pitch.md")
+  "pressure-angle": require("./../pressure-angle.md")
 };
-},{"./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../intro.md":"../_learningContent/intro.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51445,7 +51445,18 @@ Object.defineProperty(exports, "ContentViewer", {
 });
 
 var _component = require("./component");
-},{"./component":"tutorialViewer/contentViewer/component.js"}],"dynamicGearViewer/utils.js":[function(require,module,exports) {
+},{"./component":"tutorialViewer/contentViewer/component.js"}],"dynamicGearViewer/constants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GearFill = exports.BGFill = void 0;
+var BGFill = "#1d48b5";
+exports.BGFill = BGFill;
+var GearFill = "#caccca";
+exports.GearFill = GearFill;
+},{}],"dynamicGearViewer/gearUtils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51455,6 +51466,8 @@ exports.computeGearAttributes = computeGearAttributes;
 exports.spurGear = spurGear;
 
 var _lodash = require("lodash");
+
+var _constants = require("./constants");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -51612,6 +51625,7 @@ function computeGearAttributes(N, P, pa) {
 
 function spurGear(ctx, width, height, N, P, pa) {
   ctx.save();
+  ctx.fillStyle = _constants.GearFill; // Compute properties
 
   var _computeGearAttribute = computeGearAttributes(N, P, pa),
       db = _computeGearAttribute.db,
@@ -51620,20 +51634,29 @@ function spurGear(ctx, width, height, N, P, pa) {
       b = _computeGearAttribute.b,
       p = _computeGearAttribute.p,
       alpha = _computeGearAttribute.alpha,
-      beta = _computeGearAttribute.beta;
+      beta = _computeGearAttribute.beta; // Draw the inversion layer
 
-  ctx.fillStyle = "#000";
-  ctx.strokeStyle = "#000";
-  drawCircle(ctx, dp + 2 * a);
-  ctx.fillStyle = "#0077ff";
+
+  ctx.fillStyle = _constants.GearFill;
+  drawCircle(ctx, dp + 1.9 * a);
+  ctx.fill(); // Draw the involute curves
+
+  ctx.fillStyle = _constants.BGFill;
   circular_mirror(ctx, 0, N)(function () {
     drawInvoluteTooth(ctx, db, beta);
   });
-  ctx.fillStyle = "#000";
-  drawCircle(ctx, dp - 2 * b);
+  ctx.fill(); // Draw the base gear clip region
+
+  ctx.fillStyle = _constants.GearFill;
+  drawCircle(ctx, dp - 2 * b); // Draw a bore, for variety
+
+  ctx.fillStyle = _constants.BGFill;
+  drawCircle(ctx, 35);
   ctx.restore();
 }
-},{"lodash":"../node_modules/lodash/lodash.js"}],"dynamicGearViewer/component.js":[function(require,module,exports) {
+},{"lodash":"../node_modules/lodash/lodash.js","./constants":"dynamicGearViewer/constants.js"}],"assets/batthern.png":[function(require,module,exports) {
+module.exports = "/batthern.f6a2cd3b.png";
+},{}],"dynamicGearViewer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51645,7 +51668,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _lodash = require("lodash");
 
-var _utils = require("./utils");
+var _gearUtils = require("./gearUtils");
+
+var _constants = require("./constants");
+
+var _batthern = _interopRequireDefault(require("../assets/batthern.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -51668,6 +51697,11 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
       screenSize = _useState2[0],
       setScreenSize = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      bgImage = _useState4[0],
+      setBgImage = _useState4[1];
+
   (0, _react.useEffect)(function () {
     var fn = function fn() {
       var _window = window,
@@ -51684,6 +51718,7 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
       window.removeEventListener("resize", fn);
     };
   }, []);
+  var img = new Image();
   (0, _react.useEffect)(function () {
     var canvas = canvasRef.current;
     var ctx = canvas.getContext("2d");
@@ -51697,14 +51732,30 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
     canvas.width = width - padding;
     canvas.height = height - padding;
     ctx.globalAlpha = 1;
-    ctx.fillStyle = "#0077ff"; // Create basic fill
+    ctx.fillStyle = _constants.BGFill; // Create basic fill
 
     ctx.clearRect(0, 0, width, height);
     ctx.fillRect(0, 0, width, height); // Generate a spur gear
 
-    ctx.translate(width / 2, height / 2);
-    (0, _utils.spurGear)(ctx, width, height, 18, 6, 20);
-  }, [canvasRef, screenSize]);
+    ctx.translate(width / 2, height / 2); // Render
+
+    (0, _gearUtils.spurGear)(ctx, width, height, 24, 4, 14.5);
+
+    if (bgImage) {
+      // create pattern
+      ctx.translate(-width / 2, -height / 2);
+      var ptrn = ctx.createPattern(bgImage, "repeat");
+      ctx.fillStyle = ptrn;
+      ctx.fillRect(0, 0, width, height);
+    }
+  }, [canvasRef, screenSize, bgImage]);
+  (0, _react.useEffect)(function () {
+    img.onload = function () {
+      setBgImage(img);
+    };
+
+    img.src = _batthern.default;
+  }, [canvasRef]);
   return _react.default.createElement("canvas", {
     style: {
       flexGrow: 1,
@@ -51716,7 +51767,7 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
 };
 
 exports.DynamicGearViewer = DynamicGearViewer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"dynamicGearViewer/utils.js"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./gearUtils":"dynamicGearViewer/gearUtils.js","./constants":"dynamicGearViewer/constants.js","../assets/batthern.png":"assets/batthern.png"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51993,7 +52044,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52680" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57667" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
