@@ -3,7 +3,9 @@ import { map } from "lodash";
 export default class Context {
     constructor() {
         this.listeners = {};
-        this.pitch = 12;
+        this.N = 24;
+        this.P = 4;
+        this.pa = 14.5;
     }
 
     setPitch(number) {

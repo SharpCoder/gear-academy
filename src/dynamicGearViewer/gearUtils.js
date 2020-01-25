@@ -123,12 +123,12 @@ export function computeGearAttributes(N, P, pa) {
     };
 }
 
-export function spurGear(ctx, width, height, N, P, pa) {
+export function spurGear(ctx, N, P, pa) {
     ctx.save();
     ctx.fillStyle = GearFill;
 
     // Compute properties
-    const { db, dp, a, b, p, alpha, beta } = computeGearAttributes(N, P, pa);
+    const { db, dp, a, b, beta } = computeGearAttributes(N, P, pa);
 
     // Draw the inversion layer
     ctx.fillStyle = GearFill;

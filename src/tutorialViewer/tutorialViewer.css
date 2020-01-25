@@ -7,7 +7,7 @@
 .explorer {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-shrink: 0;
     background-color: var(--main-bg-color);
     border-right: 1px solid var(--accent-bg-color);
     margin: 0;
@@ -48,4 +48,5 @@
 
 .textual-content-area {
     width: 450px;
+    flex-shrink: 0;
 }

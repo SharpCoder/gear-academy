@@ -3,14 +3,21 @@ import { get } from "lodash";
 import { spurGear } from "./gearUtils";
 import { BGFill } from "./constants";
 import BGImage from "../assets/axiom-pattern.png";
+import GameEngine from "./gameEngine";
+import ImageDrawable from "./gameEngine/drawables/image";
+import Gear from "./gameEngine/drawables/gear";
 
 const DynamicGearViewer = ({ context }) => {
     const canvasRef = useRef(null);
-    const [screenSize, setScreenSize] = useState();
-    const [bgImage, setBgImage] = useState(null);
+    const [screenSize, setScreenSize] = useState({ innerWidth: window.innerWidth, innerHeight: window.innerHeight });
 
     useEffect(() => {
         const fn = () => {
+            const { current } = canvasRef;
+            if (current) {
+                current.width = null;
+                current.height = null;
+            }
             const { innerWidth, innerHeight } = window;
             setScreenSize({ width: innerWidth, height: innerHeight });
         };
@@ -21,48 +28,40 @@ const DynamicGearViewer = ({ context }) => {
         };
     }, []);
 
-    const img = new Image();
-
     useEffect(() => {
+        const canvasWrapper = document.getElementById("canvasWrapper");
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-        const { width, height } = get(canvas.getClientRects(), "[0]");
+        const w = canvasWrapper.clientWidth - 20;
+        const h = canvasWrapper.clientHeight - 20;
 
-        // Make the width/height correctly aligned with the rendered DOM rectangle
-        const padding = 10 * 2;
-        canvas.width = width - padding;
-        canvas.height = height - padding;
+        const gameEngine = new GameEngine(canvas, w, h);
 
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = BGFill;
+        // Add the gear
+        gameEngine.getRootEl().addElement(
+            new Gear({
+                x: w / 2,
+                y: h / 2,
+            }),
+        );
 
-        // Create basic fill
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillRect(0, 0, width, height);
-
-        // Generate a spur gear
-        ctx.translate(width / 2, height / 2);
-
-        // Render
-        spurGear(ctx, width, height, 24, 4, 14.5);
-
-        if (bgImage) {
-            // create pattern
-            ctx.translate(-width / 2, -height / 2);
-            var ptrn = ctx.createPattern(bgImage, "repeat");
-            ctx.fillStyle = ptrn;
-            ctx.fillRect(0, 0, width, height);
-        }
-    }, [canvasRef, screenSize, bgImage]);
-
-    useEffect(() => {
-        img.onload = () => {
-            setBgImage(img);
+        // Add the overlay
+        gameEngine.getRootEl().addElement(
+            new ImageDrawable({
+                src: BGImage,
+                w,
+                h,
+            }),
+        );
+        return () => {
+            gameEngine.destroy();
         };
-        img.src = BGImage;
-    }, [canvasRef]);
+    }, [canvasRef, screenSize]);
 
-    return <canvas style={{ flexGrow: 1, padding: 10 }} ref={canvasRef} id="gearViewer" />;
+    return (
+        <div id="canvasWrapper" style={{ flexGrow: 1, padding: 10 }}>
+            <canvas ref={canvasRef} id="gearViewer" />
+        </div>
+    );
 };
 
 export { DynamicGearViewer };

@@ -31881,15 +31881,6 @@ module.exports = {
     title: "Diametral Pitch"
   }
 };
-},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
-  meta: {
-    index: 2,
-    category: ["Spur Gears"],
-    title: "Gearing Ratios"
-  }
-};
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
@@ -31897,6 +31888,15 @@ module.exports = {
     index: 0,
     category: [],
     title: "Different Types of Gears"
+  }
+};
+},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  meta: {
+    index: 2,
+    category: ["Spur Gears"],
+    title: "Gearing Ratios"
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
@@ -31929,13 +31929,13 @@ module.exports = {
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "diametral-pitch": require("./../diametral-pitch.md"),
-  "gear-ratios": require("./../gear-ratios.md"),
   "gear-types": require("./../gear-types.md"),
+  "gear-ratios": require("./../gear-ratios.md"),
   "intro": require("./../intro.md"),
   "pressure-angle": require("./../pressure-angle.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51623,7 +51623,7 @@ function computeGearAttributes(N, P, pa) {
   return _objectSpread({}, baseAttr, {}, formulaAttr, {}, calculatedAttr);
 }
 
-function spurGear(ctx, width, height, N, P, pa) {
+function spurGear(ctx, N, P, pa) {
   ctx.save();
   ctx.fillStyle = _constants.GearFill; // Compute properties
 
@@ -51632,8 +51632,6 @@ function spurGear(ctx, width, height, N, P, pa) {
       dp = _computeGearAttribute.dp,
       a = _computeGearAttribute.a,
       b = _computeGearAttribute.b,
-      p = _computeGearAttribute.p,
-      alpha = _computeGearAttribute.alpha,
       beta = _computeGearAttribute.beta; // Draw the inversion layer
 
 
@@ -51656,7 +51654,370 @@ function spurGear(ctx, width, height, N, P, pa) {
 }
 },{"lodash":"../node_modules/lodash/lodash.js","./constants":"dynamicGearViewer/constants.js"}],"assets/axiom-pattern.png":[function(require,module,exports) {
 module.exports = "/axiom-pattern.720b160e.png";
-},{}],"dynamicGearViewer/component.js":[function(require,module,exports) {
+},{}],"dynamicGearViewer/gameEngine/drawable.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Drawable =
+/*#__PURE__*/
+function () {
+  function Drawable() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : props,
+        x = _ref.x,
+        y = _ref.y,
+        vx = _ref.vx,
+        vy = _ref.vy,
+        w = _ref.w,
+        h = _ref.h,
+        rotation = _ref.rotation,
+        children = _ref.children;
+
+    _classCallCheck(this, Drawable);
+
+    this.x = x || 0;
+    this.y = y || 0;
+    this.w = w || 0;
+    this.h = h || 0;
+    this.rotation = rotation || 0;
+    this.vx = vx || 0;
+    this.vy = vy || 0;
+    this.children = children || [];
+  }
+
+  _createClass(Drawable, [{
+    key: "setAttributes",
+    value: function setAttributes(attributes) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = attributes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var attribute = _step.value;
+          this[attribute] = attributes[attribute];
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    }
+  }, {
+    key: "addElement",
+    value: function addElement(child) {
+      this.children.push(child);
+    }
+  }, {
+    key: "onUpdate",
+    value: function onUpdate(engine, time) {
+      // Basic vector math
+      this.x += this.vx;
+      this.y += this.vy; // Basic recursive updating
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var child = _step2.value;
+
+          if (child && child.onUpdate && typeof child.onUpdate === "function") {
+            child.onUpdate(engine, time);
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+    }
+  }, {
+    key: "onDraw",
+    value: function onDraw(ctx) {
+      // Basic recursive rendering
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = this.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var child = _step3.value;
+
+          if (child && child.onDraw && typeof child.onDraw === "function") {
+            child.onDraw(ctx);
+          }
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+            _iterator3.return();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
+    }
+  }]);
+
+  return Drawable;
+}();
+
+exports.default = Drawable;
+},{}],"dynamicGearViewer/gameEngine/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _drawable = _interopRequireDefault(require("./drawable"));
+
+var _constants = require("../constants");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var GameEngine =
+/*#__PURE__*/
+function () {
+  function GameEngine(canvas, w, h) {
+    _classCallCheck(this, GameEngine);
+
+    this.w = w;
+    this.h = h;
+    canvas.width = w;
+    canvas.height = h;
+    this.timeStarted = new Date().getTime();
+    this.ctx = canvas.getContext("2d");
+    this.timerId = setInterval(this.handleTick.bind(this), 15);
+    this.rootEl = new _drawable.default({});
+  }
+
+  _createClass(GameEngine, [{
+    key: "getRootEl",
+    value: function getRootEl() {
+      return this.rootEl;
+    }
+  }, {
+    key: "handleTick",
+    value: function handleTick() {
+      var time = new Date().getTime() - this.timeStarted;
+      var gameEngine = this;
+      this.rootEl.onUpdate(gameEngine, time);
+      this.ctx.save();
+      this.ctx.fillStyle = _constants.BGFill;
+      this.ctx.clearRect(0, 0, this.w, this.h);
+      this.ctx.fillRect(0, 0, this.w, this.h);
+      this.rootEl.onDraw(this.ctx);
+      this.ctx.restore();
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      clearInterval(this.timerId);
+    }
+  }]);
+
+  return GameEngine;
+}();
+
+exports.default = GameEngine;
+},{"./drawable":"dynamicGearViewer/gameEngine/drawable.js","../constants":"dynamicGearViewer/constants.js"}],"dynamicGearViewer/gameEngine/drawables/image.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _drawable = _interopRequireDefault(require("../drawable"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ImageDrawable =
+/*#__PURE__*/
+function (_Drawable) {
+  _inherits(ImageDrawable, _Drawable);
+
+  function ImageDrawable(props) {
+    var _this;
+
+    _classCallCheck(this, ImageDrawable);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ImageDrawable).call(this, props));
+    var src = props.src;
+    _this.loaded = false;
+    _this.src = src; // IMG tag stuff
+
+    _this.image = new Image();
+
+    _this.image.onload = function () {
+      _this.loaded = true;
+    };
+
+    _this.image.src = src;
+    return _this;
+  }
+
+  _createClass(ImageDrawable, [{
+    key: "onDraw",
+    value: function onDraw(ctx) {
+      if (this.loaded) {
+        console.log("drawing");
+        var ptrn = ctx.createPattern(this.image, "repeat");
+        ctx.fillStyle = ptrn;
+        ctx.fillRect(0, 0, this.w, this.h);
+      }
+
+      _get(_getPrototypeOf(ImageDrawable.prototype), "onDraw", this).call(this, ctx);
+    }
+  }]);
+
+  return ImageDrawable;
+}(_drawable.default);
+
+exports.default = ImageDrawable;
+},{"../drawable":"dynamicGearViewer/gameEngine/drawable.js"}],"dynamicGearViewer/gameEngine/drawables/gear.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _drawable = _interopRequireDefault(require("../drawable"));
+
+var _gearUtils = require("../../gearUtils");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var deg_to_rad = Math.PI / 180;
+
+var Gear =
+/*#__PURE__*/
+function (_Drawable) {
+  _inherits(Gear, _Drawable);
+
+  function Gear(props) {
+    var _this;
+
+    _classCallCheck(this, Gear);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Gear).call(this, props));
+    var N = props.N,
+        P = props.P,
+        pa = props.pa;
+    _this.N = N || 24;
+    _this.P = P || 4;
+    _this.pa = pa || 14.5;
+    _this.time = 0;
+    return _this;
+  }
+
+  _createClass(Gear, [{
+    key: "onUpdate",
+    value: function onUpdate(gameEngine, time) {
+      var RPM = 2;
+      var secondsElapsed = time / 1000;
+      var angle = secondsElapsed % 60 * 6 * RPM;
+      this.rotation = angle;
+    }
+  }, {
+    key: "onDraw",
+    value: function onDraw(ctx) {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation * deg_to_rad);
+      (0, _gearUtils.spurGear)(ctx, this.N, this.P, this.pa);
+      ctx.restore();
+    }
+  }]);
+
+  return Gear;
+}(_drawable.default);
+
+exports.default = Gear;
+},{"../drawable":"dynamicGearViewer/gameEngine/drawable.js","../../gearUtils":"dynamicGearViewer/gearUtils.js"}],"dynamicGearViewer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51673,6 +52034,12 @@ var _gearUtils = require("./gearUtils");
 var _constants = require("./constants");
 
 var _axiomPattern = _interopRequireDefault(require("../assets/axiom-pattern.png"));
+
+var _gameEngine = _interopRequireDefault(require("./gameEngine"));
+
+var _image = _interopRequireDefault(require("./gameEngine/drawables/image"));
+
+var _gear = _interopRequireDefault(require("./gameEngine/drawables/gear"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51692,18 +52059,23 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
   var context = _ref.context;
   var canvasRef = (0, _react.useRef)(null);
 
-  var _useState = (0, _react.useState)(),
+  var _useState = (0, _react.useState)({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight
+  }),
       _useState2 = _slicedToArray(_useState, 2),
       screenSize = _useState2[0],
       setScreenSize = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      bgImage = _useState4[0],
-      setBgImage = _useState4[1];
-
   (0, _react.useEffect)(function () {
     var fn = function fn() {
+      var current = canvasRef.current;
+
+      if (current) {
+        current.width = null;
+        current.height = null;
+      }
+
       var _window = window,
           innerWidth = _window.innerWidth,
           innerHeight = _window.innerHeight;
@@ -51718,56 +52090,41 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
       window.removeEventListener("resize", fn);
     };
   }, []);
-  var img = new Image();
   (0, _react.useEffect)(function () {
+    var canvasWrapper = document.getElementById("canvasWrapper");
     var canvas = canvasRef.current;
-    var ctx = canvas.getContext("2d");
+    var w = canvasWrapper.clientWidth - 20;
+    var h = canvasWrapper.clientHeight - 20;
+    var gameEngine = new _gameEngine.default(canvas, w, h); // Add the gear
 
-    var _get = (0, _lodash.get)(canvas.getClientRects(), "[0]"),
-        width = _get.width,
-        height = _get.height; // Make the width/height correctly aligned with the rendered DOM rectangle
+    gameEngine.getRootEl().addElement(new _gear.default({
+      x: w / 2,
+      y: h / 2
+    })); // Add the overlay
 
-
-    var padding = 10 * 2;
-    canvas.width = width - padding;
-    canvas.height = height - padding;
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = _constants.BGFill; // Create basic fill
-
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillRect(0, 0, width, height); // Generate a spur gear
-
-    ctx.translate(width / 2, height / 2); // Render
-
-    (0, _gearUtils.spurGear)(ctx, width, height, 24, 4, 14.5);
-
-    if (bgImage) {
-      // create pattern
-      ctx.translate(-width / 2, -height / 2);
-      var ptrn = ctx.createPattern(bgImage, "repeat");
-      ctx.fillStyle = ptrn;
-      ctx.fillRect(0, 0, width, height);
-    }
-  }, [canvasRef, screenSize, bgImage]);
-  (0, _react.useEffect)(function () {
-    img.onload = function () {
-      setBgImage(img);
+    gameEngine.getRootEl().addElement(new _image.default({
+      src: _axiomPattern.default,
+      w: w,
+      h: h
+    }));
+    return function () {
+      gameEngine.destroy();
     };
-
-    img.src = _axiomPattern.default;
-  }, [canvasRef]);
-  return _react.default.createElement("canvas", {
+  }, [canvasRef, screenSize]);
+  return _react.default.createElement("div", {
+    id: "canvasWrapper",
     style: {
       flexGrow: 1,
       padding: 10
-    },
+    }
+  }, _react.default.createElement("canvas", {
     ref: canvasRef,
     id: "gearViewer"
-  });
+  }));
 };
 
 exports.DynamicGearViewer = DynamicGearViewer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./gearUtils":"dynamicGearViewer/gearUtils.js","./constants":"dynamicGearViewer/constants.js","../assets/axiom-pattern.png":"assets/axiom-pattern.png"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./gearUtils":"dynamicGearViewer/gearUtils.js","./constants":"dynamicGearViewer/constants.js","../assets/axiom-pattern.png":"assets/axiom-pattern.png","./gameEngine":"dynamicGearViewer/gameEngine/index.js","./gameEngine/drawables/image":"dynamicGearViewer/gameEngine/drawables/image.js","./gameEngine/drawables/gear":"dynamicGearViewer/gameEngine/drawables/gear.js"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51908,7 +52265,9 @@ function () {
     _classCallCheck(this, Context);
 
     this.listeners = {};
-    this.pitch = 12;
+    this.N = 24;
+    this.P = 4;
+    this.pa = 14.5;
   }
 
   _createClass(Context, [{
@@ -52044,7 +52403,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58959" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52454" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
