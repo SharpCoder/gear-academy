@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { get } from "lodash";
 import { spurGear } from "./gearUtils";
 import { BGFill } from "./constants";
-import BGImage from "../assets/batthern.png";
+import BGImage from "../assets/axiom-pattern.png";
 
 const DynamicGearViewer = ({ context }) => {
     const canvasRef = useRef(null);

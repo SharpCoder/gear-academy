@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets/axiom-pattern.png":[["axiom-pattern.720b160e.png","assets/axiom-pattern.png"],"assets/axiom-pattern.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/object-assign/index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/object-assign/index.js":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -31881,15 +31881,6 @@ module.exports = {
     title: "Diametral Pitch"
   }
 };
-},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
-  meta: {
-    index: 0,
-    category: [],
-    title: "Different Types of Gears"
-  }
-};
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
@@ -31897,6 +31888,15 @@ module.exports = {
     index: 2,
     category: ["Spur Gears"],
     title: "Gearing Ratios"
+  }
+};
+},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "Different Types of Gears"
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
@@ -31908,15 +31908,6 @@ module.exports = {
     title: "Intro!"
   }
 };
-},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
-  meta: {
-    index: 0,
-    category: [],
-    title: "What is a gear?"
-  }
-};
 },{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
@@ -31926,16 +31917,25 @@ module.exports = {
     title: "Pressure Angle"
   }
 };
+},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "What is a gear?"
+  }
+};
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "diametral-pitch": require("./../diametral-pitch.md"),
-  "gear-types": require("./../gear-types.md"),
   "gear-ratios": require("./../gear-ratios.md"),
+  "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md"),
-  "pressure-angle": require("./../pressure-angle.md")
+  "pressure-angle": require("./../pressure-angle.md"),
+  "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../intro.md":"../_learningContent/intro.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51654,8 +51654,8 @@ function spurGear(ctx, width, height, N, P, pa) {
   drawCircle(ctx, 35);
   ctx.restore();
 }
-},{"lodash":"../node_modules/lodash/lodash.js","./constants":"dynamicGearViewer/constants.js"}],"assets/batthern.png":[function(require,module,exports) {
-module.exports = "/batthern.f6a2cd3b.png";
+},{"lodash":"../node_modules/lodash/lodash.js","./constants":"dynamicGearViewer/constants.js"}],"assets/axiom-pattern.png":[function(require,module,exports) {
+module.exports = "/axiom-pattern.720b160e.png";
 },{}],"dynamicGearViewer/component.js":[function(require,module,exports) {
 "use strict";
 
@@ -51672,7 +51672,7 @@ var _gearUtils = require("./gearUtils");
 
 var _constants = require("./constants");
 
-var _batthern = _interopRequireDefault(require("../assets/batthern.png"));
+var _axiomPattern = _interopRequireDefault(require("../assets/axiom-pattern.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51754,7 +51754,7 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
       setBgImage(img);
     };
 
-    img.src = _batthern.default;
+    img.src = _axiomPattern.default;
   }, [canvasRef]);
   return _react.default.createElement("canvas", {
     style: {
@@ -51767,7 +51767,7 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
 };
 
 exports.DynamicGearViewer = DynamicGearViewer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./gearUtils":"dynamicGearViewer/gearUtils.js","./constants":"dynamicGearViewer/constants.js","../assets/batthern.png":"assets/batthern.png"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./gearUtils":"dynamicGearViewer/gearUtils.js","./constants":"dynamicGearViewer/constants.js","../assets/axiom-pattern.png":"assets/axiom-pattern.png"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52044,7 +52044,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58959" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
