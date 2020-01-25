@@ -4,6 +4,7 @@ import { Explorer } from "./explorer";
 import { filter, get, keys, map } from "lodash";
 import { pathize } from "./utils";
 import { ContentViewer } from "./contentViewer";
+import { DynamicGearViewer } from "../dynamicGearViewer";
 
 // TODO: this seems unnecessarily complicated
 const findSelectedTutorial = (tutorials, selection) => {
@@ -44,6 +45,7 @@ const TutorialViewer = ({ tutorials, context }) => {
                 />
                 <div className="content">
                     <ContentViewer context={context} tutorial={currentTutorial} />
+                    <DynamicGearViewer context={context} />
                 </div>
             </div>
         </div>

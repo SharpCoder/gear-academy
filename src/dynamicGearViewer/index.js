@@ -1,0 +1,1 @@
+export { DynamicGearViewer } from "./component";

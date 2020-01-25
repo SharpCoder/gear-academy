@@ -18,7 +18,6 @@
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-image: url("/axiom-pattern.720b160e.png");
 }
 
 body,
@@ -75,8 +74,9 @@ body,
 }
 
 .content {
-    padding: 20px;
-    background-color: cornsilk;
+    padding: 10px;
+    background-color: rgb(240, 240, 240);
+    background-image: url("/axiom-pattern.720b160e.png");
 }
 
 .tutorial-wrapper {
@@ -124,6 +124,11 @@ body,
 
 .content {
     width: 100%;
+    display: flex;
+}
+
+.textual-content-area {
+    width: 450px;
 }
 
 

@@ -31872,16 +31872,7 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
-  meta: {
-    index: 0,
-    category: ["Spur Gears"],
-    title: "Diametral Pitch"
-  }
-};
-},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
   meta: {
@@ -31926,16 +31917,25 @@ module.exports = {
     title: "What is a gear?"
   }
 };
+},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
+  meta: {
+    index: 0,
+    category: ["Spur Gears"],
+    title: "Diametral Pitch"
+  }
+};
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
-  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-ratios": require("./../gear-ratios.md"),
   "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
   "pressure-angle": require("./../pressure-angle.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md")
+  "what-is-a-gear": require("./../what-is-a-gear.md"),
+  "diametral-pitch": require("./../diametral-pitch.md")
 };
-},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51423,6 +51423,7 @@ var ContentViewer = function ContentViewer(_ref) {
     }
   }, [postProcessed]);
   return _react.default.createElement("div", {
+    className: "textual-content-area",
     dangerouslySetInnerHTML: {
       __html: postProcessed.html
     }
@@ -51444,7 +51445,292 @@ Object.defineProperty(exports, "ContentViewer", {
 });
 
 var _component = require("./component");
-},{"./component":"tutorialViewer/contentViewer/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
+},{"./component":"tutorialViewer/contentViewer/component.js"}],"dynamicGearViewer/utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.computeGearAttributes = computeGearAttributes;
+exports.spurGear = spurGear;
+
+var _lodash = require("lodash");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* Constants */
+var PI = Math.PI;
+var in_to_mm = 25.4;
+var in_to_px = 25.4;
+var deg_to_rad = PI / 180;
+var rad_to_deg = 180 / PI;
+/* Math Functions */
+
+function parametric_points() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : props,
+      fx = _ref.fx,
+      fy = _ref.fy,
+      t0 = _ref.t0,
+      t1 = _ref.t1,
+      delta = _ref.delta;
+
+  return (0, _lodash.map)((0, _lodash.range)(t0, t1, delta), function (t) {
+    return [fx(t), fy(t)];
+  });
+}
+
+function calc_module(P) {
+  return in_to_px / P;
+}
+
+function calc_addendum(P) {
+  return 1 / P * in_to_px;
+}
+
+function calc_dedendum(P) {
+  return 1.25 / P * in_to_px;
+}
+
+function calc_dp(N, P) {
+  return N / P * in_to_px;
+}
+
+function calc_db(N, P, pa) {
+  return calc_dp(N, P) * Math.cos(pa * deg_to_rad);
+}
+
+function calc_dr(N, P) {
+  return calc_dp(N, P) - 2 * calc_dedendum(P);
+}
+
+function calc_circular_pitch(P) {
+  return PI / P * in_to_px;
+}
+
+function calc_alpha(dp, db, pa) {
+  return Math.sqrt(Math.pow(dp, 2) - Math.pow(db, 2)) / db - pa * deg_to_rad;
+}
+
+function calc_clearance(P) {
+  return calc_dedendum(P) - calc_addendum(P);
+}
+
+function calc_center_distance(N1, N2, P) {
+  return in_to_mm * (N1 + N2) / (2 * P);
+}
+/* Drawing Functions */
+
+
+function circular_mirror(ctx, d, count) {
+  // Curry
+  return function (drawMethod) {
+    var aps = 360.0 / count;
+    (0, _lodash.map)((0, _lodash.range)(1, count + 1), function (step) {
+      var currentAngle = step * aps;
+      var unitX = Math.cos(currentAngle * deg_to_rad);
+      var unitY = Math.sin(currentAngle * deg_to_rad);
+      ctx.save();
+      ctx.translate(unitX * d, unitY * d);
+      ctx.rotate(currentAngle * deg_to_rad);
+      drawMethod();
+      ctx.restore();
+    });
+  };
+}
+
+function drawPolygon(ctx, points) {
+  ctx.beginPath();
+  (0, _lodash.map)(points, function (point) {
+    ctx.lineTo(point[0], point[1]);
+  });
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawCircle(ctx, radius) {
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+  ctx.fill();
+}
+
+function drawInvoluteTooth(ctx, r, beta) {
+  var x = function x(t) {
+    return r * (Math.cos(t) + t * Math.sin(t));
+  };
+
+  var y = function y(t) {
+    return r * (Math.sin(t) - t * Math.cos(t));
+  };
+
+  var x2 = function x2(t) {
+    return r * (Math.cos(-t - beta) - t * Math.sin(-t - beta));
+  };
+
+  var y2 = function y2(t) {
+    return r * (Math.sin(-t - beta) + t * Math.cos(-t - beta));
+  };
+
+  var involute_1_points = parametric_points({
+    fx: x,
+    fy: y,
+    t0: 0,
+    t1: 0.68,
+    delta: 0.01
+  });
+  var involute_2_points = parametric_points({
+    fx: x2,
+    fy: y2,
+    t0: 0,
+    t1: 0.68,
+    delta: 0.01
+  });
+  drawPolygon(ctx, (0, _lodash.concat)([[0, 0]], involute_1_points, (0, _lodash.reverse)(involute_2_points), [[0, 0]]));
+}
+/* Exported Functions */
+
+
+function computeGearAttributes(N, P, pa) {
+  var baseAttr = {
+    dp: calc_dp(N, P),
+    db: calc_db(N, P, pa),
+    a: calc_addendum(P),
+    b: calc_dedendum(P),
+    p: calc_circular_pitch(P)
+  };
+  var formulaAttr = {
+    alpha: calc_alpha(baseAttr.dp, baseAttr.db, pa)
+  };
+  var calculatedAttr = {
+    beta: (360.0 / (4.0 * N) - formulaAttr.alpha) * 2 * deg_to_rad
+  };
+  return _objectSpread({}, baseAttr, {}, formulaAttr, {}, calculatedAttr);
+}
+
+function spurGear(ctx, width, height, N, P, pa) {
+  ctx.save();
+
+  var _computeGearAttribute = computeGearAttributes(N, P, pa),
+      db = _computeGearAttribute.db,
+      dp = _computeGearAttribute.dp,
+      a = _computeGearAttribute.a,
+      b = _computeGearAttribute.b,
+      p = _computeGearAttribute.p,
+      alpha = _computeGearAttribute.alpha,
+      beta = _computeGearAttribute.beta;
+
+  ctx.fillStyle = "#000";
+  ctx.strokeStyle = "#000";
+  drawCircle(ctx, dp + 2 * a);
+  ctx.fillStyle = "#0077ff";
+  circular_mirror(ctx, 0, N)(function () {
+    drawInvoluteTooth(ctx, db, beta);
+  });
+  ctx.fillStyle = "#000";
+  drawCircle(ctx, dp - 2 * b);
+  ctx.restore();
+}
+},{"lodash":"../node_modules/lodash/lodash.js"}],"dynamicGearViewer/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DynamicGearViewer = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _lodash = require("lodash");
+
+var _utils = require("./utils");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var DynamicGearViewer = function DynamicGearViewer(_ref) {
+  var context = _ref.context;
+  var canvasRef = (0, _react.useRef)(null);
+
+  var _useState = (0, _react.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      screenSize = _useState2[0],
+      setScreenSize = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    var fn = function fn() {
+      var _window = window,
+          innerWidth = _window.innerWidth,
+          innerHeight = _window.innerHeight;
+      setScreenSize({
+        width: innerWidth,
+        height: innerHeight
+      });
+    };
+
+    window.addEventListener("resize", fn);
+    return function () {
+      window.removeEventListener("resize", fn);
+    };
+  }, []);
+  (0, _react.useEffect)(function () {
+    var canvas = canvasRef.current;
+    var ctx = canvas.getContext("2d");
+
+    var _get = (0, _lodash.get)(canvas.getClientRects(), "[0]"),
+        width = _get.width,
+        height = _get.height; // Make the width/height correctly aligned with the rendered DOM rectangle
+
+
+    var padding = 10 * 2;
+    canvas.width = width - padding;
+    canvas.height = height - padding;
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "#0077ff"; // Create basic fill
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillRect(0, 0, width, height); // Generate a spur gear
+
+    ctx.translate(width / 2, height / 2);
+    (0, _utils.spurGear)(ctx, width, height, 18, 6, 20);
+  }, [canvasRef, screenSize]);
+  return _react.default.createElement("canvas", {
+    style: {
+      flexGrow: 1,
+      padding: 10
+    },
+    ref: canvasRef,
+    id: "gearViewer"
+  });
+};
+
+exports.DynamicGearViewer = DynamicGearViewer;
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"dynamicGearViewer/utils.js"}],"dynamicGearViewer/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "DynamicGearViewer", {
+  enumerable: true,
+  get: function () {
+    return _component.DynamicGearViewer;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"dynamicGearViewer/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51463,6 +51749,8 @@ var _lodash = require("lodash");
 var _utils = require("./utils");
 
 var _contentViewer = require("./contentViewer");
+
+var _dynamicGearViewer = require("../dynamicGearViewer");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -51524,11 +51812,13 @@ var TutorialViewer = function TutorialViewer(_ref) {
   }, _react.default.createElement(_contentViewer.ContentViewer, {
     context: context,
     tutorial: currentTutorial
+  }), _react.default.createElement(_dynamicGearViewer.DynamicGearViewer, {
+    context: context
   }))));
 };
 
 exports.TutorialViewer = TutorialViewer;
-},{"react":"../node_modules/react/index.js","./sectionHeader":"tutorialViewer/sectionHeader/index.js","./explorer":"tutorialViewer/explorer/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"tutorialViewer/utils.js","./contentViewer":"tutorialViewer/contentViewer/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./sectionHeader":"tutorialViewer/sectionHeader/index.js","./explorer":"tutorialViewer/explorer/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"tutorialViewer/utils.js","./contentViewer":"tutorialViewer/contentViewer/index.js","../dynamicGearViewer":"dynamicGearViewer/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51703,7 +51993,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64315" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52680" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

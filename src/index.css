@@ -18,7 +18,6 @@
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-image: url("./assets/axiom-pattern.png");
 }
 
 body,
@@ -75,6 +74,7 @@ body,
 }
 
 .content {
-    padding: 20px;
-    background-color: cornsilk;
+    padding: 10px;
+    background-color: rgb(240, 240, 240);
+    background-image: url("./assets/axiom-pattern.png");
 }

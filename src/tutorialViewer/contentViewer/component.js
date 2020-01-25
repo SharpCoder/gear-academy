@@ -13,7 +13,7 @@ const ContentViewer = ({ tutorial, context }) => {
         }
     }, [postProcessed]);
 
-    return <div dangerouslySetInnerHTML={{ __html: postProcessed.html }}></div>;
+    return <div className="textual-content-area" dangerouslySetInnerHTML={{ __html: postProcessed.html }}></div>;
 };
 
 export { ContentViewer };
