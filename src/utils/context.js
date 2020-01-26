@@ -1,11 +1,16 @@
-import { map } from "lodash";
+import { map, remove } from "lodash";
 
 export default class Context {
     constructor() {
         this.listeners = {};
+        this.reset();
+    }
+
+    reset() {
         this.N = 24;
         this.P = 4;
         this.pa = 14.5;
+        this.fireEvent("onGearUpdated");
     }
 
     setPressureAngle(pa) {
@@ -26,6 +31,11 @@ export default class Context {
     addEventListener(event, cb) {
         this.listeners[event] = this.listeners[event] || [];
         cb && this.listeners[event].push(cb);
+    }
+
+    removeEventListener(event, cb) {
+        const events = this.listeners[event] || [];
+        remove(events, _ => _ === cb);
     }
 
     fireEvent(event, args) {

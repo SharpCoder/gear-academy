@@ -31874,11 +31874,20 @@ Object.defineProperty(exports, "Footer", {
 var _component = require("./component");
 },{"./component":"footer/component.js"}],"../_learningContent/control-testing.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<p>That should be it!</p>\n",
+  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<p>@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
   meta: {
     index: 0,
     category: ["Spur Gears"],
     title: "Control Testing"
+  }
+};
+},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
+  meta: {
+    index: 0,
+    category: ["Spur Gears"],
+    title: "Diametral Pitch"
   }
 };
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
@@ -31906,15 +31915,6 @@ module.exports = {
     index: 0,
     category: [],
     title: "Intro!"
-  }
-};
-},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
-  meta: {
-    index: 0,
-    category: ["Spur Gears"],
-    title: "Diametral Pitch"
   }
 };
 },{}],"../_learningContent/openscad.md":[function(require,module,exports) {
@@ -31956,16 +31956,16 @@ module.exports = {
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "control-testing": require("./../control-testing.md"),
+  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-ratios": require("./../gear-ratios.md"),
   "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
-  "diametral-pitch": require("./../diametral-pitch.md"),
   "openscad": require("./../openscad.md"),
   "pressure-angle": require("./../pressure-angle.md"),
   "resources": require("./../resources.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -71097,7 +71097,27 @@ Object.defineProperty(exports, "default", {
 var _InputLabel = _interopRequireDefault(require("./InputLabel"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./InputLabel":"../node_modules/@material-ui/core/esm/InputLabel/InputLabel.js"}],"components/toothCountPicker.js":[function(require,module,exports) {
+},{"./InputLabel":"../node_modules/@material-ui/core/esm/InputLabel/InputLabel.js"}],"components/baseComponent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BaseComponent = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BaseComponent = function BaseComponent(_ref) {
+  var children = _ref.children;
+  return _react.default.createElement("div", {
+    className: "injected-component"
+  }, children);
+};
+
+exports.BaseComponent = BaseComponent;
+},{"react":"../node_modules/react/index.js"}],"components/toothCountPicker.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71114,6 +71134,8 @@ var _Select = _interopRequireDefault(require("@material-ui/core/Select"));
 var _MenuItem = _interopRequireDefault(require("@material-ui/core/MenuItem"));
 
 var _InputLabel = _interopRequireDefault(require("@material-ui/core/InputLabel"));
+
+var _baseComponent = require("./baseComponent");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -71140,17 +71162,26 @@ var ToothCountPicker = function ToothCountPicker(_ref) {
   var handleChange = function handleChange(event) {
     var value = event.target.value;
     context.setToothCount(value);
-    setSelected(value);
   };
 
-  return _react.default.createElement("div", {
-    className: "injected-control"
-  }, _react.default.createElement(_InputLabel.default, {
+  (0, _react.useEffect)(function () {
+    var fn = function fn() {
+      if (context.N !== selected) {
+        setSelected(context.N);
+      }
+    };
+
+    context.addEventListener("onGearUpdated", fn);
+    return function () {
+      context.removeEventListener("onGearUpdated", fn);
+    };
+  });
+  return _react.default.createElement(_baseComponent.BaseComponent, null, _react.default.createElement(_InputLabel.default, {
     shrink: true
   }, "Tooth Count"), _react.default.createElement(_Select.default, {
     onChange: handleChange,
     value: selected
-  }, (0, _lodash.map)([16, 18, 24, 26, 28, 30, 32, 34, 36, 38, 60], function (size) {
+  }, (0, _lodash.map)([18, 24, 26, 28, 30, 32, 34, 36, 38, 60], function (size) {
     return _react.default.createElement(_MenuItem.default, {
       key: "".concat(size, "-teeth"),
       value: size
@@ -71159,7 +71190,1820 @@ var ToothCountPicker = function ToothCountPicker(_ref) {
 };
 
 exports.ToothCountPicker = ToothCountPicker;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","@material-ui/core/Select":"../node_modules/@material-ui/core/esm/Select/index.js","@material-ui/core/MenuItem":"../node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/InputLabel":"../node_modules/@material-ui/core/esm/InputLabel/index.js"}],"components/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","@material-ui/core/Select":"../node_modules/@material-ui/core/esm/Select/index.js","@material-ui/core/MenuItem":"../node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/InputLabel":"../node_modules/@material-ui/core/esm/InputLabel/index.js","./baseComponent":"components/baseComponent.js"}],"../node_modules/@material-ui/core/esm/Slider/ValueLabel.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = function styles(theme) {
+  return {
+    thumb: {
+      '&$open': {
+        '& $offset': {
+          transform: 'scale(1) translateY(-10px)'
+        }
+      }
+    },
+    open: {},
+    offset: (0, _extends2.default)({
+      zIndex: 1
+    }, theme.typography.body2, {
+      fontSize: theme.typography.pxToRem(12),
+      lineHeight: 1.2,
+      transition: theme.transitions.create(['transform'], {
+        duration: theme.transitions.duration.shortest
+      }),
+      top: -34,
+      transformOrigin: 'bottom center',
+      transform: 'scale(0)',
+      position: 'absolute'
+    }),
+    circle: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 32,
+      height: 32,
+      borderRadius: '50% 50% 50% 0',
+      backgroundColor: 'currentColor',
+      transform: 'rotate(-45deg)'
+    },
+    label: {
+      color: theme.palette.primary.contrastText,
+      transform: 'rotate(45deg)'
+    }
+  };
+};
+/**
+ * @ignore - internal component.
+ */
+
+
+function ValueLabel(props) {
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      open = props.open,
+      value = props.value,
+      valueLabelDisplay = props.valueLabelDisplay;
+
+  if (valueLabelDisplay === 'off') {
+    return children;
+  }
+
+  return _react.default.cloneElement(children, {
+    className: (0, _clsx.default)(children.props.className, (open || valueLabelDisplay === 'on') && classes.open, classes.thumb)
+  }, _react.default.createElement("span", {
+    className: (0, _clsx.default)(classes.offset, className)
+  }, _react.default.createElement("span", {
+    className: classes.circle
+  }, _react.default.createElement("span", {
+    className: classes.label
+  }, value))));
+}
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'PrivateValueLabel'
+})(ValueLabel);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","react":"../node_modules/react/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js"}],"../node_modules/@material-ui/core/esm/Slider/Slider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _utils = require("@material-ui/utils");
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _useTheme = _interopRequireDefault(require("../styles/useTheme"));
+
+var _colorManipulator = require("../styles/colorManipulator");
+
+var _focusVisible = require("../utils/focusVisible");
+
+var _ownerDocument = _interopRequireDefault(require("../utils/ownerDocument"));
+
+var _useEventCallback = _interopRequireDefault(require("../utils/useEventCallback"));
+
+var _useForkRef = _interopRequireDefault(require("../utils/useForkRef"));
+
+var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+
+var _useControlled3 = _interopRequireDefault(require("../utils/useControlled"));
+
+var _ValueLabel = _interopRequireDefault(require("./ValueLabel"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asc(a, b) {
+  return a - b;
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(min, value), max);
+}
+
+function findClosest(values, currentValue) {
+  var _values$reduce = values.reduce(function (acc, value, index) {
+    var distance = Math.abs(currentValue - value);
+
+    if (acc === null || distance < acc.distance || distance === acc.distance) {
+      return {
+        distance: distance,
+        index: index
+      };
+    }
+
+    return acc;
+  }, null),
+      closestIndex = _values$reduce.index;
+
+  return closestIndex;
+}
+
+function trackFinger(event, touchId) {
+  if (touchId.current !== undefined && event.changedTouches) {
+    for (var i = 0; i < event.changedTouches.length; i += 1) {
+      var touch = event.changedTouches[i];
+
+      if (touch.identifier === touchId.current) {
+        return {
+          x: touch.clientX,
+          y: touch.clientY
+        };
+      }
+    }
+
+    return false;
+  }
+
+  return {
+    x: event.clientX,
+    y: event.clientY
+  };
+}
+
+function valueToPercent(value, min, max) {
+  return (value - min) * 100 / (max - min);
+}
+
+function percentToValue(percent, min, max) {
+  return (max - min) * percent + min;
+}
+
+function getDecimalPrecision(num) {
+  // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
+  // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
+  if (Math.abs(num) < 1) {
+    var parts = num.toExponential().split('e-');
+    var matissaDecimalPart = parts[0].split('.')[1];
+    return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
+  }
+
+  var decimalPart = num.toString().split('.')[1];
+  return decimalPart ? decimalPart.length : 0;
+}
+
+function roundValueToStep(value, step, min) {
+  var nearest = Math.round((value - min) / step) * step + min;
+  return Number(nearest.toFixed(getDecimalPrecision(step)));
+}
+
+function setValueIndex(_ref) {
+  var values = _ref.values,
+      source = _ref.source,
+      newValue = _ref.newValue,
+      index = _ref.index; // Performance shortcut
+
+  if (values[index] === newValue) {
+    return source;
+  }
+
+  var output = (0, _toConsumableArray2.default)(values);
+  output[index] = newValue;
+  return output;
+}
+
+function focusThumb(_ref2) {
+  var sliderRef = _ref2.sliderRef,
+      activeIndex = _ref2.activeIndex,
+      setActive = _ref2.setActive;
+
+  if (!sliderRef.current.contains(document.activeElement) || Number(document.activeElement.getAttribute('data-index')) !== activeIndex) {
+    sliderRef.current.querySelector("[data-index=\"".concat(activeIndex, "\"]")).focus();
+  }
+
+  if (setActive) {
+    setActive(activeIndex);
+  }
+}
+
+var axisProps = {
+  horizontal: {
+    offset: function offset(percent) {
+      return {
+        left: "".concat(percent, "%")
+      };
+    },
+    leap: function leap(percent) {
+      return {
+        width: "".concat(percent, "%")
+      };
+    }
+  },
+  'horizontal-reverse': {
+    offset: function offset(percent) {
+      return {
+        right: "".concat(percent, "%")
+      };
+    },
+    leap: function leap(percent) {
+      return {
+        width: "".concat(percent, "%")
+      };
+    }
+  },
+  vertical: {
+    offset: function offset(percent) {
+      return {
+        bottom: "".concat(percent, "%")
+      };
+    },
+    leap: function leap(percent) {
+      return {
+        height: "".concat(percent, "%")
+      };
+    }
+  }
+};
+var defaultMarks = [];
+
+var Identity = function Identity(x) {
+  return x;
+};
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      height: 2,
+      width: '100%',
+      boxSizing: 'content-box',
+      padding: '13px 0',
+      display: 'inline-block',
+      position: 'relative',
+      cursor: 'pointer',
+      touchAction: 'none',
+      color: theme.palette.primary.main,
+      WebkitTapHighlightColor: 'transparent',
+      '&$disabled': {
+        pointerEvents: 'none',
+        cursor: 'default',
+        color: theme.palette.grey[400]
+      },
+      '&$vertical': {
+        width: 2,
+        height: '100%',
+        padding: '0 13px'
+      },
+      // The primary input mechanism of the device includes a pointing device of limited accuracy.
+      '@media (pointer: coarse)': {
+        // Reach 42px touch target, about ~8mm on screen.
+        padding: '20px 0',
+        '&$vertical': {
+          padding: '0 20px'
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `color="primary"`. */
+    colorPrimary: {// TODO v5, move the style here
+    },
+
+    /* Styles applied to the root element if `color="secondary"`. */
+    colorSecondary: {
+      color: theme.palette.secondary.main
+    },
+
+    /* Styles applied to the root element if `marks` is provided with at least one label. */
+    marked: {
+      marginBottom: 20,
+      '&$vertical': {
+        marginBottom: 'auto',
+        marginRight: 20
+      }
+    },
+
+    /* Pseudo-class applied to the root element if `orientation="vertical"`. */
+    vertical: {},
+
+    /* Pseudo-class applied to the root and thumb element if `disabled={true}`. */
+    disabled: {},
+
+    /* Styles applied to the rail element. */
+    rail: {
+      display: 'block',
+      position: 'absolute',
+      width: '100%',
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: 'currentColor',
+      opacity: 0.38,
+      '$vertical &': {
+        height: '100%',
+        width: 2
+      }
+    },
+
+    /* Styles applied to the track element. */
+    track: {
+      display: 'block',
+      position: 'absolute',
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: 'currentColor',
+      '$vertical &': {
+        width: 2
+      }
+    },
+
+    /* Styles applied to the track element if `track={false}`. */
+    trackFalse: {
+      '& $track': {
+        display: 'none'
+      }
+    },
+
+    /* Styles applied to the track element if `track="inverted"`. */
+    trackInverted: {
+      '& $track': {
+        backgroundColor: // Same logic as the LinearProgress track color
+        theme.palette.type === 'light' ? (0, _colorManipulator.lighten)(theme.palette.primary.main, 0.62) : (0, _colorManipulator.darken)(theme.palette.primary.main, 0.5)
+      },
+      '& $rail': {
+        opacity: 1
+      }
+    },
+
+    /* Styles applied to the thumb element. */
+    thumb: {
+      position: 'absolute',
+      width: 12,
+      height: 12,
+      marginLeft: -6,
+      marginTop: -5,
+      boxSizing: 'border-box',
+      borderRadius: '50%',
+      outline: 0,
+      backgroundColor: 'currentColor',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: theme.transitions.create(['box-shadow'], {
+        duration: theme.transitions.duration.shortest
+      }),
+      '&::after': {
+        position: 'absolute',
+        content: '""',
+        borderRadius: '50%',
+        // reach 42px hit target (2 * 15 + thumb diameter)
+        left: -15,
+        top: -15,
+        right: -15,
+        bottom: -15
+      },
+      '&$focusVisible,&:hover': {
+        boxShadow: "0px 0px 0px 8px ".concat((0, _colorManipulator.fade)(theme.palette.primary.main, 0.16)),
+        '@media (hover: none)': {
+          boxShadow: 'none'
+        }
+      },
+      '&$active': {
+        boxShadow: "0px 0px 0px 14px ".concat((0, _colorManipulator.fade)(theme.palette.primary.main, 0.16))
+      },
+      '&$disabled': {
+        width: 8,
+        height: 8,
+        marginLeft: -4,
+        marginTop: -3,
+        '&:hover': {
+          boxShadow: 'none'
+        }
+      },
+      '$vertical &': {
+        marginLeft: -5,
+        marginBottom: -6
+      },
+      '$vertical &$disabled': {
+        marginLeft: -3,
+        marginBottom: -4
+      }
+    },
+
+    /* Styles applied to the thumb element if `color="primary"`. */
+    thumbColorPrimary: {// TODO v5, move the style here
+    },
+
+    /* Styles applied to the thumb element if `color="secondary"`. */
+    thumbColorSecondary: {
+      '&$focusVisible,&:hover': {
+        boxShadow: "0px 0px 0px 8px ".concat((0, _colorManipulator.fade)(theme.palette.secondary.main, 0.16))
+      },
+      '&$active': {
+        boxShadow: "0px 0px 0px 14px ".concat((0, _colorManipulator.fade)(theme.palette.secondary.main, 0.16))
+      }
+    },
+
+    /* Pseudo-class applied to the thumb element if it's active. */
+    active: {},
+
+    /* Pseudo-class applied to the thumb element if keyboard focused. */
+    focusVisible: {},
+
+    /* Styles applied to the thumb label element. */
+    valueLabel: {},
+
+    /* Styles applied to the mark element. */
+    mark: {
+      position: 'absolute',
+      width: 2,
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: 'currentColor'
+    },
+
+    /* Styles applied to the mark element if active (depending on the value). */
+    markActive: {
+      backgroundColor: theme.palette.background.paper,
+      opacity: 0.8
+    },
+
+    /* Styles applied to the mark label element. */
+    markLabel: (0, _extends2.default)({}, theme.typography.body2, {
+      color: theme.palette.text.secondary,
+      position: 'absolute',
+      top: 26,
+      transform: 'translateX(-50%)',
+      whiteSpace: 'nowrap',
+      '$vertical &': {
+        top: 'auto',
+        left: 26,
+        transform: 'translateY(50%)'
+      },
+      '@media (pointer: coarse)': {
+        top: 40,
+        '$vertical &': {
+          left: 31
+        }
+      }
+    }),
+
+    /* Styles applied to the mark label element if active (depending on the value). */
+    markLabelActive: {
+      color: theme.palette.text.primary
+    }
+  };
+};
+
+exports.styles = styles;
+
+var Slider = _react.default.forwardRef(function Slider(props, ref) {
+  var ariaLabel = props['aria-label'],
+      ariaLabelledby = props['aria-labelledby'],
+      ariaValuetext = props['aria-valuetext'],
+      classes = props.classes,
+      className = props.className,
+      _props$color = props.color,
+      color = _props$color === void 0 ? 'primary' : _props$color,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'span' : _props$component,
+      defaultValue = props.defaultValue,
+      _props$disabled = props.disabled,
+      disabled = _props$disabled === void 0 ? false : _props$disabled,
+      getAriaLabel = props.getAriaLabel,
+      getAriaValueText = props.getAriaValueText,
+      _props$marks = props.marks,
+      marksProp = _props$marks === void 0 ? defaultMarks : _props$marks,
+      _props$max = props.max,
+      max = _props$max === void 0 ? 100 : _props$max,
+      _props$min = props.min,
+      min = _props$min === void 0 ? 0 : _props$min,
+      name = props.name,
+      onChange = props.onChange,
+      onChangeCommitted = props.onChangeCommitted,
+      onMouseDown = props.onMouseDown,
+      _props$orientation = props.orientation,
+      orientation = _props$orientation === void 0 ? 'horizontal' : _props$orientation,
+      _props$scale = props.scale,
+      scale = _props$scale === void 0 ? Identity : _props$scale,
+      _props$step = props.step,
+      step = _props$step === void 0 ? 1 : _props$step,
+      _props$ThumbComponent = props.ThumbComponent,
+      ThumbComponent = _props$ThumbComponent === void 0 ? 'span' : _props$ThumbComponent,
+      _props$track = props.track,
+      track = _props$track === void 0 ? 'normal' : _props$track,
+      valueProp = props.value,
+      _props$ValueLabelComp = props.ValueLabelComponent,
+      ValueLabelComponent = _props$ValueLabelComp === void 0 ? _ValueLabel.default : _props$ValueLabelComp,
+      _props$valueLabelDisp = props.valueLabelDisplay,
+      valueLabelDisplay = _props$valueLabelDisp === void 0 ? 'off' : _props$valueLabelDisp,
+      _props$valueLabelForm = props.valueLabelFormat,
+      valueLabelFormat = _props$valueLabelForm === void 0 ? Identity : _props$valueLabelForm,
+      other = (0, _objectWithoutProperties2.default)(props, ["aria-label", "aria-labelledby", "aria-valuetext", "classes", "className", "color", "component", "defaultValue", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "onMouseDown", "orientation", "scale", "step", "ThumbComponent", "track", "value", "ValueLabelComponent", "valueLabelDisplay", "valueLabelFormat"]);
+  var theme = (0, _useTheme.default)();
+
+  var touchId = _react.default.useRef(); // We can't use the :active browser pseudo-classes.
+  // - The active state isn't triggered when clicking on the rail.
+  // - The active state isn't transfered when inversing a range slider.
+
+
+  var _React$useState = _react.default.useState(-1),
+      active = _React$useState[0],
+      setActive = _React$useState[1];
+
+  var _React$useState2 = _react.default.useState(-1),
+      open = _React$useState2[0],
+      setOpen = _React$useState2[1];
+
+  var _useControlled = (0, _useControlled3.default)({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Slider'
+  }),
+      _useControlled2 = (0, _slicedToArray2.default)(_useControlled, 2),
+      valueDerived = _useControlled2[0],
+      setValueState = _useControlled2[1];
+
+  var range = Array.isArray(valueDerived);
+
+  var instanceRef = _react.default.useRef();
+
+  var values = range ? (0, _toConsumableArray2.default)(valueDerived).sort(asc) : [valueDerived];
+  values = values.map(function (value) {
+    return clamp(value, min, max);
+  });
+  var marks = marksProp === true && step !== null ? (0, _toConsumableArray2.default)(Array(Math.floor((max - min) / step) + 1)).map(function (_, index) {
+    return {
+      value: min + step * index
+    };
+  }) : marksProp;
+  instanceRef.current = {
+    source: valueDerived // Keep track of the input value to leverage immutable state comparison.
+
+  };
+
+  var _useIsFocusVisible = (0, _focusVisible.useIsFocusVisible)(),
+      isFocusVisible = _useIsFocusVisible.isFocusVisible,
+      onBlurVisible = _useIsFocusVisible.onBlurVisible,
+      focusVisibleRef = _useIsFocusVisible.ref;
+
+  var _React$useState3 = _react.default.useState(-1),
+      focusVisible = _React$useState3[0],
+      setFocusVisible = _React$useState3[1];
+
+  var sliderRef = _react.default.useRef();
+
+  var handleFocusRef = (0, _useForkRef.default)(focusVisibleRef, sliderRef);
+  var handleRef = (0, _useForkRef.default)(ref, handleFocusRef);
+  var handleFocus = (0, _useEventCallback.default)(function (event) {
+    var index = Number(event.currentTarget.getAttribute('data-index'));
+
+    if (isFocusVisible(event)) {
+      setFocusVisible(index);
+    }
+
+    setOpen(index);
+  });
+  var handleBlur = (0, _useEventCallback.default)(function () {
+    if (focusVisible !== -1) {
+      setFocusVisible(-1);
+      onBlurVisible();
+    }
+
+    setOpen(-1);
+  });
+  var handleMouseOver = (0, _useEventCallback.default)(function (event) {
+    var index = Number(event.currentTarget.getAttribute('data-index'));
+    setOpen(index);
+  });
+  var handleMouseLeave = (0, _useEventCallback.default)(function () {
+    setOpen(-1);
+  });
+  var handleKeyDown = (0, _useEventCallback.default)(function (event) {
+    var index = Number(event.currentTarget.getAttribute('data-index'));
+    var value = values[index];
+    var tenPercents = (max - min) / 10;
+    var marksValues = marks.map(function (mark) {
+      return mark.value;
+    });
+    var marksIndex = marksValues.indexOf(value);
+    var newValue;
+
+    switch (event.key) {
+      case 'Home':
+        newValue = min;
+        break;
+
+      case 'End':
+        newValue = max;
+        break;
+
+      case 'PageUp':
+        if (step) {
+          newValue = value + tenPercents;
+        }
+
+        break;
+
+      case 'PageDown':
+        if (step) {
+          newValue = value - tenPercents;
+        }
+
+        break;
+
+      case 'ArrowRight':
+      case 'ArrowUp':
+        if (step) {
+          newValue = value + step;
+        } else {
+          newValue = marksValues[marksIndex + 1] || marksValues[marksValues.length - 1];
+        }
+
+        break;
+
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        if (step) {
+          newValue = value - step;
+        } else {
+          newValue = marksValues[marksIndex - 1] || marksValues[0];
+        }
+
+        break;
+
+      default:
+        return;
+    } // Prevent scroll of the page
+
+
+    event.preventDefault();
+
+    if (step) {
+      newValue = roundValueToStep(newValue, step, min);
+    }
+
+    newValue = clamp(newValue, min, max);
+
+    if (range) {
+      var previousValue = newValue;
+      newValue = setValueIndex({
+        values: values,
+        source: valueDerived,
+        newValue: newValue,
+        index: index
+      }).sort(asc);
+      focusThumb({
+        sliderRef: sliderRef,
+        activeIndex: newValue.indexOf(previousValue)
+      });
+    }
+
+    setValueState(newValue);
+    setFocusVisible(index);
+
+    if (onChange) {
+      onChange(event, newValue);
+    }
+
+    if (onChangeCommitted) {
+      onChangeCommitted(event, newValue);
+    }
+  });
+
+  var previousIndex = _react.default.useRef();
+
+  var axis = orientation;
+
+  if (theme.direction === 'rtl' && orientation !== "vertical") {
+    axis += '-reverse';
+  }
+
+  var getFingerNewValue = _react.default.useCallback(function (_ref3) {
+    var finger = _ref3.finger,
+        _ref3$move = _ref3.move,
+        move = _ref3$move === void 0 ? false : _ref3$move,
+        values2 = _ref3.values,
+        source = _ref3.source;
+    var slider = sliderRef.current;
+
+    var _slider$getBoundingCl = slider.getBoundingClientRect(),
+        width = _slider$getBoundingCl.width,
+        height = _slider$getBoundingCl.height,
+        bottom = _slider$getBoundingCl.bottom,
+        left = _slider$getBoundingCl.left;
+
+    var percent;
+
+    if (axis.indexOf('vertical') === 0) {
+      percent = (bottom - finger.y) / height;
+    } else {
+      percent = (finger.x - left) / width;
+    }
+
+    if (axis.indexOf('-reverse') !== -1) {
+      percent = 1 - percent;
+    }
+
+    var newValue;
+    newValue = percentToValue(percent, min, max);
+
+    if (step) {
+      newValue = roundValueToStep(newValue, step, min);
+    } else {
+      var marksValues = marks.map(function (mark) {
+        return mark.value;
+      });
+      var closestIndex = findClosest(marksValues, newValue);
+      newValue = marksValues[closestIndex];
+    }
+
+    newValue = clamp(newValue, min, max);
+    var activeIndex = 0;
+
+    if (range) {
+      if (!move) {
+        activeIndex = findClosest(values2, newValue);
+      } else {
+        activeIndex = previousIndex.current;
+      }
+
+      var previousValue = newValue;
+      newValue = setValueIndex({
+        values: values2,
+        source: source,
+        newValue: newValue,
+        index: activeIndex
+      }).sort(asc);
+      activeIndex = newValue.indexOf(previousValue);
+      previousIndex.current = activeIndex;
+    }
+
+    return {
+      newValue: newValue,
+      activeIndex: activeIndex
+    };
+  }, [max, min, axis, range, step, marks]);
+
+  var handleTouchMove = (0, _useEventCallback.default)(function (event) {
+    var finger = trackFinger(event, touchId);
+
+    if (!finger) {
+      return;
+    }
+
+    var _getFingerNewValue = getFingerNewValue({
+      finger: finger,
+      move: true,
+      values: values,
+      source: valueDerived
+    }),
+        newValue = _getFingerNewValue.newValue,
+        activeIndex = _getFingerNewValue.activeIndex;
+
+    focusThumb({
+      sliderRef: sliderRef,
+      activeIndex: activeIndex,
+      setActive: setActive
+    });
+    setValueState(newValue);
+
+    if (onChange) {
+      onChange(event, newValue);
+    }
+  });
+  var handleTouchEnd = (0, _useEventCallback.default)(function (event) {
+    var finger = trackFinger(event, touchId);
+
+    if (!finger) {
+      return;
+    }
+
+    var _getFingerNewValue2 = getFingerNewValue({
+      finger: finger,
+      values: values,
+      source: valueDerived
+    }),
+        newValue = _getFingerNewValue2.newValue;
+
+    setActive(-1);
+
+    if (event.type === 'touchend') {
+      setOpen(-1);
+    }
+
+    if (onChangeCommitted) {
+      onChangeCommitted(event, newValue);
+    }
+
+    touchId.current = undefined;
+    var doc = (0, _ownerDocument.default)(sliderRef.current);
+    doc.removeEventListener('mousemove', handleTouchMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
+  });
+  var handleTouchStart = (0, _useEventCallback.default)(function (event) {
+    // Workaround as Safari has partial support for touchAction: 'none'.
+    event.preventDefault();
+    var touch = event.changedTouches[0];
+
+    if (touch != null) {
+      // A number that uniquely identifies the current finger in the touch session.
+      touchId.current = touch.identifier;
+    }
+
+    var finger = trackFinger(event, touchId);
+
+    var _getFingerNewValue3 = getFingerNewValue({
+      finger: finger,
+      values: values,
+      source: valueDerived
+    }),
+        newValue = _getFingerNewValue3.newValue,
+        activeIndex = _getFingerNewValue3.activeIndex;
+
+    focusThumb({
+      sliderRef: sliderRef,
+      activeIndex: activeIndex,
+      setActive: setActive
+    });
+    setValueState(newValue);
+
+    if (onChange) {
+      onChange(event, newValue);
+    }
+
+    var doc = (0, _ownerDocument.default)(sliderRef.current);
+    doc.addEventListener('touchmove', handleTouchMove);
+    doc.addEventListener('touchend', handleTouchEnd);
+  });
+
+  _react.default.useEffect(function () {
+    var slider = sliderRef.current;
+    slider.addEventListener('touchstart', handleTouchStart);
+    var doc = (0, _ownerDocument.default)(slider);
+    return function () {
+      slider.removeEventListener('touchstart', handleTouchStart);
+      doc.removeEventListener('mousemove', handleTouchMove);
+      doc.removeEventListener('mouseup', handleTouchEnd);
+      doc.removeEventListener('touchmove', handleTouchMove);
+      doc.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
+
+  var handleMouseDown = (0, _useEventCallback.default)(function (event) {
+    if (onMouseDown) {
+      onMouseDown(event);
+    }
+
+    event.preventDefault();
+    var finger = trackFinger(event, touchId);
+
+    var _getFingerNewValue4 = getFingerNewValue({
+      finger: finger,
+      values: values,
+      source: valueDerived
+    }),
+        newValue = _getFingerNewValue4.newValue,
+        activeIndex = _getFingerNewValue4.activeIndex;
+
+    focusThumb({
+      sliderRef: sliderRef,
+      activeIndex: activeIndex,
+      setActive: setActive
+    });
+    setValueState(newValue);
+
+    if (onChange) {
+      onChange(event, newValue);
+    }
+
+    var doc = (0, _ownerDocument.default)(sliderRef.current);
+    doc.addEventListener('mousemove', handleTouchMove);
+    doc.addEventListener('mouseup', handleTouchEnd);
+  });
+  var trackOffset = valueToPercent(range ? values[0] : min, min, max);
+  var trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
+  var trackStyle = (0, _extends2.default)({}, axisProps[axis].offset(trackOffset), {}, axisProps[axis].leap(trackLeap));
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    ref: handleRef,
+    className: (0, _clsx.default)(classes.root, classes["color".concat((0, _capitalize.default)(color))], className, disabled && classes.disabled, marks.length > 0 && marks.some(function (mark) {
+      return mark.label;
+    }) && classes.marked, track === false && classes.trackFalse, {
+      vertical: classes.vertical
+    }[orientation], {
+      inverted: classes.trackInverted
+    }[track]),
+    onMouseDown: handleMouseDown
+  }, other), _react.default.createElement("span", {
+    className: classes.rail
+  }), _react.default.createElement("span", {
+    className: classes.track,
+    style: trackStyle
+  }), _react.default.createElement("input", {
+    value: values.join(','),
+    name: name,
+    type: "hidden"
+  }), marks.map(function (mark) {
+    var percent = valueToPercent(mark.value, min, max);
+    var style = axisProps[axis].offset(percent);
+    var markActive;
+
+    if (track === false) {
+      markActive = values.indexOf(mark.value) !== -1;
+    } else {
+      markActive = track === 'normal' && (range ? mark.value >= values[0] && mark.value <= values[values.length - 1] : mark.value <= values[0]) || track === 'inverted' && (range ? mark.value <= values[0] || mark.value >= values[values.length - 1] : mark.value >= values[0]);
+    }
+
+    return _react.default.createElement(_react.default.Fragment, {
+      key: mark.value
+    }, _react.default.createElement("span", {
+      style: style,
+      className: (0, _clsx.default)(classes.mark, markActive && classes.markActive)
+    }), _react.default.createElement("span", {
+      "aria-hidden": true,
+      style: style,
+      className: (0, _clsx.default)(classes.markLabel, markActive && classes.markLabelActive)
+    }, mark.label));
+  }), values.map(function (value, index) {
+    var percent = valueToPercent(value, min, max);
+    var style = axisProps[axis].offset(percent);
+    return _react.default.createElement(ValueLabelComponent, {
+      key: index,
+      valueLabelFormat: valueLabelFormat,
+      valueLabelDisplay: valueLabelDisplay,
+      className: classes.valueLabel,
+      value: typeof valueLabelFormat === 'function' ? valueLabelFormat(scale(value), index) : valueLabelFormat,
+      index: index,
+      open: open === index || active === index || valueLabelDisplay === 'on',
+      disabled: disabled
+    }, _react.default.createElement(ThumbComponent, {
+      className: (0, _clsx.default)(classes.thumb, classes["thumbColor".concat((0, _capitalize.default)(color))], active === index && classes.active, disabled && classes.disabled, focusVisible === index && classes.focusVisible),
+      tabIndex: disabled ? null : 0,
+      role: "slider",
+      style: style,
+      "data-index": index,
+      "aria-label": getAriaLabel ? getAriaLabel(index) : ariaLabel,
+      "aria-labelledby": ariaLabelledby,
+      "aria-orientation": orientation,
+      "aria-valuemax": scale(max),
+      "aria-valuemin": scale(min),
+      "aria-valuenow": scale(value),
+      "aria-valuetext": getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext,
+      onKeyDown: handleKeyDown,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+      onMouseOver: handleMouseOver,
+      onMouseLeave: handleMouseLeave
+    }));
+  }));
+});
+
+"development" !== "production" ? Slider.propTypes = {
+  /**
+   * The label of the slider.
+   */
+  'aria-label': (0, _utils.chainPropTypes)(_propTypes.default.string, function (props) {
+    var range = Array.isArray(props.value || props.defaultValue);
+
+    if (range && props['aria-label'] != null) {
+      return new Error('Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.');
+    }
+
+    return null;
+  }),
+
+  /**
+   * The id of the element containing a label for the slider.
+   */
+  'aria-labelledby': _propTypes.default.string,
+
+  /**
+   * A string value that provides a user-friendly name for the current value of the slider.
+   */
+  'aria-valuetext': (0, _utils.chainPropTypes)(_propTypes.default.string, function (props) {
+    var range = Array.isArray(props.value || props.defaultValue);
+
+    if (range && props['aria-valuetext'] != null) {
+      return new Error('Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.');
+    }
+
+    return null;
+  }),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: _propTypes.default.oneOf(['primary', 'secondary']),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
+   * The default element value. Use when the component is not controlled.
+   */
+  defaultValue: _propTypes.default.oneOfType([_propTypes.default.number, _propTypes.default.arrayOf(_propTypes.default.number)]),
+
+  /**
+   * If `true`, the slider will be disabled.
+   */
+  disabled: _propTypes.default.bool,
+
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+   *
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaLabel: _propTypes.default.func,
+
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
+   *
+   * @param {number} value The thumb label's value to format.
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaValueText: _propTypes.default.func,
+
+  /**
+   * Marks indicate predetermined values to which the user can move the slider.
+   * If `true` the marks will be spaced according the value of the `step` prop.
+   * If an array, it should contain objects with `value` and an optional `label` keys.
+   */
+  marks: _propTypes.default.oneOfType([_propTypes.default.bool, _propTypes.default.array]),
+
+  /**
+   * The maximum allowed value of the slider.
+   * Should not be equal to min.
+   */
+  max: _propTypes.default.number,
+
+  /**
+   * The minimum allowed value of the slider.
+   * Should not be equal to max.
+   */
+  min: _propTypes.default.number,
+
+  /**
+   * Name attribute of the hidden `input` element.
+   */
+  name: _propTypes.default.string,
+
+  /**
+   * Callback function that is fired when the slider's value changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {any} value The new value.
+   */
+  onChange: _propTypes.default.func,
+
+  /**
+   * Callback function that is fired when the `mouseup` is triggered.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {any} value The new value.
+   */
+  onChangeCommitted: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onMouseDown: _propTypes.default.func,
+
+  /**
+   * The slider orientation.
+   */
+  orientation: _propTypes.default.oneOf(['horizontal', 'vertical']),
+
+  /**
+   * A transformation function, to change the scale of the slider.
+   */
+  scale: _propTypes.default.func,
+
+  /**
+   * The granularity with which the slider can step through values. (A "discrete" slider.)
+   * The `min` prop serves as the origin for the valid values.
+   * We recommend (max - min) to be evenly divisible by the step.
+   *
+   * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+   */
+  step: _propTypes.default.number,
+
+  /**
+   * The component used to display the value label.
+   */
+  ThumbComponent: _propTypes.default.elementType,
+
+  /**
+   * The track presentation:
+   *
+   * - `normal` the track will render a bar representing the slider value.
+   * - `inverted` the track will render a bar representing the remaining slider value.
+   * - `false` the track will render without a bar.
+   */
+  track: _propTypes.default.oneOf(['normal', false, 'inverted']),
+
+  /**
+   * The value of the slider.
+   * For ranged sliders, provide an array with two values.
+   */
+  value: _propTypes.default.oneOfType([_propTypes.default.number, _propTypes.default.arrayOf(_propTypes.default.number)]),
+
+  /**
+   * The value label component.
+   */
+  ValueLabelComponent: _propTypes.default.elementType,
+
+  /**
+   * Controls when the value label is displayed:
+   *
+   * - `auto` the value label will display when the thumb is hovered or focused.
+   * - `on` will display persistently.
+   * - `off` will never display.
+   */
+  valueLabelDisplay: _propTypes.default.oneOf(['on', 'auto', 'off']),
+
+  /**
+   * The format function the value label's value.
+   *
+   * When a function is provided, it should have the following signature:
+   *
+   * - {number} value The value label's value to format
+   * - {number} index The value label's index to format
+   */
+  valueLabelFormat: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func])
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiSlider'
+})(Slider);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/slicedToArray":"../node_modules/@babel/runtime/helpers/esm/slicedToArray.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/toConsumableArray":"../node_modules/@babel/runtime/helpers/esm/toConsumableArray.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","@material-ui/utils":"../node_modules/@material-ui/utils/esm/index.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","../styles/useTheme":"../node_modules/@material-ui/core/esm/styles/useTheme.js","../styles/colorManipulator":"../node_modules/@material-ui/core/esm/styles/colorManipulator.js","../utils/focusVisible":"../node_modules/@material-ui/core/esm/utils/focusVisible.js","../utils/ownerDocument":"../node_modules/@material-ui/core/esm/utils/ownerDocument.js","../utils/useEventCallback":"../node_modules/@material-ui/core/esm/utils/useEventCallback.js","../utils/useForkRef":"../node_modules/@material-ui/core/esm/utils/useForkRef.js","../utils/capitalize":"../node_modules/@material-ui/core/esm/utils/capitalize.js","../utils/useControlled":"../node_modules/@material-ui/core/esm/utils/useControlled.js","./ValueLabel":"../node_modules/@material-ui/core/esm/Slider/ValueLabel.js"}],"../node_modules/@material-ui/core/esm/Slider/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _Slider.default;
+  }
+});
+
+var _Slider = _interopRequireDefault(require("./Slider"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Slider":"../node_modules/@material-ui/core/esm/Slider/Slider.js"}],"components/pitchSlider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PitchSlider = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _lodash = require("lodash");
+
+var _baseComponent = require("./baseComponent");
+
+var _Slider = _interopRequireDefault(require("@material-ui/core/Slider"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var marks = (0, _lodash.map)((0, _lodash.range)(1, 10), function (pitch) {
+  return {
+    value: pitch,
+    label: "".concat(pitch, "\"")
+  };
+});
+
+function valuetext(value) {
+  return "".concat(value, " inches");
+}
+
+var PitchSlider = function PitchSlider(_ref) {
+  var context = _ref.context;
+
+  var _useState = (0, _react.useState)(context.P),
+      _useState2 = _slicedToArray(_useState, 2),
+      pitch = _useState2[0],
+      setPitch = _useState2[1];
+
+  var handleChange = function handleChange(_, value) {
+    context.setPitch(value);
+  };
+
+  (0, _react.useEffect)(function () {
+    var fn = function fn() {
+      if (context.P !== pitch) {
+        setPitch(context.P);
+      }
+    };
+
+    context.addEventListener("onGearUpdated", fn);
+    return function () {
+      context.removeEventListener("onGearUpdated", fn);
+    };
+  }, [pitch]);
+  return _react.default.createElement(_baseComponent.BaseComponent, null, _react.default.createElement(_Slider.default, {
+    onChange: handleChange,
+    value: pitch,
+    getAriaValueText: valuetext,
+    "aria-labelledby": "discrete-slider",
+    valueLabelDisplay: "auto",
+    step: 1,
+    marks: true,
+    min: 1,
+    max: 10
+  }));
+};
+
+exports.PitchSlider = PitchSlider;
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./baseComponent":"components/baseComponent.js","@material-ui/core/Slider":"../node_modules/@material-ui/core/esm/Slider/index.js"}],"../node_modules/@material-ui/core/esm/Button/Button.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _colorManipulator = require("../styles/colorManipulator");
+
+var _ButtonBase = _interopRequireDefault(require("../ButtonBase"));
+
+var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: (0, _extends2.default)({}, theme.typography.button, {
+      boxSizing: 'border-box',
+      minWidth: 64,
+      padding: '6px 16px',
+      borderRadius: theme.shape.borderRadius,
+      color: theme.palette.text.primary,
+      transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
+        duration: theme.transitions.duration.short
+      }),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        },
+        '&$disabled': {
+          backgroundColor: 'transparent'
+        }
+      },
+      '&$disabled': {
+        color: theme.palette.action.disabled
+      }
+    }),
+
+    /* Styles applied to the span element that wraps the children. */
+    label: {
+      width: '100%',
+      // Ensure the correct width for iOS Safari
+      display: 'inherit',
+      alignItems: 'inherit',
+      justifyContent: 'inherit'
+    },
+
+    /* Styles applied to the root element if `variant="text"`. */
+    text: {
+      padding: '6px 8px'
+    },
+
+    /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
+    textPrimary: {
+      color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
+    textSecondary: {
+      color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"`. */
+    outlined: {
+      padding: '5px 15px',
+      border: "1px solid ".concat(theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'),
+      '&$disabled': {
+        border: "1px solid ".concat(theme.palette.action.disabled)
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+    outlinedPrimary: {
+      color: theme.palette.primary.main,
+      border: "1px solid ".concat((0, _colorManipulator.fade)(theme.palette.primary.main, 0.5)),
+      '&:hover': {
+        border: "1px solid ".concat(theme.palette.primary.main),
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+    outlinedSecondary: {
+      color: theme.palette.secondary.main,
+      border: "1px solid ".concat((0, _colorManipulator.fade)(theme.palette.secondary.main, 0.5)),
+      '&:hover': {
+        border: "1px solid ".concat(theme.palette.secondary.main),
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      },
+      '&$disabled': {
+        border: "1px solid ".concat(theme.palette.action.disabled)
+      }
+    },
+
+    /* Styles applied to the root element if `variant="contained"`. */
+    contained: {
+      color: theme.palette.getContrastText(theme.palette.grey[300]),
+      backgroundColor: theme.palette.grey[300],
+      boxShadow: theme.shadows[2],
+      '&:hover': {
+        backgroundColor: theme.palette.grey.A100,
+        boxShadow: theme.shadows[4],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          boxShadow: theme.shadows[2],
+          backgroundColor: theme.palette.grey[300]
+        },
+        '&$disabled': {
+          backgroundColor: theme.palette.action.disabledBackground
+        }
+      },
+      '&$focusVisible': {
+        boxShadow: theme.shadows[6]
+      },
+      '&:active': {
+        boxShadow: theme.shadows[8]
+      },
+      '&$disabled': {
+        color: theme.palette.action.disabled,
+        boxShadow: theme.shadows[0],
+        backgroundColor: theme.palette.action.disabledBackground
+      }
+    },
+
+    /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
+    containedPrimary: {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.primary.main
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
+    containedSecondary: {
+      color: theme.palette.secondary.contrastText,
+      backgroundColor: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: theme.palette.secondary.dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.secondary.main
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `disableElevation={true}`. */
+    disableElevation: {
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none'
+      },
+      '&$focusVisible': {
+        boxShadow: 'none'
+      },
+      '&:active': {
+        boxShadow: 'none'
+      },
+      '&$disabled': {
+        boxShadow: 'none'
+      }
+    },
+
+    /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+    focusVisible: {},
+
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled: {},
+
+    /* Styles applied to the root element if `color="inherit"`. */
+    colorInherit: {
+      color: 'inherit',
+      borderColor: 'currentColor'
+    },
+
+    /* Styles applied to the root element if `size="small"` and `variant="text"`. */
+    textSizeSmall: {
+      padding: '4px 5px',
+      fontSize: theme.typography.pxToRem(13)
+    },
+
+    /* Styles applied to the root element if `size="large"` and `variant="text"`. */
+    textSizeLarge: {
+      padding: '8px 11px',
+      fontSize: theme.typography.pxToRem(15)
+    },
+
+    /* Styles applied to the root element if `size="small"` and `variant="outlined"`. */
+    outlinedSizeSmall: {
+      padding: '3px 9px',
+      fontSize: theme.typography.pxToRem(13)
+    },
+
+    /* Styles applied to the root element if `size="large"` and `variant="outlined"`. */
+    outlinedSizeLarge: {
+      padding: '7px 21px',
+      fontSize: theme.typography.pxToRem(15)
+    },
+
+    /* Styles applied to the root element if `size="small"` and `variant="contained"`. */
+    containedSizeSmall: {
+      padding: '4px 10px',
+      fontSize: theme.typography.pxToRem(13)
+    },
+
+    /* Styles applied to the root element if `size="large"` and `variant="contained"`. */
+    containedSizeLarge: {
+      padding: '8px 22px',
+      fontSize: theme.typography.pxToRem(15)
+    },
+
+    /* Styles applied to the root element if `size="small"`. */
+    sizeSmall: {},
+
+    /* Styles applied to the root element if `size="large"`. */
+    sizeLarge: {},
+
+    /* Styles applied to the root element if `fullWidth={true}`. */
+    fullWidth: {
+      width: '100%'
+    },
+
+    /* Styles applied to the startIcon element if supplied. */
+    startIcon: {
+      display: 'inherit',
+      marginRight: 8,
+      marginLeft: -4,
+      '&$iconSizeSmall': {
+        marginLeft: -2
+      }
+    },
+
+    /* Styles applied to the endIcon element if supplied. */
+    endIcon: {
+      display: 'inherit',
+      marginRight: -4,
+      marginLeft: 8,
+      '&$iconSizeSmall': {
+        marginRight: -2
+      }
+    },
+
+    /* Styles applied to the icon element if supplied and `size="small"`. */
+    iconSizeSmall: {
+      '& > *:first-child': {
+        fontSize: 18
+      }
+    },
+
+    /* Styles applied to the icon element if supplied and `size="medium"`. */
+    iconSizeMedium: {
+      '& > *:first-child': {
+        fontSize: 20
+      }
+    },
+
+    /* Styles applied to the icon element if supplied and `size="large"`. */
+    iconSizeLarge: {
+      '& > *:first-child': {
+        fontSize: 22
+      }
+    }
+  };
+};
+
+exports.styles = styles;
+
+var Button = _react.default.forwardRef(function Button(props, ref) {
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      _props$color = props.color,
+      color = _props$color === void 0 ? 'default' : _props$color,
+      _props$component = props.component,
+      component = _props$component === void 0 ? 'button' : _props$component,
+      _props$disabled = props.disabled,
+      disabled = _props$disabled === void 0 ? false : _props$disabled,
+      _props$disableElevati = props.disableElevation,
+      disableElevation = _props$disableElevati === void 0 ? false : _props$disableElevati,
+      _props$disableFocusRi = props.disableFocusRipple,
+      disableFocusRipple = _props$disableFocusRi === void 0 ? false : _props$disableFocusRi,
+      endIconProp = props.endIcon,
+      focusVisibleClassName = props.focusVisibleClassName,
+      _props$fullWidth = props.fullWidth,
+      fullWidth = _props$fullWidth === void 0 ? false : _props$fullWidth,
+      _props$size = props.size,
+      size = _props$size === void 0 ? 'medium' : _props$size,
+      startIconProp = props.startIcon,
+      _props$type = props.type,
+      type = _props$type === void 0 ? 'button' : _props$type,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'text' : _props$variant,
+      other = (0, _objectWithoutProperties2.default)(props, ["children", "classes", "className", "color", "component", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"]);
+
+  var startIcon = startIconProp && _react.default.createElement("span", {
+    className: (0, _clsx.default)(classes.startIcon, classes["iconSize".concat((0, _capitalize.default)(size))])
+  }, startIconProp);
+
+  var endIcon = endIconProp && _react.default.createElement("span", {
+    className: (0, _clsx.default)(classes.endIcon, classes["iconSize".concat((0, _capitalize.default)(size))])
+  }, endIconProp);
+
+  return _react.default.createElement(_ButtonBase.default, (0, _extends2.default)({
+    className: (0, _clsx.default)(classes.root, classes[variant], className, color === 'inherit' ? classes.colorInherit : color !== 'default' && classes["".concat(variant).concat((0, _capitalize.default)(color))], size !== 'medium' && [classes["".concat(variant, "Size").concat((0, _capitalize.default)(size))], classes["size".concat((0, _capitalize.default)(size))]], disableElevation && classes.disableElevation, disabled && classes.disabled, fullWidth && classes.fullWidth),
+    component: component,
+    disabled: disabled,
+    focusRipple: !disableFocusRipple,
+    focusVisibleClassName: (0, _clsx.default)(classes.focusVisible, focusVisibleClassName),
+    ref: ref,
+    type: type
+  }, other), _react.default.createElement("span", {
+    className: classes.label
+  }, startIcon, children, endIcon));
+});
+
+"development" !== "production" ? Button.propTypes = {
+  /**
+   * The content of the button.
+   */
+  children: _propTypes.default.node.isRequired,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: _propTypes.default.oneOf(['default', 'inherit', 'primary', 'secondary']),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled: _propTypes.default.bool,
+
+  /**
+   * If `true`, no elevation is used.
+   */
+  disableElevation: _propTypes.default.bool,
+
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: _propTypes.default.bool,
+
+  /**
+   * If `true`, the ripple effect will be disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   */
+  disableRipple: _propTypes.default.bool,
+
+  /**
+   * Element placed after the children.
+   */
+  endIcon: _propTypes.default.node,
+
+  /**
+   * @ignore
+   */
+  focusVisibleClassName: _propTypes.default.string,
+
+  /**
+   * If `true`, the button will take up the full width of its container.
+   */
+  fullWidth: _propTypes.default.bool,
+
+  /**
+   * The URL to link to when the button is clicked.
+   * If defined, an `a` element will be used as the root node.
+   */
+  href: _propTypes.default.string,
+
+  /**
+   * The size of the button.
+   * `small` is equivalent to the dense button styling.
+   */
+  size: _propTypes.default.oneOf(['small', 'medium', 'large']),
+
+  /**
+   * Element placed before the children.
+   */
+  startIcon: _propTypes.default.node,
+
+  /**
+   * @ignore
+   */
+  type: _propTypes.default.string,
+
+  /**
+   * The variant to use.
+   */
+  variant: _propTypes.default.oneOf(['text', 'outlined', 'contained'])
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiButton'
+})(Button);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","../styles/colorManipulator":"../node_modules/@material-ui/core/esm/styles/colorManipulator.js","../ButtonBase":"../node_modules/@material-ui/core/esm/ButtonBase/index.js","../utils/capitalize":"../node_modules/@material-ui/core/esm/utils/capitalize.js"}],"../node_modules/@material-ui/core/esm/Button/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _Button.default;
+  }
+});
+
+var _Button = _interopRequireDefault(require("./Button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Button":"../node_modules/@material-ui/core/esm/Button/Button.js"}],"components/resetGearButton.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ResetGearButton = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _lodash = require("lodash");
+
+var _baseComponent = require("./baseComponent");
+
+var _Button = _interopRequireDefault(require("@material-ui/core/Button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var ResetGearButton = function ResetGearButton(_ref) {
+  var context = _ref.context;
+
+  var handleChange = function handleChange(_, value) {
+    context.reset();
+  };
+
+  return _react.default.createElement(_baseComponent.BaseComponent, null, _react.default.createElement(_Button.default, {
+    variant: "contained",
+    color: "primary",
+    onClick: handleChange
+  }, "Reset Gear"));
+};
+
+exports.ResetGearButton = ResetGearButton;
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./baseComponent":"components/baseComponent.js","@material-ui/core/Button":"../node_modules/@material-ui/core/esm/Button/index.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71171,9 +73015,25 @@ Object.defineProperty(exports, "ToothCountPicker", {
     return _toothCountPicker.ToothCountPicker;
   }
 });
+Object.defineProperty(exports, "PitchSlider", {
+  enumerable: true,
+  get: function () {
+    return _pitchSlider.PitchSlider;
+  }
+});
+Object.defineProperty(exports, "ResetGearButton", {
+  enumerable: true,
+  get: function () {
+    return _resetGearButton.ResetGearButton;
+  }
+});
 
 var _toothCountPicker = require("./toothCountPicker");
-},{"./toothCountPicker":"components/toothCountPicker.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+
+var _pitchSlider = require("./pitchSlider");
+
+var _resetGearButton = require("./resetGearButton");
+},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -72019,12 +73879,14 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
     var gameEngine = new _gameEngine.default(canvas, w, h);
     var gear = new _gear.default({
       x: w / 2,
-      y: h / 2
+      y: h / 2,
+      N: context.N,
+      P: context.P,
+      pa: context.pa
     }); // Add the gear
 
     gameEngine.getRootEl().addElement(gear);
     context.addEventListener("onGearUpdated", function () {
-      console.log(context.N);
       gear.setAttributes({
         N: context.N,
         P: context.P,
@@ -72195,12 +74057,18 @@ function () {
     _classCallCheck(this, Context);
 
     this.listeners = {};
-    this.N = 24;
-    this.P = 4;
-    this.pa = 14.5;
+    this.reset();
   }
 
   _createClass(Context, [{
+    key: "reset",
+    value: function reset() {
+      this.N = 24;
+      this.P = 4;
+      this.pa = 14.5;
+      this.fireEvent("onGearUpdated");
+    }
+  }, {
     key: "setPressureAngle",
     value: function setPressureAngle(pa) {
       this.pa = pa;
@@ -72223,6 +74091,14 @@ function () {
     value: function addEventListener(event, cb) {
       this.listeners[event] = this.listeners[event] || [];
       cb && this.listeners[event].push(cb);
+    }
+  }, {
+    key: "removeEventListener",
+    value: function removeEventListener(event, cb) {
+      var events = this.listeners[event] || [];
+      (0, _lodash.remove)(events, function (_) {
+        return _ === cb;
+      });
     }
   }, {
     key: "fireEvent",
@@ -72281,6 +74157,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var appContext = new _context.default();
+window.appContext = appContext;
 
 var WebApp =
 /*#__PURE__*/
@@ -72296,7 +74173,6 @@ function (_React$Component) {
   _createClass(WebApp, [{
     key: "render",
     value: function render() {
-      console.log(this.context);
       return _react.default.createElement("div", {
         className: "flexy"
       }, _react.default.createElement(_header.Header, {
@@ -72342,7 +74218,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64430" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52857" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

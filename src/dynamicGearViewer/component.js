@@ -38,12 +38,14 @@ const DynamicGearViewer = ({ context }) => {
         const gear = new Gear({
             x: w / 2,
             y: h / 2,
+            N: context.N,
+            P: context.P,
+            pa: context.pa,
         });
 
         // Add the gear
         gameEngine.getRootEl().addElement(gear);
         context.addEventListener("onGearUpdated", () => {
-            console.log(context.N);
             gear.setAttributes({
                 N: context.N,
                 P: context.P,

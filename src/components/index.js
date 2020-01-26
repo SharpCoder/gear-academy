@@ -1,3 +1,5 @@
 import { ToothCountPicker } from "./toothCountPicker";
+import { PitchSlider } from "./pitchSlider";
+import { ResetGearButton } from "./resetGearButton";
 
-export { ToothCountPicker };
+export { ToothCountPicker, PitchSlider, ResetGearButton };

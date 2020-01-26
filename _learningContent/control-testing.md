@@ -15,4 +15,11 @@ Intended for temporary development purposes only.
 Use this component to select the amount of teeth on the gear.
 @{ToothCountPicker}
 
+##### Pitch Slider
+
+Use this component to adjust the pitch of the gear.
+@{PitchSlider}
+
+@{ResetGearButton}
+
 That should be it!

@@ -11,10 +11,10 @@ import { TutorialViewer } from "./tutorialViewer";
 import Context from "./utils/context";
 
 const appContext = new Context();
+window.appContext = appContext;
 
 class WebApp extends React.Component {
     render() {
-        console.log(this.context);
         return (
             <div className="flexy">
                 <Header title="Gear Academy" />
