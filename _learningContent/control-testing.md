@@ -1,7 +1,7 @@
 ---
-index: 0
-category: [Spur Gears]
+category: ["Additional"]
 title: Control Testing
+weight: 10
 ---
 
 ## Debugging Playground
@@ -19,6 +19,12 @@ Use this component to select the amount of teeth on the gear.
 
 Use this component to adjust the pitch of the gear.
 @{PitchSlider}
+
+##### Pressure Angle
+
+Enter any valid positive number to change the pressure angle.
+
+@{PressureAngleComponent}
 
 @{ResetGearButton}
 

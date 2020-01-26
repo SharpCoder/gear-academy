@@ -1,7 +1,7 @@
 ---
-index: 1
 category: [Additional]
 title: OpenScad
+weight: 1
 ---
 
 ## Pressure Angle

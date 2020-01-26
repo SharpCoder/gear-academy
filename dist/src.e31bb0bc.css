@@ -13,7 +13,7 @@
     --med-size: 24px;
     --small-size: 14px;
 
-    --page-boundary-padding: 80px;
+    --page-boundary-padding: 40px;
 }
 
 body {
@@ -78,8 +78,8 @@ body,
     background-color: rgb(240, 240, 240);
 }
 
-.injected-control {
-    padding: 20px 0px;
+.injected-component {
+    padding: 20px 20px;
 }
 
 .tutorial-wrapper {
@@ -98,18 +98,26 @@ body,
     padding-top: 42px;
 }
 
-.explorer div {
-    padding: 12px 2px;
-    margin: 0px 0px;
-    padding-left: var(--page-boundary-padding);
-    width: 220px;
+.explorer {
+    width: 250px;
 }
 
-.explorer div:visited {
+.explorer .crumb-header {
+    font-weight: bold;
+}
+
+.explorer .crumb-node {
+    font-weight: normal;
+    padding: 12px 2px;
+    padding-left: var(--page-boundary-padding);
+    width: 100%;
+}
+
+.explorer .crumb-node:visited {
     color: var(--main-fg-color);
 }
 
-.explorer div:hover {
+.explorer .crumb-node:hover {
     cursor: pointer;
     color: #cecece;
 }

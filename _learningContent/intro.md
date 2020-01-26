@@ -1,7 +1,7 @@
 ---
-index: 0
 category: []
 title: Intro!
+weight: 100
 ---
 
 ## Welcome!

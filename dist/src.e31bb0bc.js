@@ -31874,20 +31874,20 @@ Object.defineProperty(exports, "Footer", {
 var _component = require("./component");
 },{"./component":"footer/component.js"}],"../_learningContent/control-testing.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<p>@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
+  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<h5>Pressure Angle</h5>\n<p>Enter any valid positive number to change the pressure angle.</p>\n<p>@{PressureAngleComponent}</p>\n<p>@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
   meta: {
-    index: 0,
-    category: ["Spur Gears"],
-    title: "Control Testing"
+    category: ["Additional"],
+    title: "Control Testing",
+    weight: 10
   }
 };
 },{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{PitchSlider}</p>\n",
   meta: {
-    index: 0,
     category: ["Spur Gears"],
-    title: "Diametral Pitch"
+    title: "Diametral Pitch",
+    weight: 90
   }
 };
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
@@ -31903,27 +31903,27 @@ module.exports = {
 module.exports = {
   html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
   meta: {
-    index: 0,
     category: [],
-    title: "Different Types of Gears"
+    title: "Different Types of Gears",
+    weight: 80
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Welcome!</h2>\n<p>We\u2019re so happy you are interested in learning about gears.</p>\n",
   meta: {
-    index: 0,
     category: [],
-    title: "Intro!"
+    title: "Intro!",
+    weight: 100
   }
 };
 },{}],"../_learningContent/openscad.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
   meta: {
-    index: 1,
     category: ["Additional"],
-    title: "OpenScad"
+    title: "OpenScad",
+    weight: 1
   }
 };
 },{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
@@ -31948,9 +31948,9 @@ module.exports = {
 module.exports = {
   html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
   meta: {
-    index: 0,
     category: [],
-    title: "What is a gear?"
+    title: "What is a gear?",
+    weight: 90
   }
 };
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
@@ -51193,28 +51193,97 @@ var _utils = require("../utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Explorer = function Explorer(_ref) {
-  var tutorials = _ref.tutorials,
-      setSelectedTutorial = _ref.setSelectedTutorial,
-      selected = _ref.selected;
-  var crumbs = (0, _lodash.map)(tutorials, function (_) {
-    return (0, _lodash.get)(_, "meta.title");
+var Crumbs = function Crumbs(_ref) {
+  var hierarchy = _ref.hierarchy,
+      depth = _ref.depth,
+      selected = _ref.selected,
+      setSelectedTutorial = _ref.setSelectedTutorial;
+  var hierarchies = (0, _lodash.keys)(hierarchy);
+  hierarchies.sort(function (a, b) {
+    var aWeight = (0, _lodash.get)(hierarchy[a], "meta.weight") || 0;
+    var bWeight = (0, _lodash.get)(hierarchy[b], "meta.weight") || 0; // This is an ugly hack but...
+
+    if (b === "Additional") {
+      return -100;
+    } else {
+      return bWeight - aWeight;
+    }
   });
+  return (0, _lodash.map)(hierarchies, function (title) {
+    var entry = hierarchy[title] || {};
+
+    if (entry.meta) {
+      var href = "#".concat((0, _utils.pathize)(title));
+      var isSelected = selected === href; // This is a leaf node, implicitly
+
+      return _react.default.createElement("div", {
+        key: href,
+        className: isSelected ? "selected crumb-node" : "crumb-node",
+        onClick: function onClick() {
+          return setSelectedTutorial(href);
+        },
+        href: href
+      }, (0, _lodash.get)(entry, "meta.title"));
+    } else {
+      return _react.default.createElement("div", {
+        key: "crumb-".concat(title),
+        className: "crumb-header"
+      }, _react.default.createElement("div", {
+        style: {
+          marginLeft: (depth + 1) * 10
+        }
+      }, title), _react.default.createElement(Crumbs, {
+        hierarchy: entry,
+        depth: depth + 1,
+        selected: selected,
+        setSelectedTutorial: setSelectedTutorial
+      }));
+    }
+  });
+};
+
+var Explorer = function Explorer(_ref2) {
+  var tutorials = _ref2.tutorials,
+      setSelectedTutorial = _ref2.setSelectedTutorial,
+      selected = _ref2.selected;
+  var hierarchy = (0, _lodash.reduce)(tutorials, function (accumulator, tutorial) {
+    var title = (0, _lodash.get)(tutorial, "meta.title");
+
+    if (title) {
+      var path = (0, _lodash.concat)(["Gears"], (0, _lodash.get)(tutorial, "meta.category") || [], [title]);
+      (0, _lodash.set)(accumulator, path.join("."), tutorial);
+    }
+
+    return accumulator;
+  }, {});
   return _react.default.createElement("div", {
     className: "explorer"
-  }, (0, _lodash.map)(crumbs, function (tutorialTitle) {
-    var href = "#".concat((0, _utils.pathize)(tutorialTitle));
-    var isSelected = selected === href;
-    return tutorialTitle && _react.default.createElement("div", {
-      key: href,
-      className: isSelected ? "selected" : null,
-      onClick: function onClick() {
-        return setSelectedTutorial(href);
-      },
-      href: href
-    }, tutorialTitle);
+  }, _react.default.createElement(Crumbs, {
+    hierarchy: hierarchy,
+    depth: 0,
+    selected: selected,
+    setSelectedTutorial: setSelectedTutorial
   }));
-};
+}; // return (
+//     <div className="explorer">
+//         {map(crumbs, tutorialTitle => {
+//             const href = `#${pathize(tutorialTitle)}`;
+//             const isSelected = selected === href;
+//             return (
+//                 tutorialTitle && (
+//                     <div
+//                         key={href}
+//                         className={isSelected ? "selected" : null}
+//                         onClick={() => setSelectedTutorial(href)}
+//                         href={href}>
+//                         {tutorialTitle}
+//                     </div>
+//                 )
+//             );
+//         })}
+//     </div>
+// );
+
 
 exports.Explorer = Explorer;
 },{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../utils":"tutorialViewer/utils.js"}],"tutorialViewer/explorer/index.js":[function(require,module,exports) {
@@ -72442,19 +72511,18 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var marks = (0, _lodash.map)((0, _lodash.range)(1, 10), function (pitch) {
-  return {
-    value: pitch,
-    label: "".concat(pitch, "\"")
-  };
-});
-
 function valuetext(value) {
   return "".concat(value, " inches");
 }
 
 var PitchSlider = function PitchSlider(_ref) {
   var context = _ref.context;
+  var marks = (0, _lodash.map)((0, _lodash.range)(1, 10), function (pitch) {
+    return {
+      value: pitch,
+      label: "".concat(pitch)
+    };
+  });
 
   var _useState = (0, _react.useState)(context.P),
       _useState2 = _slicedToArray(_useState, 2),
@@ -72484,7 +72552,7 @@ var PitchSlider = function PitchSlider(_ref) {
     "aria-labelledby": "discrete-slider",
     valueLabelDisplay: "auto",
     step: 1,
-    marks: true,
+    marks: marks,
     min: 1,
     max: 10
   }));
@@ -73003,7 +73071,81 @@ var ResetGearButton = function ResetGearButton(_ref) {
 };
 
 exports.ResetGearButton = ResetGearButton;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./baseComponent":"components/baseComponent.js","@material-ui/core/Button":"../node_modules/@material-ui/core/esm/Button/index.js"}],"components/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./baseComponent":"components/baseComponent.js","@material-ui/core/Button":"../node_modules/@material-ui/core/esm/Button/index.js"}],"components/pressureAngleComponent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PressureAngleComponent = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _lodash = require("lodash");
+
+var _baseComponent = require("./baseComponent");
+
+var _Slider = _interopRequireDefault(require("@material-ui/core/Slider"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var PressureAngleComponent = function PressureAngleComponent(_ref) {
+  var context = _ref.context;
+
+  var _useState = (0, _react.useState)(context.pa),
+      _useState2 = _slicedToArray(_useState, 2),
+      pa = _useState2[0],
+      setPa = _useState2[1];
+
+  var marks = (0, _lodash.map)([14.5, 16, 17, 18, 19, 20], function (pitch) {
+    return {
+      value: pitch,
+      label: "".concat(pitch)
+    };
+  });
+
+  var handleChange = function handleChange(_, value) {
+    context.setPressureAngle(value);
+  };
+
+  (0, _react.useEffect)(function () {
+    var fn = function fn() {
+      if (context.pa !== pa) {
+        setPa(context.pa);
+      }
+    };
+
+    context.addEventListener("onGearUpdated", fn);
+    return function () {
+      context.removeEventListener("onGearUpdated", fn);
+    };
+  }, [pa]);
+  return _react.default.createElement(_baseComponent.BaseComponent, null, _react.default.createElement(_Slider.default, {
+    onChange: handleChange,
+    value: pa,
+    "aria-labelledby": "discrete-slider",
+    valueLabelDisplay: "auto",
+    step: 0.5,
+    marks: marks,
+    min: 10,
+    max: 21
+  }));
+};
+
+exports.PressureAngleComponent = PressureAngleComponent;
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./baseComponent":"components/baseComponent.js","@material-ui/core/Slider":"../node_modules/@material-ui/core/esm/Slider/index.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -73027,13 +73169,21 @@ Object.defineProperty(exports, "ResetGearButton", {
     return _resetGearButton.ResetGearButton;
   }
 });
+Object.defineProperty(exports, "PressureAngleComponent", {
+  enumerable: true,
+  get: function () {
+    return _pressureAngleComponent.PressureAngleComponent;
+  }
+});
 
 var _toothCountPicker = require("./toothCountPicker");
 
 var _pitchSlider = require("./pitchSlider");
 
 var _resetGearButton = require("./resetGearButton");
-},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+
+var _pressureAngleComponent = require("./pressureAngleComponent");
+},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js","./pressureAngleComponent":"components/pressureAngleComponent.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -73874,8 +74024,8 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
   (0, _react.useEffect)(function () {
     var canvasWrapper = document.getElementById("canvasWrapper");
     var canvas = canvasRef.current;
-    var w = canvasWrapper.clientWidth - 20;
-    var h = canvasWrapper.clientHeight - 20;
+    var w = canvasWrapper.clientWidth - 40;
+    var h = canvasWrapper.clientHeight - 40;
     var gameEngine = new _gameEngine.default(canvas, w, h);
     var gear = new _gear.default({
       x: w / 2,
@@ -73907,7 +74057,7 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
     id: "canvasWrapper",
     style: {
       flexGrow: 1,
-      padding: 10
+      padding: 20
     }
   }, _react.default.createElement("canvas", {
     ref: canvasRef,
@@ -74003,7 +74153,6 @@ var TutorialViewer = function TutorialViewer(_ref) {
     selected: selectedTutorialKey,
     tutorials: tutorials,
     setSelectedTutorial: function setSelectedTutorial(key) {
-      // TODO: actual navigation handler
       window.location.hash = key;
       setSelectedTutorialKey(key);
     }
@@ -74218,7 +74367,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52857" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58605" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -38,7 +38,6 @@ const TutorialViewer = ({ tutorials, context }) => {
                     selected={selectedTutorialKey}
                     tutorials={tutorials}
                     setSelectedTutorial={key => {
-                        // TODO: actual navigation handler
                         window.location.hash = key;
                         setSelectedTutorialKey(key);
                     }}
