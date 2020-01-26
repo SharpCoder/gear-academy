@@ -77,3 +77,7 @@ body,
     padding: 10px;
     background-color: rgb(240, 240, 240);
 }
+
+.injected-control {
+    padding: 20px 0px;
+}

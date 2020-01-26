@@ -12,10 +12,6 @@ import Context from "./utils/context";
 
 const appContext = new Context();
 
-appContext.addEventListener("onGearUpdated", () => {
-    console.log("on gear updated");
-});
-
 class WebApp extends React.Component {
     render() {
         console.log(this.context);

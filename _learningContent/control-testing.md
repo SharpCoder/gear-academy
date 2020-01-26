@@ -4,9 +4,11 @@ category: [Spur Gears]
 title: Control Testing
 ---
 
-## Control Testing
+## Debugging Playground
 
-This is a place to test out all the different components and controls that are injected throughout the tutorial. For development purposes only.
+This is a place to test out all the different components and controls that are injected throughout the tutorial.
+
+Intended for temporary development purposes only.
 
 ##### Tooth Count Picker
 
@@ -14,5 +16,3 @@ Use this component to select the amount of teeth on the gear.
 @{ToothCountPicker}
 
 That should be it!
-
-Hope so.

@@ -47,6 +47,15 @@
 }
 
 .textual-content-area {
+    padding-top: 42px;
     width: 450px;
     flex-shrink: 0;
+}
+
+.textual-content-area p,
+.textual-content-area h3,
+.textual-content-area h4,
+.textual-content-area h5,
+.textual-content-area h6 {
+    padding: 10px 0px;
 }
