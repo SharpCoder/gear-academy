@@ -14,3 +14,5 @@ Use this component to select the amount of teeth on the gear.
 @{ToothCountPicker}
 
 That should be it!
+
+Hope so.

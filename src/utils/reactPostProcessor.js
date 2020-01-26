@@ -30,9 +30,11 @@ export default function transformHtml(html) {
             i++;
             component = "";
         } else if (inLoop && c == endToken) {
+            inLoop = false;
             const id = uuidv4();
             response.reactComponents[id] = componentLibrary[component];
-            result += `<div id="${id}" />`;
+            result += `<div id="${id}"></div>`;
+            component = "";
         } else if (inLoop) {
             component += c;
         } else {

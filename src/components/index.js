@@ -1,3 +1,3 @@
-import { GearSlider } from "./gearSlider";
+import { ToothCountPicker } from "./toothCountPicker";
 
-export { GearSlider };
+export { ToothCountPicker };

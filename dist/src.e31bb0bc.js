@@ -31872,13 +31872,13 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"../_learningContent/control-testing.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
+  html: "<h2>Control Testing</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial. For development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<p>That should be it!</p>\n<p>Hope so.</p>\n",
   meta: {
     index: 0,
     category: ["Spur Gears"],
-    title: "Diametral Pitch"
+    title: "Control Testing"
   }
 };
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
@@ -31888,6 +31888,15 @@ module.exports = {
     index: 2,
     category: ["Spur Gears"],
     title: "Gearing Ratios"
+  }
+};
+},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{GearSlider}</p>\n",
+  meta: {
+    index: 0,
+    category: ["Spur Gears"],
+    title: "Diametral Pitch"
   }
 };
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
@@ -31908,13 +31917,13 @@ module.exports = {
     title: "Intro!"
   }
 };
-},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
+},{}],"../_learningContent/openscad.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
   meta: {
-    index: 0,
-    category: [],
-    title: "What is a gear?"
+    index: 1,
+    category: ["Additional"],
+    title: "OpenScad"
   }
 };
 },{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
@@ -31926,16 +31935,37 @@ module.exports = {
     title: "Pressure Angle"
   }
 };
+},{}],"../_learningContent/resources.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
+  meta: {
+    index: 1,
+    category: ["Spur Gears"],
+    title: "Resources"
+  }
+};
+},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "What is a gear?"
+  }
+};
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
-  "diametral-pitch": require("./../diametral-pitch.md"),
+  "control-testing": require("./../control-testing.md"),
   "gear-ratios": require("./../gear-ratios.md"),
+  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md"),
-  "pressure-angle": require("./../pressure-angle.md")
+  "openscad": require("./../openscad.md"),
+  "pressure-angle": require("./../pressure-angle.md"),
+  "resources": require("./../resources.md"),
+  "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51201,43 +51231,54 @@ Object.defineProperty(exports, "Explorer", {
 });
 
 var _component = require("./component");
-},{"./component":"tutorialViewer/explorer/component.js"}],"components/gearSlider.js":[function(require,module,exports) {
+},{"./component":"tutorialViewer/explorer/component.js"}],"components/toothCountPicker.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GearSlider = void 0;
+exports.ToothCountPicker = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _lodash = require("lodash");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GearSlider = function GearSlider(_ref) {
+var ToothCountPicker = function ToothCountPicker(_ref) {
   var context = _ref.context;
-  return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", {
-    onClick: function onClick() {
-      context.setToothCount(38);
-    }
-  }, "Yes"));
+
+  var handleChange = function handleChange(event) {
+    var value = event.target.value;
+    context.setToothCount(value);
+  };
+
+  return _react.default.createElement("div", null, _react.default.createElement("select", {
+    onChange: handleChange
+  }, (0, _lodash.map)([16, 18, 24, 26, 28, 30, 32, 34, 36, 38, 60], function (size) {
+    return _react.default.createElement("option", {
+      key: "option-".concat(size),
+      value: size
+    }, size);
+  })));
 };
 
-exports.GearSlider = GearSlider;
-},{"react":"../node_modules/react/index.js"}],"components/index.js":[function(require,module,exports) {
+exports.ToothCountPicker = ToothCountPicker;
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "GearSlider", {
+Object.defineProperty(exports, "ToothCountPicker", {
   enumerable: true,
   get: function () {
-    return _gearSlider.GearSlider;
+    return _toothCountPicker.ToothCountPicker;
   }
 });
 
-var _gearSlider = require("./gearSlider");
-},{"./gearSlider":"components/gearSlider.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+var _toothCountPicker = require("./toothCountPicker");
+},{"./toothCountPicker":"components/toothCountPicker.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -51374,9 +51415,11 @@ function transformHtml(html) {
       i++;
       component = "";
     } else if (inLoop && c == endToken) {
+      inLoop = false;
       var id = uuidv4();
       response.reactComponents[id] = componentLibrary[component];
-      result += "<div id=\"".concat(id, "\" />");
+      result += "<div id=\"".concat(id, "\"></div>");
+      component = "";
     } else if (inLoop) {
       component += c;
     } else {
@@ -51415,11 +51458,15 @@ var ContentViewer = function ContentViewer(_ref) {
   var postProcessed = (0, _reactPostProcessor.default)((0, _lodash.get)(tutorial, "html"));
   (0, _react.useEffect)(function () {
     for (var prop in postProcessed.reactComponents) {
-      var Element = postProcessed.reactComponents[prop];
+      var el = postProcessed.reactComponents[prop];
 
-      _reactDom.default.render(_react.default.createElement(Element, {
-        context: context
-      }), document.getElementById(prop));
+      if (!el) {
+        console.error("An imported component element in file ".concat((0, _lodash.get)(tutorial, "meta.title"), " is undefined"));
+      } else {
+        _reactDom.default.render(_react.default.createElement(el, {
+          context: context
+        }), document.getElementById(prop));
+      }
     }
   }, [postProcessed]);
   return _react.default.createElement("div", {
@@ -52403,7 +52450,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53670" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64015" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -8,8 +8,12 @@ const ContentViewer = ({ tutorial, context }) => {
 
     useEffect(() => {
         for (const prop in postProcessed.reactComponents) {
-            const Element = postProcessed.reactComponents[prop];
-            ReactDOM.render(<Element context={context} />, document.getElementById(prop));
+            const el = postProcessed.reactComponents[prop];
+            if (!el) {
+                console.error(`An imported component element in file ${get(tutorial, "meta.title")} is undefined`);
+            } else {
+                ReactDOM.render(React.createElement(el, { context }), document.getElementById(prop));
+            }
         }
     }, [postProcessed]);
 
