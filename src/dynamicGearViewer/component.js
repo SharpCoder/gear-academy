@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { get } from "lodash";
-import { spurGear } from "./gearUtils";
-import { BGFill } from "./constants";
+import { debounce } from "lodash";
 import BGImage from "../assets/axiom-pattern.png";
 import GameEngine from "./gameEngine";
 import ImageDrawable from "./gameEngine/drawables/image";
@@ -9,10 +7,22 @@ import Gear from "./gameEngine/drawables/gear";
 
 const DynamicGearViewer = ({ context }) => {
     const canvasRef = useRef(null);
+    const [isScrolling, setIsScrolling] = useState(false);
     const [screenSize, setScreenSize] = useState({ innerWidth: window.innerWidth, innerHeight: window.innerHeight });
 
     useEffect(() => {
+        const isNotScrolling = debounce(
+            () => {
+                setIsScrolling(false);
+            },
+            250,
+            { trailing: true },
+        );
+
         const fn = () => {
+            setIsScrolling(true);
+            isNotScrolling(); // debounced
+
             const { current } = canvasRef;
             if (current) {
                 current.width = null;
@@ -29,46 +39,52 @@ const DynamicGearViewer = ({ context }) => {
     }, []);
 
     useEffect(() => {
-        const canvasWrapper = document.getElementById("canvasWrapper");
-        const canvas = canvasRef.current;
-        const w = canvasWrapper.clientWidth - 40;
-        const h = canvasWrapper.clientHeight - 40;
+        if (!isScrolling) {
+            const canvasWrapper = document.getElementById("canvasWrapper");
+            const canvas = canvasRef.current;
+            const w = canvasWrapper.clientWidth - 40;
+            const h = Math.max(canvasWrapper.clientHeight - 40, 500);
 
-        const gameEngine = new GameEngine(canvas, w, h);
-        const gear = new Gear({
-            x: w / 2,
-            y: h / 2,
-            N: context.N,
-            P: context.P,
-            pa: context.pa,
-        });
-
-        // Add the gear
-        gameEngine.getRootEl().addElement(gear);
-        context.addEventListener("onGearUpdated", () => {
-            gear.setAttributes({
+            const gameEngine = new GameEngine(canvas, w, h);
+            const gear = new Gear({
+                x: w / 2,
+                y: h / 2,
                 N: context.N,
                 P: context.P,
                 pa: context.pa,
             });
-        });
 
-        // Add the overlay
-        gameEngine.getRootEl().addElement(
-            new ImageDrawable({
-                src: BGImage,
-                w,
-                h,
-            }),
-        );
-        return () => {
-            gameEngine.destroy();
-        };
-    }, [canvasRef, screenSize]);
+            // Add the gear
+            gameEngine.getRootEl().addElement(gear);
+            context.addEventListener("onGearUpdated", () => {
+                gear.setAttributes({
+                    N: context.N,
+                    P: context.P,
+                    pa: context.pa,
+                });
+            });
+
+            // Add the overlay
+            gameEngine.getRootEl().addElement(
+                new ImageDrawable({
+                    src: BGImage,
+                    w,
+                    h,
+                }),
+            );
+            return () => {
+                gameEngine.destroy();
+            };
+        }
+    }, [canvasRef, screenSize, isScrolling]);
 
     return (
         <div id="canvasWrapper" style={{ flexGrow: 1, padding: 20 }}>
-            <canvas ref={canvasRef} id="gearViewer" />
+            {isScrolling ? (
+                <h1 style={{ textAlign: "center" }}>Scrolling</h1>
+            ) : (
+                <canvas ref={canvasRef} id="gearViewer" />
+            )}
         </div>
     );
 };
