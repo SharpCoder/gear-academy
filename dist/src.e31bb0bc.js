@@ -31881,15 +31881,6 @@ module.exports = {
     title: "Diametral Pitch"
   }
 };
-},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
-  meta: {
-    index: 0,
-    category: [],
-    title: "Different Types of Gears"
-  }
-};
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
@@ -31897,6 +31888,15 @@ module.exports = {
     index: 2,
     category: ["Spur Gears"],
     title: "Gearing Ratios"
+  }
+};
+},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
+  meta: {
+    index: 0,
+    category: [],
+    title: "Different Types of Gears"
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
@@ -31908,15 +31908,6 @@ module.exports = {
     title: "Intro!"
   }
 };
-},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
-  meta: {
-    index: 1,
-    category: ["Spur Gears"],
-    title: "Pressure Angle"
-  }
-};
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
@@ -31926,16 +31917,25 @@ module.exports = {
     title: "What is a gear?"
   }
 };
+},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
+  meta: {
+    index: 1,
+    category: ["Spur Gears"],
+    title: "Pressure Angle"
+  }
+};
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "diametral-pitch": require("./../diametral-pitch.md"),
-  "gear-types": require("./../gear-types.md"),
   "gear-ratios": require("./../gear-ratios.md"),
+  "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
-  "pressure-angle": require("./../pressure-angle.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md")
+  "what-is-a-gear": require("./../what-is-a-gear.md"),
+  "pressure-angle": require("./../pressure-angle.md")
 };
-},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../intro.md":"../_learningContent/intro.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51217,7 +51217,7 @@ var GearSlider = function GearSlider(_ref) {
   var context = _ref.context;
   return _react.default.createElement("h1", null, "I am a gear slider", _react.default.createElement("button", {
     onClick: function onClick() {
-      context.setPitch(24);
+      context.setToothCount(38);
     }
   }, "Yes"));
 };
@@ -51697,14 +51697,33 @@ function () {
   _createClass(Drawable, [{
     key: "setAttributes",
     value: function setAttributes(attributes) {
+      for (var attribute in attributes) {
+        this[attribute] = attributes[attribute];
+      }
+    }
+  }, {
+    key: "addElement",
+    value: function addElement(child) {
+      this.children.push(child);
+    }
+  }, {
+    key: "onUpdate",
+    value: function onUpdate(engine, time) {
+      // Basic vector math
+      this.x += this.vx;
+      this.y += this.vy; // Basic recursive updating
+
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = attributes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var attribute = _step.value;
-          this[attribute] = attributes[attribute];
+        for (var _iterator = this.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var child = _step.value;
+
+          if (child && child.onUpdate && typeof child.onUpdate === "function") {
+            child.onUpdate(engine, time);
+          }
         }
       } catch (err) {
         _didIteratorError = true;
@@ -51722,17 +51741,9 @@ function () {
       }
     }
   }, {
-    key: "addElement",
-    value: function addElement(child) {
-      this.children.push(child);
-    }
-  }, {
-    key: "onUpdate",
-    value: function onUpdate(engine, time) {
-      // Basic vector math
-      this.x += this.vx;
-      this.y += this.vy; // Basic recursive updating
-
+    key: "onDraw",
+    value: function onDraw(ctx) {
+      // Basic recursive rendering
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
@@ -51741,8 +51752,8 @@ function () {
         for (var _iterator2 = this.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var child = _step2.value;
 
-          if (child && child.onUpdate && typeof child.onUpdate === "function") {
-            child.onUpdate(engine, time);
+          if (child && child.onDraw && typeof child.onDraw === "function") {
+            child.onDraw(ctx);
           }
         }
       } catch (err) {
@@ -51756,37 +51767,6 @@ function () {
         } finally {
           if (_didIteratorError2) {
             throw _iteratorError2;
-          }
-        }
-      }
-    }
-  }, {
-    key: "onDraw",
-    value: function onDraw(ctx) {
-      // Basic recursive rendering
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
-
-      try {
-        for (var _iterator3 = this.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var child = _step3.value;
-
-          if (child && child.onDraw && typeof child.onDraw === "function") {
-            child.onDraw(ctx);
-          }
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-            _iterator3.return();
-          }
-        } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
           }
         }
       }
@@ -51925,7 +51905,6 @@ function (_Drawable) {
     key: "onDraw",
     value: function onDraw(ctx) {
       if (this.loaded) {
-        console.log("drawing");
         var ptrn = ctx.createPattern(this.image, "repeat");
         ctx.fillStyle = ptrn;
         ctx.fillRect(0, 0, this.w, this.h);
@@ -52095,12 +52074,21 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
     var canvas = canvasRef.current;
     var w = canvasWrapper.clientWidth - 20;
     var h = canvasWrapper.clientHeight - 20;
-    var gameEngine = new _gameEngine.default(canvas, w, h); // Add the gear
-
-    gameEngine.getRootEl().addElement(new _gear.default({
+    var gameEngine = new _gameEngine.default(canvas, w, h);
+    var gear = new _gear.default({
       x: w / 2,
       y: h / 2
-    })); // Add the overlay
+    }); // Add the gear
+
+    gameEngine.getRootEl().addElement(gear);
+    context.addEventListener("onGearUpdated", function () {
+      console.log(context.N);
+      gear.setAttributes({
+        N: context.N,
+        P: context.P,
+        pa: context.pa
+      });
+    }); // Add the overlay
 
     gameEngine.getRootEl().addElement(new _image.default({
       src: _axiomPattern.default,
@@ -52271,9 +52259,21 @@ function () {
   }
 
   _createClass(Context, [{
+    key: "setPressureAngle",
+    value: function setPressureAngle(pa) {
+      this.pa = pa;
+      this.fireEvent("onGearUpdated");
+    }
+  }, {
+    key: "setToothCount",
+    value: function setToothCount(N) {
+      this.N = N;
+      this.fireEvent("onGearUpdated");
+    }
+  }, {
     key: "setPitch",
     value: function setPitch(number) {
-      this.pitch = number;
+      this.P = number;
       this.fireEvent("onGearUpdated");
     }
   }, {
@@ -52403,7 +52403,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52454" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53670" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

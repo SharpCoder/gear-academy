@@ -8,8 +8,18 @@ export default class Context {
         this.pa = 14.5;
     }
 
+    setPressureAngle(pa) {
+        this.pa = pa;
+        this.fireEvent("onGearUpdated");
+    }
+
+    setToothCount(N) {
+        this.N = N;
+        this.fireEvent("onGearUpdated");
+    }
+
     setPitch(number) {
-        this.pitch = number;
+        this.P = number;
         this.fireEvent("onGearUpdated");
     }
 

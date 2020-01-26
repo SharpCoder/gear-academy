@@ -19,7 +19,6 @@ export default class ImageDrawable extends Drawable {
 
     onDraw(ctx) {
         if (this.loaded) {
-            console.log("drawing");
             const ptrn = ctx.createPattern(this.image, "repeat");
             ctx.fillStyle = ptrn;
             ctx.fillRect(0, 0, this.w, this.h);

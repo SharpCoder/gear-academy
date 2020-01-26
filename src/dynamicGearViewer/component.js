@@ -35,14 +35,21 @@ const DynamicGearViewer = ({ context }) => {
         const h = canvasWrapper.clientHeight - 20;
 
         const gameEngine = new GameEngine(canvas, w, h);
+        const gear = new Gear({
+            x: w / 2,
+            y: h / 2,
+        });
 
         // Add the gear
-        gameEngine.getRootEl().addElement(
-            new Gear({
-                x: w / 2,
-                y: h / 2,
-            }),
-        );
+        gameEngine.getRootEl().addElement(gear);
+        context.addEventListener("onGearUpdated", () => {
+            console.log(context.N);
+            gear.setAttributes({
+                N: context.N,
+                P: context.P,
+                pa: context.pa,
+            });
+        });
 
         // Add the overlay
         gameEngine.getRootEl().addElement(

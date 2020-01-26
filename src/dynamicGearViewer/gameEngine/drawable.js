@@ -11,7 +11,7 @@ export default class Drawable {
     }
 
     setAttributes(attributes) {
-        for (const attribute of attributes) {
+        for (const attribute in attributes) {
             this[attribute] = attributes[attribute];
         }
     }

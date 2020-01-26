@@ -6,7 +6,7 @@ const GearSlider = ({ context }) => {
             I am a gear slider
             <button
                 onClick={() => {
-                    context.setPitch(24);
+                    context.setToothCount(38);
                 }}>
                 Yes
             </button>
