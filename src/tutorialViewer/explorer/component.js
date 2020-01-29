@@ -1,6 +1,6 @@
 import React from "react";
 import { keys, map, get, set, concat, reduce } from "lodash";
-import { pathize } from "../utils";
+import { pathize } from "../../utils";
 
 const Crumbs = ({ hierarchy, depth, selected, setSelectedTutorial }) => {
     const hierarchies = keys(hierarchy);

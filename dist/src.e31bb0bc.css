@@ -19,6 +19,7 @@
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
 }
 
 body,
@@ -130,14 +131,9 @@ body,
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    background-color: var(--main-bg-color);
-    border-right: 1px solid var(--accent-bg-color);
     margin: 0;
     padding-top: 42px;
-}
-
-.explorer {
-    width: 250px;
+    color: var(--accent-fg-color);
 }
 
 .explorer .crumb-header {
@@ -192,6 +188,50 @@ body,
 .textual-content-area h5,
 .textual-content-area h6 {
     padding: 10px 0px;
+}
+
+.side-panel-wrapper {
+    z-index: 2;
+    position: sticky;
+    top: 50px;
+}
+
+.side-panel {
+    right: -400px;
+    width: 400px;
+    height: calc(100vh - 50px);
+    background-color: var(--accent-bg-color);
+    position: absolute;
+}
+
+.open {
+    animation-name: slide-open;
+    animation-duration: 0.5s;
+    right: 0px;
+}
+
+.close {
+    right: -400px;
+    animation-name: slide-closed;
+    animation-duration: 0.5s;
+}
+
+@keyframes slide-open {
+    from {
+        right: -400px;
+    }
+    to {
+        right: 0px;
+    }
+}
+
+@keyframes slide-closed {
+    from {
+        right: 0px;
+    }
+    to {
+        right: -400px;
+    }
 }
 
 

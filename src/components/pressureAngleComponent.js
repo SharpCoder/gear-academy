@@ -5,7 +5,7 @@ import Slider from "@material-ui/core/Slider";
 
 const PressureAngleComponent = ({ context }) => {
     const [pa, setPa] = useState(context.pa);
-    const marks = map([14.5, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30], pitch => {
+    const marks = map([14.5, 16, 17, 18, 19, 20, 21, 22, 25, 30], pitch => {
         return {
             value: pitch,
             label: `${pitch}`,
