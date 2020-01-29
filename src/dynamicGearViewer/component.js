@@ -42,8 +42,8 @@ const DynamicGearViewer = ({ context }) => {
         if (!isScrolling) {
             const canvasWrapper = document.getElementById("canvasWrapper");
             const canvas = canvasRef.current;
-            const w = canvasWrapper.clientWidth - 40;
-            const h = Math.max(canvasWrapper.clientHeight - 40, 500);
+            const w = canvasWrapper.clientWidth;
+            const h = Math.max(canvasWrapper.clientHeight, 500);
 
             const gameEngine = new GameEngine(canvas, w, h);
             const gear = new Gear({
@@ -79,9 +79,11 @@ const DynamicGearViewer = ({ context }) => {
     }, [canvasRef, screenSize, isScrolling]);
 
     return (
-        <div id="canvasWrapper" style={{ flexGrow: 1, padding: 20 }}>
+        <div id="canvasWrapper" style={{ flexGrow: 1, position: "fixed", width: "50%", height: "100%" }}>
             {isScrolling ? (
-                <h1 style={{ textAlign: "center" }}>Scrolling</h1>
+                <div style={{ width: "100%", flexGrow: 1 }}>
+                    <h1 style={{ textAlign: "center" }}>Scrolling</h1>
+                </div>
             ) : (
                 <canvas ref={canvasRef} id="gearViewer" />
             )}

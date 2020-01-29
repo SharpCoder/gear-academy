@@ -1,6 +1,7 @@
 import "./index.css";
 
-import React from "react";
+import zlib from "zlib";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import { Header } from "./header";
@@ -13,8 +14,18 @@ import Context from "./utils/context";
 const appContext = new Context();
 window.appContext = appContext;
 
-class WebApp extends React.Component {
-    render() {
+const WebApp = () => {
+    // const [tutorials, setTutorials] = useState(null);
+
+    // useEffect(() => {
+    //     fetch("./lessons.json")
+    //         .then(resp => resp.json())
+    //         .then(json => setTutorials(json));
+    // });
+
+    if (!tutorials) {
+        return <React.Fragment />;
+    } else {
         return (
             <div className="flexy">
                 <Header title="Gear Academy" />
@@ -23,7 +34,7 @@ class WebApp extends React.Component {
             </div>
         );
     }
-}
+};
 
 var mountNode = document.getElementById("app");
 ReactDOM.render(<WebApp />, mountNode);

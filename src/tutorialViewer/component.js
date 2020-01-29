@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { SectionHeader } from "./sectionHeader";
 import { Explorer } from "./explorer";
 import { filter, get, keys, map } from "lodash";
 import { pathize } from "./utils";
@@ -32,23 +31,26 @@ const TutorialViewer = ({ tutorials, context }) => {
 
     return (
         <div className="tutorial-wrapper">
-            <SectionHeader category="" heading={get(currentTutorial, "meta.title")} />
-            <div className="mid-wrapper">
-                <Explorer
-                    selected={selectedTutorialKey}
-                    tutorials={tutorials}
-                    setSelectedTutorial={key => {
-                        window.location.hash = key;
-                        setSelectedTutorialKey(key);
-                    }}
-                />
-                <div className="content">
-                    <ContentViewer context={context} tutorial={currentTutorial} />
-                    <DynamicGearViewer context={context} />
-                </div>
+            <div className="left-pane">
+                <ContentViewer context={context} tutorial={currentTutorial} />
+            </div>
+            <div className="resize-bar"></div>
+            <div className="right-pane">
+                <DynamicGearViewer context={context} />
             </div>
         </div>
     );
 };
+
+{
+    /* <Explorer
+selected={selectedTutorialKey}
+tutorials={tutorials}
+setSelectedTutorial={key => {
+    window.location.hash = key;
+    setSelectedTutorialKey(key);
+}}
+/> */
+}
 
 export { TutorialViewer };

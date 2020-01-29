@@ -3,8 +3,9 @@
     --main-fg-color: #000;
 
     --archive-cool-color: #0f0f17;
-
     --secondary-border-color: #32323f;
+
+    --blueprint-blue: #1d48b5;
 
     --accent-bg-color: #32323f;
     --accent-fg-color: #fff;
@@ -39,10 +40,29 @@ body,
 }
 
 .header {
+    z-index: 1;
     padding: 8px;
     padding-left: var(--page-boundary-padding);
-    background-color: var(--main-bg-color);
-    color: var(--main-fg-color);
+    background-color: var(--accent-bg-color);
+    color: var(--accent-fg-color);
+    display: flex;
+    position: sticky;
+    top: 0;
+}
+
+.header button {
+    right: 0;
+    margin-right: 25px;
+    position: absolute;
+    border: 0;
+    background-color: var(--accent-bg-color);
+    color: var(--accent-fg-color);
+    padding: 4px;
+}
+
+.header button:hover {
+    cursor: pointer;
+    color: var(--blueprint-blue);
 }
 
 .header .title {
@@ -50,6 +70,7 @@ body,
 }
 
 .footer {
+    z-index: 1;
     padding: 8px;
     background-color: var(--accent-bg-color);
     color: var(--accent-fg-color);
@@ -74,6 +95,7 @@ body,
 }
 
 .content {
+    overflow-x: hidden;
     padding: 10px;
     background-color: rgb(240, 240, 240);
 }
@@ -82,10 +104,26 @@ body,
     padding: 20px 20px;
 }
 
-.tutorial-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+.resize-bar {
+    background-color: var(--accent-bg-color);
+    width: 4px;
+}
+
+@media screen and (max-width: 900px) {
+    .tutorial-wrapper {
+        flex-direction: column !important;
+    }
+
+    .resize-bar {
+        width: 100%;
+        height: 4px;
+    }
+
+    #canvasWrapper {
+        position: relative !important;
+        width: 100% !important;
+        height: 500px !important;
+    }
 }
 
 .explorer {
@@ -127,21 +165,25 @@ body,
     color: var(--accent-fg-color) !important;
 }
 
-.mid-wrapper {
+.tutorial-wrapper {
     display: flex;
+    flex-direction: row;
     flex-grow: 1;
-    width: 100%;
+    height: 100%;
 }
 
-.content {
-    width: 100%;
-    display: flex;
+.left-pane {
+    padding: 10px;
+    padding-left: var(--page-boundary-padding);
 }
 
-.textual-content-area {
-    padding-top: 42px;
-    width: 450px;
-    flex-shrink: 0;
+.left-pane,
+.right-pane {
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+.right-pane {
 }
 
 .textual-content-area p,

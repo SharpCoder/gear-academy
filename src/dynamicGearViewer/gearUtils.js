@@ -10,7 +10,9 @@ const rad_to_deg = 180 / PI;
 
 /* Math Functions */
 function parametric_points({ fx, fy, t0, t1, delta } = props) {
-    return map(range(t0, t1, delta), t => [fx(t), fy(t)]);
+    return map(range(t0, t1, delta), t => {
+        return [fx(t), fy(t)];
+    });
 }
 
 function calc_module(P) {
@@ -42,7 +44,7 @@ function calc_circular_pitch(P) {
 }
 
 function calc_alpha(dp, db, pa) {
-    return Math.sqrt(Math.pow(dp, 2) - Math.pow(db, 2)) / db - pa * deg_to_rad;
+    return (Math.sqrt(Math.pow(dp, 2) - Math.pow(db, 2)) / db) * rad_to_deg - pa;
 }
 
 function calc_clearance(P) {
@@ -92,8 +94,8 @@ function drawInvoluteTooth(ctx, r, beta) {
     const x2 = t => r * (Math.cos(-t - beta) - t * Math.sin(-t - beta));
     const y2 = t => r * (Math.sin(-t - beta) + t * Math.cos(-t - beta));
 
-    const involute_1_points = parametric_points({ fx: x, fy: y, t0: 0, t1: 0.68, delta: 0.01 });
-    const involute_2_points = parametric_points({ fx: x2, fy: y2, t0: 0, t1: 0.68, delta: 0.01 });
+    const involute_1_points = parametric_points({ fx: x, fy: y, t0: 0, t1: 1, delta: 0.05 });
+    const involute_2_points = parametric_points({ fx: x2, fy: y2, t0: 0, t1: 1, delta: 0.05 });
 
     drawPolygon(ctx, concat([[0, 0]], involute_1_points, reverse(involute_2_points), [[0, 0]]));
 }

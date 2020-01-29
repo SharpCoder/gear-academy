@@ -1,9 +1,3 @@
-.tutorial-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
 .explorer {
     display: flex;
     flex-direction: column;
@@ -43,21 +37,25 @@
     color: var(--accent-fg-color) !important;
 }
 
-.mid-wrapper {
+.tutorial-wrapper {
     display: flex;
+    flex-direction: row;
     flex-grow: 1;
-    width: 100%;
+    height: 100%;
 }
 
-.content {
-    width: 100%;
-    display: flex;
+.left-pane {
+    padding: 10px;
+    padding-left: var(--page-boundary-padding);
 }
 
-.textual-content-area {
-    padding-top: 42px;
-    width: 450px;
-    flex-shrink: 0;
+.left-pane,
+.right-pane {
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+.right-pane {
 }
 
 .textual-content-area p,
