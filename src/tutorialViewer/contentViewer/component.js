@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { get } from "lodash";
 import reactPostProcessor from "../../utils/reactPostProcessor";
 
-const ContentViewer = ({ tutorial, context }) => {
-    const postProcessed = reactPostProcessor(get(tutorial, "html"));
+const ContentViewer = ({ content, context }) => {
+    const postProcessed = reactPostProcessor(content);
 
     useEffect(() => {
         for (const prop in postProcessed.reactComponents) {
             const el = postProcessed.reactComponents[prop];
             if (!el) {
-                console.error(`An imported component element in file ${get(tutorial, "meta.title")} is undefined`);
+                console.error(`An imported component element is undefined`);
             } else {
                 ReactDOM.render(React.createElement(el, { context }), document.getElementById(prop));
             }

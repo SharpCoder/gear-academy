@@ -1,65 +1,37 @@
 import React from "react";
-import { keys, map, get, set, concat, reduce } from "lodash";
-import { pathize } from "../../utils";
+import { keys, map, set, reduce } from "lodash";
 import "./explorer.css";
 
-const Crumbs = ({ hierarchy, depth, setSelectedTutorial }) => {
-    const selected = window.location.hash;
-    const hierarchies = keys(hierarchy);
-    hierarchies.sort((a, b) => {
-        const aWeight = get(hierarchy[a], "meta.weight") || 0;
-        const bWeight = get(hierarchy[b], "meta.weight") || 0;
+const Crumbs = ({ nodes, setSelectedTutorial, depth }) => {
+    return map(keys(nodes), node => {
+        const entry = nodes[node];
 
-        // This is an ugly hack but...
-        if (b === "Additional") {
-            return -100;
-        } else {
-            return bWeight - aWeight;
-        }
-    });
-
-    return map(hierarchies, title => {
-        const entry = hierarchy[title] || {};
-        if (entry.meta) {
-            const href = `#${pathize(title)}`;
-            const isSelected = selected === href;
-            // This is a leaf node, implicitly
+        if (typeof entry === "object") {
             return (
-                <div
-                    key={href}
-                    className={isSelected ? "selected crumb-node" : "crumb-node"}
-                    onClick={() => setSelectedTutorial(href)}
-                    href={href}>
-                    {get(entry, "meta.title")}
+                <div key={`crumb-section-${node}`} className="crumb-header">
+                    <div style={{ marginLeft: (depth + 1) * 10 }}>{node}</div>
+                    <Crumbs nodes={entry} depth={depth + 1} setSelectedTutorial={setSelectedTutorial} />
                 </div>
             );
         } else {
+            const isSelected = entry === window.location.hash;
             return (
-                <div key={`crumb-${title}`} className="crumb-header">
-                    <div style={{ marginLeft: (depth + 1) * 10 }}>{title}</div>
-                    <Crumbs
-                        hierarchy={entry}
-                        depth={depth + 1}
-                        selected={selected}
-                        setSelectedTutorial={setSelectedTutorial}
-                    />
+                <div
+                    key={`crumb-content-${node}`}
+                    className={isSelected ? "selected crumb-node" : "crumb-node"}
+                    onClick={() => setSelectedTutorial(entry)}>
+                    {node}
                 </div>
             );
         }
     });
 };
 
-const Explorer = ({ tutorials, setSelectedTutorial, selected }) => {
+const Explorer = ({ tutorials }) => {
     const hierarchy = reduce(
-        tutorials,
+        tutorials.items,
         (accumulator, tutorial) => {
-            const title = get(tutorial, "meta.title");
-            if (title) {
-                // TODO: Don't hardcode the root node. Ideally, derrive this from
-                // a map or something that is configured elsewhere.
-                const path = concat(["Gears"], get(tutorial, "meta.category") || [], [title]);
-                set(accumulator, path.join("."), tutorial);
-            }
+            set(accumulator, tutorial.fullPath.join("."), tutorial.hash);
             return accumulator;
         },
         {},
@@ -67,7 +39,7 @@ const Explorer = ({ tutorials, setSelectedTutorial, selected }) => {
 
     return (
         <div className="explorer">
-            <Crumbs hierarchy={hierarchy} depth={0} selected={selected} setSelectedTutorial={setSelectedTutorial} />
+            <Crumbs depth={0} nodes={hierarchy} setSelectedTutorial={hash => (window.location.hash = hash)} />
         </div>
     );
 };

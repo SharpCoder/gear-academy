@@ -3,7 +3,7 @@ import "./index.css";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { filter, get, keys, map } from "lodash";
-import { pathize } from "./utils";
+import { pathize, indexTutorials } from "./utils";
 
 import { Navigation } from "./navigation";
 import { Footer } from "./footer";
@@ -15,28 +15,15 @@ import Context from "./utils/context";
 const appContext = new Context();
 window.appContext = appContext;
 
-const findSelectedTutorial = (tutorials, selection) => {
-    const result = get(
-        map(
-            filter(keys(tutorials), key => {
-                const title = get(tutorials[key], "meta.title");
-                return `#${pathize(title)}` === selection;
-            }),
-            key => tutorials[key],
-        ),
-        "[0]",
-    );
-
-    return result;
-};
+const parsedTutorials = indexTutorials(tutorials);
 
 const WebApp = () => {
     const [selectedTutorialKey, setSelectedTutorialKey] = useState(window.location.hash);
-    const [currentTutorial, setCurrentTutorial] = useState(findSelectedTutorial(tutorials, window.location.hash));
+    const [currentTutorial, setCurrentTutorial] = useState(parsedTutorials.cached[window.location.hash]);
 
     useEffect(() => {
         if (tutorials) {
-            setCurrentTutorial(findSelectedTutorial(tutorials, selectedTutorialKey));
+            setCurrentTutorial(parsedTutorials.cached[selectedTutorialKey]);
         }
     }, [selectedTutorialKey, tutorials]);
 
@@ -57,8 +44,8 @@ const WebApp = () => {
     } else {
         return (
             <div className="flexy">
-                <Navigation title="Gear Academy" tutorials={tutorials} />
-                <TutorialViewer context={appContext} currentTutorial={currentTutorial} />
+                <Navigation title="Gear Academy" tutorials={parsedTutorials} />
+                <TutorialViewer context={appContext} currentTutorial={currentTutorial} items={parsedTutorials.items} />
                 <Footer>Fork us on github! etc etc.</Footer>
             </div>
         );

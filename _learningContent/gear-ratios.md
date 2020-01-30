@@ -1,7 +1,7 @@
 ---
-index: 2
 category: [Spur Gears]
 title: Gearing Ratios
+weight: 50
 ---
 
 ## Gearing Ratios

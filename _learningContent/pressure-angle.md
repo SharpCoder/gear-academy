@@ -1,7 +1,7 @@
 ---
-index: 1
 category: [Spur Gears]
 title: Pressure Angle
+weight: 60
 ---
 
 ## Pressure Angle

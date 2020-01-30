@@ -1,0 +1,18 @@
+.page-navigator {
+    font-size: x-large;
+    align-self: center;
+}
+
+.page-navigator button {
+    font-size: xx-large;
+    border: 0;
+    background-color: transparent;
+}
+
+.page-navigator button:enabled {
+    cursor: pointer;
+}
+
+.page-navigator span {
+    padding: 4px;
+}

@@ -8,12 +8,19 @@
 .left-pane {
     padding: 10px;
     padding-left: var(--page-boundary-padding);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .left-pane,
 .right-pane {
     flex-grow: 1;
     flex-basis: 200px;
+}
+
+.textual-content-area {
+    flex-grow: 1;
 }
 
 .textual-content-area p,

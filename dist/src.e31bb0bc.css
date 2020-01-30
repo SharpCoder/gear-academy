@@ -216,6 +216,9 @@ body,
 .left-pane {
     padding: 10px;
     padding-left: var(--page-boundary-padding);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .left-pane,
@@ -224,12 +227,35 @@ body,
     flex-basis: 200px;
 }
 
+.textual-content-area {
+    flex-grow: 1;
+}
+
 .textual-content-area p,
 .textual-content-area h3,
 .textual-content-area h4,
 .textual-content-area h5,
 .textual-content-area h6 {
     padding: 10px 0px;
+}
+
+.page-navigator {
+    font-size: x-large;
+    align-self: center;
+}
+
+.page-navigator button {
+    font-size: xx-large;
+    border: 0;
+    background-color: transparent;
+}
+
+.page-navigator button:enabled {
+    cursor: pointer;
+}
+
+.page-navigator span {
+    padding: 4px;
 }
 
 

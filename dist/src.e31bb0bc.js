@@ -50966,11 +50966,54 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.pathize = pathize;
+exports.indexTutorials = indexTutorials;
+
+var _lodash = require("lodash");
 
 function pathize(title) {
   return (title || "").toLowerCase().replace(/[^a-z0-9 ]/gi, "").split(" ").join("-");
 }
-},{}],"navigation/sidePanel/sidePanel.css":[function(require,module,exports) {
+/***
+ * This function will take all the tutorials and generate
+ * an index with the following structure:
+ * {
+ *     [hash]: <document>
+ *     items: Array<{hash: [hash], category: [category]}>
+ * }
+ */
+
+
+function indexTutorials(tutorials) {
+  var response = {
+    cached: {},
+    items: []
+  };
+
+  for (var hashText in (0, _lodash.get)(tutorials, "default")) {
+    var hash = "#".concat(hashText);
+
+    var _get = (0, _lodash.get)(tutorials, ["default", hashText]),
+        html = _get.html,
+        meta = _get.meta;
+
+    var weight = meta.weight,
+        category = meta.category,
+        title = meta.title;
+    response.cached[hash] = html;
+    response.items.push({
+      hash: hash,
+      weight: weight,
+      category: category,
+      fullPath: (0, _lodash.concat)([""], category || [], title)
+    });
+  }
+
+  response.items = response.items.sort(function (a, b) {
+    return a.weight - b.weight;
+  });
+  return response;
+}
+},{"lodash":"../node_modules/lodash/lodash.js"}],"navigation/sidePanel/sidePanel.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51039,89 +51082,64 @@ var _react = _interopRequireDefault(require("react"));
 
 var _lodash = require("lodash");
 
-var _utils = require("../../utils");
-
 require("./explorer.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 var Crumbs = function Crumbs(_ref) {
-  var hierarchy = _ref.hierarchy,
-      depth = _ref.depth,
-      setSelectedTutorial = _ref.setSelectedTutorial;
-  var selected = window.location.hash;
-  var hierarchies = (0, _lodash.keys)(hierarchy);
-  hierarchies.sort(function (a, b) {
-    var aWeight = (0, _lodash.get)(hierarchy[a], "meta.weight") || 0;
-    var bWeight = (0, _lodash.get)(hierarchy[b], "meta.weight") || 0; // This is an ugly hack but...
+  var nodes = _ref.nodes,
+      setSelectedTutorial = _ref.setSelectedTutorial,
+      depth = _ref.depth;
+  return (0, _lodash.map)((0, _lodash.keys)(nodes), function (node) {
+    var entry = nodes[node];
 
-    if (b === "Additional") {
-      return -100;
-    } else {
-      return bWeight - aWeight;
-    }
-  });
-  return (0, _lodash.map)(hierarchies, function (title) {
-    var entry = hierarchy[title] || {};
-
-    if (entry.meta) {
-      var href = "#".concat((0, _utils.pathize)(title));
-      var isSelected = selected === href; // This is a leaf node, implicitly
-
+    if (_typeof(entry) === "object") {
       return _react.default.createElement("div", {
-        key: href,
-        className: isSelected ? "selected crumb-node" : "crumb-node",
-        onClick: function onClick() {
-          return setSelectedTutorial(href);
-        },
-        href: href
-      }, (0, _lodash.get)(entry, "meta.title"));
-    } else {
-      return _react.default.createElement("div", {
-        key: "crumb-".concat(title),
+        key: "crumb-section-".concat(node),
         className: "crumb-header"
       }, _react.default.createElement("div", {
         style: {
           marginLeft: (depth + 1) * 10
         }
-      }, title), _react.default.createElement(Crumbs, {
-        hierarchy: entry,
+      }, node), _react.default.createElement(Crumbs, {
+        nodes: entry,
         depth: depth + 1,
-        selected: selected,
         setSelectedTutorial: setSelectedTutorial
       }));
+    } else {
+      var isSelected = entry === window.location.hash;
+      return _react.default.createElement("div", {
+        key: "crumb-content-".concat(node),
+        className: isSelected ? "selected crumb-node" : "crumb-node",
+        onClick: function onClick() {
+          return setSelectedTutorial(entry);
+        }
+      }, node);
     }
   });
 };
 
 var Explorer = function Explorer(_ref2) {
-  var tutorials = _ref2.tutorials,
-      setSelectedTutorial = _ref2.setSelectedTutorial,
-      selected = _ref2.selected;
-  var hierarchy = (0, _lodash.reduce)(tutorials, function (accumulator, tutorial) {
-    var title = (0, _lodash.get)(tutorial, "meta.title");
-
-    if (title) {
-      // TODO: Don't hardcode the root node. Ideally, derrive this from
-      // a map or something that is configured elsewhere.
-      var path = (0, _lodash.concat)(["Gears"], (0, _lodash.get)(tutorial, "meta.category") || [], [title]);
-      (0, _lodash.set)(accumulator, path.join("."), tutorial);
-    }
-
+  var tutorials = _ref2.tutorials;
+  var hierarchy = (0, _lodash.reduce)(tutorials.items, function (accumulator, tutorial) {
+    (0, _lodash.set)(accumulator, tutorial.fullPath.join("."), tutorial.hash);
     return accumulator;
   }, {});
   return _react.default.createElement("div", {
     className: "explorer"
   }, _react.default.createElement(Crumbs, {
-    hierarchy: hierarchy,
     depth: 0,
-    selected: selected,
-    setSelectedTutorial: setSelectedTutorial
+    nodes: hierarchy,
+    setSelectedTutorial: function setSelectedTutorial(hash) {
+      return window.location.hash = hash;
+    }
   }));
 };
 
 exports.Explorer = Explorer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils":"utils/index.js","./explorer.css":"navigation/explorer/explorer.css"}],"navigation/explorer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./explorer.css":"navigation/explorer/explorer.css"}],"navigation/explorer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55036,7 +55054,7 @@ module.exports = {
   meta: {
     category: ["Additional"],
     title: "Control Testing",
-    weight: 10
+    weight: 80
   }
 };
 },{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
@@ -55045,16 +55063,16 @@ module.exports = {
   meta: {
     category: ["Spur Gears"],
     title: "Diametral Pitch",
-    weight: 90
+    weight: 40
   }
 };
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
   meta: {
-    index: 2,
     category: ["Spur Gears"],
-    title: "Gearing Ratios"
+    title: "Gearing Ratios",
+    weight: 50
   }
 };
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
@@ -55063,7 +55081,7 @@ module.exports = {
   meta: {
     category: [],
     title: "Different Types of Gears",
-    weight: 80
+    weight: 30
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
@@ -55072,25 +55090,34 @@ module.exports = {
   meta: {
     category: [],
     title: "Intro!",
-    weight: 100
+    weight: 10
   }
 };
 },{}],"../_learningContent/openscad.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
+  html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
   meta: {
     category: ["Additional"],
     title: "OpenScad",
-    weight: 1
+    weight: 90
   }
 };
 },{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
   meta: {
-    index: 1,
     category: ["Spur Gears"],
-    title: "Pressure Angle"
+    title: "Pressure Angle",
+    weight: 60
+  }
+};
+},{}],"../_learningContent/resources.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
+  meta: {
+    category: ["Spur Gears"],
+    title: "Resources",
+    weight: 70
   }
 };
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
@@ -55099,16 +55126,7 @@ module.exports = {
   meta: {
     category: [],
     title: "What is a gear?",
-    weight: 90
-  }
-};
-},{}],"../_learningContent/resources.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
-  meta: {
-    index: 1,
-    category: ["Spur Gears"],
-    title: "Resources"
+    weight: 20
   }
 };
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
@@ -55120,10 +55138,10 @@ module.exports = {
   "intro": require("./../intro.md"),
   "openscad": require("./../openscad.md"),
   "pressure-angle": require("./../pressure-angle.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md"),
-  "resources": require("./../resources.md")
+  "resources": require("./../resources.md"),
+  "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../resources.md":"../_learningContent/resources.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -76257,8 +76275,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _lodash = require("lodash");
-
 var _reactPostProcessor = _interopRequireDefault(require("../../utils/reactPostProcessor"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -76268,15 +76284,15 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var ContentViewer = function ContentViewer(_ref) {
-  var tutorial = _ref.tutorial,
+  var content = _ref.content,
       context = _ref.context;
-  var postProcessed = (0, _reactPostProcessor.default)((0, _lodash.get)(tutorial, "html"));
+  var postProcessed = (0, _reactPostProcessor.default)(content);
   (0, _react.useEffect)(function () {
     for (var prop in postProcessed.reactComponents) {
       var el = postProcessed.reactComponents[prop];
 
       if (!el) {
-        console.error("An imported component element in file ".concat((0, _lodash.get)(tutorial, "meta.title"), " is undefined"));
+        console.error("An imported component element is undefined");
       } else {
         _reactDom.default.render(_react.default.createElement(el, {
           context: context
@@ -76293,7 +76309,7 @@ var ContentViewer = function ContentViewer(_ref) {
 };
 
 exports.ContentViewer = ContentViewer;
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils/reactPostProcessor":"utils/reactPostProcessor.js"}],"tutorialViewer/contentViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","../../utils/reactPostProcessor":"utils/reactPostProcessor.js"}],"tutorialViewer/contentViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77013,7 +77029,89 @@ Object.defineProperty(exports, "DynamicGearViewer", {
 });
 
 var _component = require("./component");
-},{"./component":"dynamicGearViewer/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
+},{"./component":"dynamicGearViewer/component.js"}],"tutorialViewer/pageNavigator/pageNavigator.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"tutorialViewer/pageNavigator/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PageNavigator = void 0;
+
+var _lodash = require("lodash");
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("./pageNavigator.css");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var hashIndexFilter = function hashIndexFilter(item) {
+  return item.hash === window.location.hash;
+};
+
+var PageNavigator = function PageNavigator(_ref) {
+  var currentTutorial = _ref.currentTutorial,
+      items = _ref.items;
+
+  var _useState = (0, _react.useState)((0, _lodash.findIndex)(items, hashIndexFilter)),
+      _useState2 = _slicedToArray(_useState, 2),
+      index = _useState2[0],
+      setIndex = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    setIndex((0, _lodash.findIndex)(items, hashIndexFilter));
+  }, [currentTutorial, items]);
+
+  var setPageByIndex = function setPageByIndex(index) {
+    window.location.hash = (0, _lodash.get)(items[index], "hash");
+  };
+
+  return _react.default.createElement("div", {
+    className: "page-navigator"
+  }, _react.default.createElement("button", {
+    disabled: index <= 0,
+    onClick: function onClick() {
+      setPageByIndex(index - 1);
+    }
+  }, " ", "<", " "), _react.default.createElement("span", null, index + 1), _react.default.createElement("span", null, "/"), _react.default.createElement("span", null, items.length), _react.default.createElement("button", {
+    disabled: index >= items.length - 1,
+    onClick: function onClick() {
+      setPageByIndex(index + 1);
+    }
+  }, " ", ">", " "));
+};
+
+exports.PageNavigator = PageNavigator;
+},{"lodash":"../node_modules/lodash/lodash.js","react":"../node_modules/react/index.js","./pageNavigator.css":"tutorialViewer/pageNavigator/pageNavigator.css"}],"tutorialViewer/pageNavigator/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "PageNavigator", {
+  enumerable: true,
+  get: function () {
+    return _component.PageNavigator;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"tutorialViewer/pageNavigator/component.js"}],"tutorialViewer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77027,10 +77125,13 @@ var _contentViewer = require("./contentViewer");
 
 var _dynamicGearViewer = require("../dynamicGearViewer");
 
+var _pageNavigator = require("./pageNavigator");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TutorialViewer = function TutorialViewer(_ref) {
   var currentTutorial = _ref.currentTutorial,
+      items = _ref.items,
       context = _ref.context;
   return _react.default.createElement("div", {
     className: "tutorial-wrapper"
@@ -77038,7 +77139,10 @@ var TutorialViewer = function TutorialViewer(_ref) {
     className: "left-pane"
   }, _react.default.createElement(_contentViewer.ContentViewer, {
     context: context,
-    tutorial: currentTutorial
+    content: currentTutorial
+  }), _react.default.createElement(_pageNavigator.PageNavigator, {
+    currentTutorial: currentTutorial,
+    items: items
   })), _react.default.createElement("div", {
     className: "resize-bar"
   }), _react.default.createElement("div", {
@@ -77049,7 +77153,7 @@ var TutorialViewer = function TutorialViewer(_ref) {
 };
 
 exports.TutorialViewer = TutorialViewer;
-},{"react":"../node_modules/react/index.js","./contentViewer":"tutorialViewer/contentViewer/index.js","../dynamicGearViewer":"dynamicGearViewer/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./contentViewer":"tutorialViewer/contentViewer/index.js","../dynamicGearViewer":"dynamicGearViewer/index.js","./pageNavigator":"tutorialViewer/pageNavigator/index.js"}],"tutorialViewer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77183,16 +77287,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var appContext = new _context.default();
 window.appContext = appContext;
-
-var findSelectedTutorial = function findSelectedTutorial(tutorials, selection) {
-  var result = (0, _lodash.get)((0, _lodash.map)((0, _lodash.filter)((0, _lodash.keys)(tutorials), function (key) {
-    var title = (0, _lodash.get)(tutorials[key], "meta.title");
-    return "#".concat((0, _utils.pathize)(title)) === selection;
-  }), function (key) {
-    return tutorials[key];
-  }), "[0]");
-  return result;
-};
+var parsedTutorials = (0, _utils.indexTutorials)(tutorials);
 
 var WebApp = function WebApp() {
   var _useState = (0, _react.useState)(window.location.hash),
@@ -77200,14 +77295,14 @@ var WebApp = function WebApp() {
       selectedTutorialKey = _useState2[0],
       setSelectedTutorialKey = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(findSelectedTutorial(tutorials, window.location.hash)),
+  var _useState3 = (0, _react.useState)(parsedTutorials.cached[window.location.hash]),
       _useState4 = _slicedToArray(_useState3, 2),
       currentTutorial = _useState4[0],
       setCurrentTutorial = _useState4[1];
 
   (0, _react.useEffect)(function () {
     if (tutorials) {
-      setCurrentTutorial(findSelectedTutorial(tutorials, selectedTutorialKey));
+      setCurrentTutorial(parsedTutorials.cached[selectedTutorialKey]);
     }
   }, [selectedTutorialKey, tutorials]);
   (0, _react.useEffect)(function () {
@@ -77232,10 +77327,11 @@ var WebApp = function WebApp() {
       className: "flexy"
     }, _react.default.createElement(_navigation.Navigation, {
       title: "Gear Academy",
-      tutorials: tutorials
+      tutorials: parsedTutorials
     }), _react.default.createElement(_tutorialViewer.TutorialViewer, {
       context: appContext,
-      currentTutorial: currentTutorial
+      currentTutorial: currentTutorial,
+      items: parsedTutorials.items
     }), _react.default.createElement(_footer.Footer, null, "Fork us on github! etc etc."));
   }
 }; // TODO: separately, handle 404
@@ -77278,7 +77374,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51534" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63156" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

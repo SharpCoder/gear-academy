@@ -1,7 +1,7 @@
 ---
 category: [Spur Gears]
 title: Diametral Pitch
-weight: 90
+weight: 40
 ---
 
 ## Diametral Pitch

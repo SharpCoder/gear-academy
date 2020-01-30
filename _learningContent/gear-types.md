@@ -1,7 +1,7 @@
 ---
 category: []
 title: Different Types of Gears
-weight: 80
+weight: 30
 ---
 
 ## Different types of Gears

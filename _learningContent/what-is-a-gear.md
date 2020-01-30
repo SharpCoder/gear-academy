@@ -1,7 +1,7 @@
 ---
 category: []
 title: What is a gear?
-weight: 90
+weight: 20
 ---
 
 ## What is a Gear?
