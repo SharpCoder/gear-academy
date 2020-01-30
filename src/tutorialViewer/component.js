@@ -2,8 +2,6 @@ import React from "react";
 import { ContentViewer } from "./contentViewer";
 import { DynamicGearViewer } from "../dynamicGearViewer";
 
-// TODO: this seems unnecessarily complicated
-
 const TutorialViewer = ({ currentTutorial, context }) => {
     return (
         <div className="tutorial-wrapper">

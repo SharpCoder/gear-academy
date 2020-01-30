@@ -5,14 +5,12 @@ import ReactDOM from "react-dom";
 import { filter, get, keys, map } from "lodash";
 import { pathize } from "./utils";
 
-import { Header } from "./header";
+import { Navigation } from "./navigation";
 import { Footer } from "./footer";
 
 import * as tutorials from "../_learningContent/**/*.md";
 import { TutorialViewer } from "./tutorialViewer";
 import Context from "./utils/context";
-import { SidePanel } from "./sidePanel";
-import { Explorer } from "./tutorialViewer/explorer";
 
 const appContext = new Context();
 window.appContext = appContext;
@@ -33,7 +31,6 @@ const findSelectedTutorial = (tutorials, selection) => {
 };
 
 const WebApp = () => {
-    const [menuOpened, setMenuOpened] = useState(undefined);
     const [selectedTutorialKey, setSelectedTutorialKey] = useState(window.location.hash);
     const [currentTutorial, setCurrentTutorial] = useState(findSelectedTutorial(tutorials, window.location.hash));
 
@@ -44,16 +41,15 @@ const WebApp = () => {
     }, [selectedTutorialKey, tutorials]);
 
     useEffect(() => {
-        const fn = () => {
-            if (menuOpened) {
-                setMenuOpened(false);
+        const handleHashChange = () => {
+            const key = window.location.hash;
+            if (key !== selectedTutorialKey) {
+                setSelectedTutorialKey(key);
             }
         };
 
-        window.addEventListener("click", fn);
-        return () => {
-            window.removeEventListener("click", fn);
-        };
+        window.addEventListener("hashchange", handleHashChange);
+        return () => window.removeEventListener("hashchange", handleHashChange);
     });
 
     if (!tutorials) {
@@ -61,27 +57,20 @@ const WebApp = () => {
     } else {
         return (
             <div className="flexy">
-                <Header
-                    title="Gear Academy"
-                    toggleMenu={() => {
-                        setMenuOpened(!menuOpened);
-                    }}
-                />
-                <SidePanel open={menuOpened}>
-                    <Explorer
-                        tutorials={tutorials}
-                        setSelectedTutorial={key => {
-                            window.location.hash = key;
-                            setSelectedTutorialKey(key);
-                        }}
-                    />
-                </SidePanel>
+                <Navigation title="Gear Academy" tutorials={tutorials} />
                 <TutorialViewer context={appContext} currentTutorial={currentTutorial} />
                 <Footer>Fork us on github! etc etc.</Footer>
             </div>
         );
     }
 };
+
+// TODO: separately, handle 404
+
+/* Handle default page loading */
+if (window.location.hash === "") {
+    window.location.assign("#intro");
+}
 
 var mountNode = document.getElementById("app");
 ReactDOM.render(<WebApp />, mountNode);

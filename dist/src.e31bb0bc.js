@@ -50970,7 +50970,163 @@ exports.pathize = pathize;
 function pathize(title) {
   return (title || "").toLowerCase().replace(/[^a-z0-9 ]/gi, "").split(" ").join("-");
 }
-},{}],"../node_modules/@fortawesome/fontawesome-svg-core/index.es.js":[function(require,module,exports) {
+},{}],"navigation/sidePanel/sidePanel.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"navigation/sidePanel/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SidePanel = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+require("./sidePanel.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SidePanel = function SidePanel(_ref) {
+  var open = _ref.open,
+      children = _ref.children;
+  var classes = ["side-panel"];
+
+  if (open === true) {
+    classes.push("open");
+  } else if (open === false) {
+    classes.push("close");
+  }
+
+  return _react.default.createElement("div", {
+    className: "side-panel-wrapper"
+  }, _react.default.createElement("div", {
+    className: classes.join(" ")
+  }, children));
+};
+
+exports.SidePanel = SidePanel;
+},{"react":"../node_modules/react/index.js","./sidePanel.css":"navigation/sidePanel/sidePanel.css"}],"navigation/sidePanel/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "SidePanel", {
+  enumerable: true,
+  get: function () {
+    return _component.SidePanel;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"navigation/sidePanel/component.js"}],"tutorialViewer/explorer/component.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Explorer = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _lodash = require("lodash");
+
+var _utils = require("../../utils");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Crumbs = function Crumbs(_ref) {
+  var hierarchy = _ref.hierarchy,
+      depth = _ref.depth,
+      selected = _ref.selected,
+      setSelectedTutorial = _ref.setSelectedTutorial;
+  var hierarchies = (0, _lodash.keys)(hierarchy);
+  hierarchies.sort(function (a, b) {
+    var aWeight = (0, _lodash.get)(hierarchy[a], "meta.weight") || 0;
+    var bWeight = (0, _lodash.get)(hierarchy[b], "meta.weight") || 0; // This is an ugly hack but...
+
+    if (b === "Additional") {
+      return -100;
+    } else {
+      return bWeight - aWeight;
+    }
+  });
+  return (0, _lodash.map)(hierarchies, function (title) {
+    var entry = hierarchy[title] || {};
+
+    if (entry.meta) {
+      var href = "#".concat((0, _utils.pathize)(title));
+      var isSelected = selected === href; // This is a leaf node, implicitly
+
+      return _react.default.createElement("div", {
+        key: href,
+        className: isSelected ? "selected crumb-node" : "crumb-node",
+        onClick: function onClick() {
+          return setSelectedTutorial(href);
+        },
+        href: href
+      }, (0, _lodash.get)(entry, "meta.title"));
+    } else {
+      return _react.default.createElement("div", {
+        key: "crumb-".concat(title),
+        className: "crumb-header"
+      }, _react.default.createElement("div", {
+        style: {
+          marginLeft: (depth + 1) * 10
+        }
+      }, title), _react.default.createElement(Crumbs, {
+        hierarchy: entry,
+        depth: depth + 1,
+        selected: selected,
+        setSelectedTutorial: setSelectedTutorial
+      }));
+    }
+  });
+};
+
+var Explorer = function Explorer(_ref2) {
+  var tutorials = _ref2.tutorials,
+      setSelectedTutorial = _ref2.setSelectedTutorial,
+      selected = _ref2.selected;
+  var hierarchy = (0, _lodash.reduce)(tutorials, function (accumulator, tutorial) {
+    var title = (0, _lodash.get)(tutorial, "meta.title");
+
+    if (title) {
+      var path = (0, _lodash.concat)(["Gears"], (0, _lodash.get)(tutorial, "meta.category") || [], [title]);
+      (0, _lodash.set)(accumulator, path.join("."), tutorial);
+    }
+
+    return accumulator;
+  }, {});
+  return _react.default.createElement("div", {
+    className: "explorer"
+  }, _react.default.createElement(Crumbs, {
+    hierarchy: hierarchy,
+    depth: 0,
+    selected: selected,
+    setSelectedTutorial: setSelectedTutorial
+  }));
+};
+
+exports.Explorer = Explorer;
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils":"utils/index.js"}],"tutorialViewer/explorer/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Explorer", {
+  enumerable: true,
+  get: function () {
+    return _component.Explorer;
+  }
+});
+
+var _component = require("./component");
+},{"./component":"tutorialViewer/explorer/component.js"}],"../node_modules/@fortawesome/fontawesome-svg-core/index.es.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -54741,55 +54897,97 @@ exports.height = height;
 exports.ligatures = ligatures;
 exports.unicode = unicode;
 exports.svgPathData = svgPathData;
-},{}],"header/component.js":[function(require,module,exports) {
+},{}],"navigation/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Header = void 0;
+exports.Navigation = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _sidePanel = require("./sidePanel");
+
+var _explorer = require("../tutorialViewer/explorer");
 
 var _reactFontawesome = require("@fortawesome/react-fontawesome");
 
 var _faBars = require("@fortawesome/free-solid-svg-icons/faBars");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-var Header = function Header(_ref) {
-  var title = _ref.title,
-      toggleMenu = _ref.toggleMenu;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var Navigation = function Navigation(_ref) {
+  var tutorials = _ref.tutorials,
+      title = _ref.title;
+
+  var _useState = (0, _react.useState)(undefined),
+      _useState2 = _slicedToArray(_useState, 2),
+      menuOpened = _useState2[0],
+      setMenuOpened = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    // Instrument the menu clicking
+    var fn = function fn() {
+      if (menuOpened) {
+        setMenuOpened(false);
+      }
+    };
+
+    window.addEventListener("click", fn);
+    return function () {
+      return window.removeEventListener("click", fn);
+    };
+  });
   return _react.default.createElement("div", {
     className: "header"
   }, _react.default.createElement("div", {
     className: "title"
   }, title), _react.default.createElement("button", {
     "aria-label": "View the menu",
-    onClick: toggleMenu
+    onClick: function onClick() {
+      setMenuOpened(!menuOpened);
+    }
   }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     icon: _faBars.faBars,
     size: "2x",
     "aria-hidden": "true"
+  })), _react.default.createElement(_sidePanel.SidePanel, {
+    open: menuOpened
+  }, _react.default.createElement(_explorer.Explorer, {
+    tutorials: tutorials,
+    setSelectedTutorial: function setSelectedTutorial(key) {
+      return window.location.hash = key;
+    }
   })));
 };
 
-exports.Header = Header;
-},{"react":"../node_modules/react/index.js","@fortawesome/react-fontawesome":"../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons/faBars":"../node_modules/@fortawesome/free-solid-svg-icons/faBars.js"}],"header/index.js":[function(require,module,exports) {
+exports.Navigation = Navigation;
+},{"react":"../node_modules/react/index.js","./sidePanel":"navigation/sidePanel/index.js","../tutorialViewer/explorer":"tutorialViewer/explorer/index.js","@fortawesome/react-fontawesome":"../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons/faBars":"../node_modules/@fortawesome/free-solid-svg-icons/faBars.js"}],"navigation/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "Header", {
+Object.defineProperty(exports, "Navigation", {
   enumerable: true,
   get: function () {
-    return _component.Header;
+    return _component.Navigation;
   }
 });
 
 var _component = require("./component");
-},{"./component":"header/component.js"}],"footer/component.js":[function(require,module,exports) {
+},{"./component":"navigation/component.js"}],"footer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54832,15 +55030,6 @@ module.exports = {
     weight: 10
   }
 };
-},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{PitchSlider}</p>\n",
-  meta: {
-    category: ["Spur Gears"],
-    title: "Diametral Pitch",
-    weight: 90
-  }
-};
 },{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
@@ -54848,6 +55037,15 @@ module.exports = {
     index: 2,
     category: ["Spur Gears"],
     title: "Gearing Ratios"
+  }
+};
+},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{PitchSlider}</p>\n",
+  meta: {
+    category: ["Spur Gears"],
+    title: "Diametral Pitch",
+    weight: 90
   }
 };
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
@@ -54907,8 +55105,8 @@ module.exports = {
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "control-testing": require("./../control-testing.md"),
-  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-ratios": require("./../gear-ratios.md"),
+  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
   "openscad": require("./../openscad.md"),
@@ -54916,7 +55114,7 @@ module.exports = {
   "resources": require("./../resources.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -76822,7 +77020,6 @@ var _dynamicGearViewer = require("../dynamicGearViewer");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO: this seems unnecessarily complicated
 var TutorialViewer = function TutorialViewer(_ref) {
   var currentTutorial = _ref.currentTutorial,
       context = _ref.context;
@@ -76938,163 +77135,7 @@ function () {
 }();
 
 exports.default = Context;
-},{"lodash":"../node_modules/lodash/lodash.js"}],"sidePanel/sidePanel.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"sidePanel/component.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SidePanel = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-require("./sidePanel.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SidePanel = function SidePanel(_ref) {
-  var open = _ref.open,
-      children = _ref.children;
-  var classes = ["side-panel"];
-
-  if (open === true) {
-    classes.push("open");
-  } else if (open === false) {
-    classes.push("close");
-  }
-
-  return _react.default.createElement("div", {
-    className: "side-panel-wrapper"
-  }, _react.default.createElement("div", {
-    className: classes.join(" ")
-  }, children));
-};
-
-exports.SidePanel = SidePanel;
-},{"react":"../node_modules/react/index.js","./sidePanel.css":"sidePanel/sidePanel.css"}],"sidePanel/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "SidePanel", {
-  enumerable: true,
-  get: function () {
-    return _component.SidePanel;
-  }
-});
-
-var _component = require("./component");
-},{"./component":"sidePanel/component.js"}],"tutorialViewer/explorer/component.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Explorer = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _lodash = require("lodash");
-
-var _utils = require("../../utils");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Crumbs = function Crumbs(_ref) {
-  var hierarchy = _ref.hierarchy,
-      depth = _ref.depth,
-      selected = _ref.selected,
-      setSelectedTutorial = _ref.setSelectedTutorial;
-  var hierarchies = (0, _lodash.keys)(hierarchy);
-  hierarchies.sort(function (a, b) {
-    var aWeight = (0, _lodash.get)(hierarchy[a], "meta.weight") || 0;
-    var bWeight = (0, _lodash.get)(hierarchy[b], "meta.weight") || 0; // This is an ugly hack but...
-
-    if (b === "Additional") {
-      return -100;
-    } else {
-      return bWeight - aWeight;
-    }
-  });
-  return (0, _lodash.map)(hierarchies, function (title) {
-    var entry = hierarchy[title] || {};
-
-    if (entry.meta) {
-      var href = "#".concat((0, _utils.pathize)(title));
-      var isSelected = selected === href; // This is a leaf node, implicitly
-
-      return _react.default.createElement("div", {
-        key: href,
-        className: isSelected ? "selected crumb-node" : "crumb-node",
-        onClick: function onClick() {
-          return setSelectedTutorial(href);
-        },
-        href: href
-      }, (0, _lodash.get)(entry, "meta.title"));
-    } else {
-      return _react.default.createElement("div", {
-        key: "crumb-".concat(title),
-        className: "crumb-header"
-      }, _react.default.createElement("div", {
-        style: {
-          marginLeft: (depth + 1) * 10
-        }
-      }, title), _react.default.createElement(Crumbs, {
-        hierarchy: entry,
-        depth: depth + 1,
-        selected: selected,
-        setSelectedTutorial: setSelectedTutorial
-      }));
-    }
-  });
-};
-
-var Explorer = function Explorer(_ref2) {
-  var tutorials = _ref2.tutorials,
-      setSelectedTutorial = _ref2.setSelectedTutorial,
-      selected = _ref2.selected;
-  var hierarchy = (0, _lodash.reduce)(tutorials, function (accumulator, tutorial) {
-    var title = (0, _lodash.get)(tutorial, "meta.title");
-
-    if (title) {
-      var path = (0, _lodash.concat)(["Gears"], (0, _lodash.get)(tutorial, "meta.category") || [], [title]);
-      (0, _lodash.set)(accumulator, path.join("."), tutorial);
-    }
-
-    return accumulator;
-  }, {});
-  return _react.default.createElement("div", {
-    className: "explorer"
-  }, _react.default.createElement(Crumbs, {
-    hierarchy: hierarchy,
-    depth: 0,
-    selected: selected,
-    setSelectedTutorial: setSelectedTutorial
-  }));
-};
-
-exports.Explorer = Explorer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils":"utils/index.js"}],"tutorialViewer/explorer/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Explorer", {
-  enumerable: true,
-  get: function () {
-    return _component.Explorer;
-  }
-});
-
-var _component = require("./component");
-},{"./component":"tutorialViewer/explorer/component.js"}],"index.js":[function(require,module,exports) {
+},{"lodash":"../node_modules/lodash/lodash.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./index.css");
@@ -77107,7 +77148,7 @@ var _lodash = require("lodash");
 
 var _utils = require("./utils");
 
-var _header = require("./header");
+var _navigation = require("./navigation");
 
 var _footer = require("./footer");
 
@@ -77116,10 +77157,6 @@ var tutorials = _interopRequireWildcard(require("../_learningContent/**/*.md"));
 var _tutorialViewer = require("./tutorialViewer");
 
 var _context = _interopRequireDefault(require("./utils/context"));
-
-var _sidePanel = require("./sidePanel");
-
-var _explorer = require("./tutorialViewer/explorer");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -77149,20 +77186,15 @@ var findSelectedTutorial = function findSelectedTutorial(tutorials, selection) {
 };
 
 var WebApp = function WebApp() {
-  var _useState = (0, _react.useState)(undefined),
+  var _useState = (0, _react.useState)(window.location.hash),
       _useState2 = _slicedToArray(_useState, 2),
-      menuOpened = _useState2[0],
-      setMenuOpened = _useState2[1];
+      selectedTutorialKey = _useState2[0],
+      setSelectedTutorialKey = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(window.location.hash),
+  var _useState3 = (0, _react.useState)(findSelectedTutorial(tutorials, window.location.hash)),
       _useState4 = _slicedToArray(_useState3, 2),
-      selectedTutorialKey = _useState4[0],
-      setSelectedTutorialKey = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(findSelectedTutorial(tutorials, window.location.hash)),
-      _useState6 = _slicedToArray(_useState5, 2),
-      currentTutorial = _useState6[0],
-      setCurrentTutorial = _useState6[1];
+      currentTutorial = _useState4[0],
+      setCurrentTutorial = _useState4[1];
 
   (0, _react.useEffect)(function () {
     if (tutorials) {
@@ -77170,15 +77202,17 @@ var WebApp = function WebApp() {
     }
   }, [selectedTutorialKey, tutorials]);
   (0, _react.useEffect)(function () {
-    var fn = function fn() {
-      if (menuOpened) {
-        setMenuOpened(false);
+    var handleHashChange = function handleHashChange() {
+      var key = window.location.hash;
+
+      if (key !== selectedTutorialKey) {
+        setSelectedTutorialKey(key);
       }
     };
 
-    window.addEventListener("click", fn);
+    window.addEventListener("hashchange", handleHashChange);
     return function () {
-      window.removeEventListener("click", fn);
+      return window.removeEventListener("hashchange", handleHashChange);
     };
   });
 
@@ -77187,30 +77221,27 @@ var WebApp = function WebApp() {
   } else {
     return _react.default.createElement("div", {
       className: "flexy"
-    }, _react.default.createElement(_header.Header, {
+    }, _react.default.createElement(_navigation.Navigation, {
       title: "Gear Academy",
-      toggleMenu: function toggleMenu() {
-        setMenuOpened(!menuOpened);
-      }
-    }), _react.default.createElement(_sidePanel.SidePanel, {
-      open: menuOpened
-    }, _react.default.createElement(_explorer.Explorer, {
-      tutorials: tutorials,
-      setSelectedTutorial: function setSelectedTutorial(key) {
-        window.location.hash = key;
-        setSelectedTutorialKey(key);
-      }
-    })), _react.default.createElement(_tutorialViewer.TutorialViewer, {
+      tutorials: tutorials
+    }), _react.default.createElement(_tutorialViewer.TutorialViewer, {
       context: appContext,
       currentTutorial: currentTutorial
     }), _react.default.createElement(_footer.Footer, null, "Fork us on github! etc etc."));
   }
-};
+}; // TODO: separately, handle 404
+
+/* Handle default page loading */
+
+
+if (window.location.hash === "") {
+  window.location.assign("#intro");
+}
 
 var mountNode = document.getElementById("app");
 
 _reactDom.default.render(_react.default.createElement(WebApp, null), mountNode);
-},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"utils/index.js","./header":"header/index.js","./footer":"footer/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","./tutorialViewer":"tutorialViewer/index.js","./utils/context":"utils/context.js","./sidePanel":"sidePanel/index.js","./tutorialViewer/explorer":"tutorialViewer/explorer/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","lodash":"../node_modules/lodash/lodash.js","./utils":"utils/index.js","./navigation":"navigation/index.js","./footer":"footer/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","./tutorialViewer":"tutorialViewer/index.js","./utils/context":"utils/context.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -77238,7 +77269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57974" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50943" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

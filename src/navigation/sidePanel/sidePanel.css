@@ -1,7 +1,8 @@
 .side-panel-wrapper {
     z-index: 2;
-    position: sticky;
+    position: absolute;
     top: 50px;
+    right: 0;
 }
 
 .side-panel {
