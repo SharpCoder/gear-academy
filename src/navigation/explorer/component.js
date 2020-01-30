@@ -1,8 +1,10 @@
 import React from "react";
 import { keys, map, get, set, concat, reduce } from "lodash";
 import { pathize } from "../../utils";
+import "./explorer.css";
 
-const Crumbs = ({ hierarchy, depth, selected, setSelectedTutorial }) => {
+const Crumbs = ({ hierarchy, depth, setSelectedTutorial }) => {
+    const selected = window.location.hash;
     const hierarchies = keys(hierarchy);
     hierarchies.sort((a, b) => {
         const aWeight = get(hierarchy[a], "meta.weight") || 0;
@@ -21,7 +23,6 @@ const Crumbs = ({ hierarchy, depth, selected, setSelectedTutorial }) => {
         if (entry.meta) {
             const href = `#${pathize(title)}`;
             const isSelected = selected === href;
-
             // This is a leaf node, implicitly
             return (
                 <div
@@ -54,6 +55,8 @@ const Explorer = ({ tutorials, setSelectedTutorial, selected }) => {
         (accumulator, tutorial) => {
             const title = get(tutorial, "meta.title");
             if (title) {
+                // TODO: Don't hardcode the root node. Ideally, derrive this from
+                // a map or something that is configured elsewhere.
                 const path = concat(["Gears"], get(tutorial, "meta.category") || [], [title]);
                 set(accumulator, path.join("."), tutorial);
             }

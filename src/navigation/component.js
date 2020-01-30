@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SidePanel } from "./sidePanel";
-import { Explorer } from "../tutorialViewer/explorer";
+import { Explorer } from "./explorer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
 

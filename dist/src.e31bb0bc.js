@@ -51022,7 +51022,12 @@ Object.defineProperty(exports, "SidePanel", {
 });
 
 var _component = require("./component");
-},{"./component":"navigation/sidePanel/component.js"}],"tutorialViewer/explorer/component.js":[function(require,module,exports) {
+},{"./component":"navigation/sidePanel/component.js"}],"navigation/explorer/explorer.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"navigation/explorer/component.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51036,13 +51041,15 @@ var _lodash = require("lodash");
 
 var _utils = require("../../utils");
 
+require("./explorer.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Crumbs = function Crumbs(_ref) {
   var hierarchy = _ref.hierarchy,
       depth = _ref.depth,
-      selected = _ref.selected,
       setSelectedTutorial = _ref.setSelectedTutorial;
+  var selected = window.location.hash;
   var hierarchies = (0, _lodash.keys)(hierarchy);
   hierarchies.sort(function (a, b) {
     var aWeight = (0, _lodash.get)(hierarchy[a], "meta.weight") || 0;
@@ -51095,6 +51102,8 @@ var Explorer = function Explorer(_ref2) {
     var title = (0, _lodash.get)(tutorial, "meta.title");
 
     if (title) {
+      // TODO: Don't hardcode the root node. Ideally, derrive this from
+      // a map or something that is configured elsewhere.
       var path = (0, _lodash.concat)(["Gears"], (0, _lodash.get)(tutorial, "meta.category") || [], [title]);
       (0, _lodash.set)(accumulator, path.join("."), tutorial);
     }
@@ -51112,7 +51121,7 @@ var Explorer = function Explorer(_ref2) {
 };
 
 exports.Explorer = Explorer;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils":"utils/index.js"}],"tutorialViewer/explorer/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../../utils":"utils/index.js","./explorer.css":"navigation/explorer/explorer.css"}],"navigation/explorer/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51126,7 +51135,7 @@ Object.defineProperty(exports, "Explorer", {
 });
 
 var _component = require("./component");
-},{"./component":"tutorialViewer/explorer/component.js"}],"../node_modules/@fortawesome/fontawesome-svg-core/index.es.js":[function(require,module,exports) {
+},{"./component":"navigation/explorer/component.js"}],"../node_modules/@fortawesome/fontawesome-svg-core/index.es.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -54909,7 +54918,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _sidePanel = require("./sidePanel");
 
-var _explorer = require("../tutorialViewer/explorer");
+var _explorer = require("./explorer");
 
 var _reactFontawesome = require("@fortawesome/react-fontawesome");
 
@@ -54973,7 +54982,7 @@ var Navigation = function Navigation(_ref) {
 };
 
 exports.Navigation = Navigation;
-},{"react":"../node_modules/react/index.js","./sidePanel":"navigation/sidePanel/index.js","../tutorialViewer/explorer":"tutorialViewer/explorer/index.js","@fortawesome/react-fontawesome":"../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons/faBars":"../node_modules/@fortawesome/free-solid-svg-icons/faBars.js"}],"navigation/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./sidePanel":"navigation/sidePanel/index.js","./explorer":"navigation/explorer/index.js","@fortawesome/react-fontawesome":"../node_modules/@fortawesome/react-fontawesome/index.es.js","@fortawesome/free-solid-svg-icons/faBars":"../node_modules/@fortawesome/free-solid-svg-icons/faBars.js"}],"navigation/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55030,15 +55039,6 @@ module.exports = {
     weight: 10
   }
 };
-},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
-  meta: {
-    index: 2,
-    category: ["Spur Gears"],
-    title: "Gearing Ratios"
-  }
-};
 },{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{PitchSlider}</p>\n",
@@ -55046,6 +55046,15 @@ module.exports = {
     category: ["Spur Gears"],
     title: "Diametral Pitch",
     weight: 90
+  }
+};
+},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  meta: {
+    index: 2,
+    category: ["Spur Gears"],
+    title: "Gearing Ratios"
   }
 };
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
@@ -55084,15 +55093,6 @@ module.exports = {
     title: "Pressure Angle"
   }
 };
-},{}],"../_learningContent/resources.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
-  meta: {
-    index: 1,
-    category: ["Spur Gears"],
-    title: "Resources"
-  }
-};
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
@@ -55102,19 +55102,28 @@ module.exports = {
     weight: 90
   }
 };
+},{}],"../_learningContent/resources.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
+  meta: {
+    index: 1,
+    category: ["Spur Gears"],
+    title: "Resources"
+  }
+};
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "control-testing": require("./../control-testing.md"),
-  "gear-ratios": require("./../gear-ratios.md"),
   "diametral-pitch": require("./../diametral-pitch.md"),
+  "gear-ratios": require("./../gear-ratios.md"),
   "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
   "openscad": require("./../openscad.md"),
   "pressure-angle": require("./../pressure-angle.md"),
-  "resources": require("./../resources.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md")
+  "what-is-a-gear": require("./../what-is-a-gear.md"),
+  "resources": require("./../resources.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../resources.md":"../_learningContent/resources.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -77269,7 +77278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50943" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51534" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

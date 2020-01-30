@@ -1,0 +1,33 @@
+.explorer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    padding-top: 42px;
+    color: var(--accent-fg-color);
+}
+
+.explorer .crumb-header {
+    font-weight: bold;
+}
+
+.explorer .crumb-node {
+    font-weight: normal;
+    padding: 12px 2px;
+    padding-left: var(--page-boundary-padding);
+    width: 100%;
+}
+
+.explorer .crumb-node:visited {
+    color: var(--main-fg-color);
+}
+
+.explorer .crumb-node:hover {
+    cursor: pointer;
+    color: #cecece;
+}
+
+.explorer .selected {
+    background-color: var(--main-bg-color);
+    color: var(--main-fg-color) !important;
+}

@@ -202,8 +202,8 @@ body,
 }
 
 .explorer .selected {
-    background-color: var(--accent-bg-color);
-    color: var(--accent-fg-color) !important;
+    background-color: var(--main-bg-color);
+    color: var(--main-fg-color) !important;
 }
 
 .tutorial-wrapper {
@@ -222,9 +222,6 @@ body,
 .right-pane {
     flex-grow: 1;
     flex-basis: 200px;
-}
-
-.right-pane {
 }
 
 .textual-content-area p,
