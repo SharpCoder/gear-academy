@@ -5,8 +5,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "parcel src/index.html",
-        "build": "parcel build src/index.html",
-        "buildMap": "node ./scripts/buildMap.js"
+        "build": "parcel build src/index.html --out-dir docs/"
     },
     "dependencies": {
         "@babel/preset-env": "^7.8.3",
