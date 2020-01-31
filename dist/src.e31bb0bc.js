@@ -54989,14 +54989,14 @@ var Navigation = function Navigation(_ref) {
     icon: _faBars.faBars,
     size: "2x",
     "aria-hidden": "true"
-  })), _react.default.createElement(_sidePanel.SidePanel, {
+  }))), _react.default.createElement(_sidePanel.SidePanel, {
     open: menuOpened
   }, _react.default.createElement(_explorer.Explorer, {
     tutorials: tutorials,
     setSelectedTutorial: function setSelectedTutorial(key) {
       return window.location.hash = key;
     }
-  }))));
+  })));
 };
 
 exports.Navigation = Navigation;
@@ -55111,15 +55111,6 @@ module.exports = {
     weight: 90
   }
 };
-},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
-  meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Pressure Angle",
-    weight: 60
-  }
-};
 },{}],"../_learningContent/resources.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
@@ -55127,6 +55118,15 @@ module.exports = {
     category: ["Gears", "Spur Gears"],
     title: "Resources",
     weight: 70
+  }
+};
+},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Pressure Angle",
+    weight: 60
   }
 };
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
@@ -55147,11 +55147,11 @@ module.exports = {
   "intro": require("./../intro.md"),
   "math": require("./../math.md"),
   "openscad": require("./../openscad.md"),
-  "pressure-angle": require("./../pressure-angle.md"),
   "resources": require("./../resources.md"),
+  "pressure-angle": require("./../pressure-angle.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../resources.md":"../_learningContent/resources.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -77384,7 +77384,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57578" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59325" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

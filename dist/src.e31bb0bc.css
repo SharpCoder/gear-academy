@@ -27,6 +27,7 @@ body,
     display: flex;
     flex-grow: 1;
     flex-direction: column;
+    overflow: hidden;
 }
 
 * {
@@ -149,6 +150,8 @@ body,
     animation-name: slide-open;
     animation-duration: 0.5s;
     right: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .close {
@@ -213,7 +216,7 @@ body,
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-    height: 100%;
+    height: calc(100vh - 83px);
 }
 
 .left-pane {
@@ -221,12 +224,15 @@ body,
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .left-pane,
 .right-pane {
     flex-grow: 1;
     flex-basis: 200px;
+    height: 100%;
 }
 
 .textual-content-area {
@@ -244,6 +250,7 @@ body,
 .page-navigator {
     font-size: x-large;
     align-self: center;
+    padding: 12px;
 }
 
 .page-navigator button {

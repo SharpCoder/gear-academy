@@ -1,6 +1,7 @@
 .page-navigator {
     font-size: x-large;
     align-self: center;
+    padding: 12px;
 }
 
 .page-navigator button {

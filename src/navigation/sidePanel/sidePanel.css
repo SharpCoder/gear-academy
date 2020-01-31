@@ -18,6 +18,8 @@
     animation-name: slide-open;
     animation-duration: 0.5s;
     right: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .close {

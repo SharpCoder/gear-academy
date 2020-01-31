@@ -30,11 +30,11 @@ const Navigation = ({ tutorials, title }) => {
                     }}>
                     <FontAwesomeIcon icon={faBars} size={"2x"} aria-hidden={"true"} />
                 </button>
-
-                <SidePanel open={menuOpened}>
-                    <Explorer tutorials={tutorials} setSelectedTutorial={key => (window.location.hash = key)} />
-                </SidePanel>
             </div>
+
+            <SidePanel open={menuOpened}>
+                <Explorer tutorials={tutorials} setSelectedTutorial={key => (window.location.hash = key)} />
+            </SidePanel>
         </React.Fragment>
     );
 };
