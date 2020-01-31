@@ -1,5 +1,5 @@
 ---
-category: []
+category: [Gears]
 title: Intro!
 weight: 10
 ---

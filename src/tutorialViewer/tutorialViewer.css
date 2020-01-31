@@ -6,8 +6,7 @@
 }
 
 .left-pane {
-    padding: 10px;
-    padding-left: var(--page-boundary-padding);
+    padding: 10px var(--page-boundary-padding);
     display: flex;
     flex-direction: column;
     flex-grow: 1;

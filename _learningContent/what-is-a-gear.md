@@ -1,5 +1,5 @@
 ---
-category: []
+category: [Gears]
 title: What is a gear?
 weight: 20
 ---

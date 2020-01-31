@@ -78,6 +78,8 @@ body,
     font-size: var(--small-size);
     text-align: right;
     padding-right: var(--page-boundary-padding);
+    position: static;
+    bottom: 0;
 }
 
 .section {

@@ -1,5 +1,5 @@
 ---
-category: ["Additional"]
+category: [Gears, Additional]
 title: Control Testing
 weight: 80
 ---

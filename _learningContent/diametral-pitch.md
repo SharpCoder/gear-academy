@@ -1,5 +1,5 @@
 ---
-category: [Spur Gears]
+category: [Gears, Spur Gears]
 title: Diametral Pitch
 weight: 40
 ---

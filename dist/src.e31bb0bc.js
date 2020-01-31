@@ -54976,7 +54976,7 @@ var Navigation = function Navigation(_ref) {
       return window.removeEventListener("click", fn);
     };
   });
-  return _react.default.createElement("div", {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     className: "header"
   }, _react.default.createElement("div", {
     className: "title"
@@ -54996,7 +54996,7 @@ var Navigation = function Navigation(_ref) {
     setSelectedTutorial: function setSelectedTutorial(key) {
       return window.location.hash = key;
     }
-  })));
+  }))));
 };
 
 exports.Navigation = Navigation;
@@ -55052,7 +55052,7 @@ var _component = require("./component");
 module.exports = {
   html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<h5>Pressure Angle</h5>\n<p>Enter any valid positive number to change the pressure angle.</p>\n<p>@{PressureAngleComponent}</p>\n<p>@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
   meta: {
-    category: ["Additional"],
+    category: ["Gears", "Additional"],
     title: "Control Testing",
     weight: 80
   }
@@ -55061,7 +55061,7 @@ module.exports = {
 module.exports = {
   html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{PitchSlider}</p>\n",
   meta: {
-    category: ["Spur Gears"],
+    category: ["Gears", "Spur Gears"],
     title: "Diametral Pitch",
     weight: 40
   }
@@ -55070,7 +55070,7 @@ module.exports = {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
   meta: {
-    category: ["Spur Gears"],
+    category: ["Gears", "Spur Gears"],
     title: "Gearing Ratios",
     weight: 50
   }
@@ -55079,7 +55079,7 @@ module.exports = {
 module.exports = {
   html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
   meta: {
-    category: [],
+    category: ["Gears"],
     title: "Different Types of Gears",
     weight: 30
   }
@@ -55088,16 +55088,25 @@ module.exports = {
 module.exports = {
   html: "<h2>Welcome!</h2>\n<p>We\u2019re so happy you are interested in learning about gears.</p>\n",
   meta: {
-    category: [],
+    category: ["Gears"],
     title: "Intro!",
     weight: 10
+  }
+};
+},{}],"../_learningContent/math.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Mathematics</h2>\n<p>This is some maths</p>\n",
+  meta: {
+    category: ["Gears", "Additional"],
+    title: "Mathematics",
+    weight: 100
   }
 };
 },{}],"../_learningContent/openscad.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
   meta: {
-    category: ["Additional"],
+    category: ["Gears", "Additional"],
     title: "OpenScad",
     weight: 90
   }
@@ -55106,7 +55115,7 @@ module.exports = {
 module.exports = {
   html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
   meta: {
-    category: ["Spur Gears"],
+    category: ["Gears", "Spur Gears"],
     title: "Pressure Angle",
     weight: 60
   }
@@ -55115,7 +55124,7 @@ module.exports = {
 module.exports = {
   html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
   meta: {
-    category: ["Spur Gears"],
+    category: ["Gears", "Spur Gears"],
     title: "Resources",
     weight: 70
   }
@@ -55124,7 +55133,7 @@ module.exports = {
 module.exports = {
   html: "<h2>What is a Gear?</h2>\n<p>This is philosophical</p>\n",
   meta: {
-    category: [],
+    category: ["Gears"],
     title: "What is a gear?",
     weight: 20
   }
@@ -55136,12 +55145,13 @@ module.exports = {
   "gear-ratios": require("./../gear-ratios.md"),
   "gear-types": require("./../gear-types.md"),
   "intro": require("./../intro.md"),
+  "math": require("./../math.md"),
   "openscad": require("./../openscad.md"),
   "pressure-angle": require("./../pressure-angle.md"),
   "resources": require("./../resources.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -77374,7 +77384,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63156" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57578" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

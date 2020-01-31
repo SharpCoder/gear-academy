@@ -78,6 +78,8 @@ body,
     font-size: var(--small-size);
     text-align: right;
     padding-right: var(--page-boundary-padding);
+    position: static;
+    bottom: 0;
 }
 
 .section {
@@ -132,6 +134,7 @@ body,
     position: absolute;
     top: 50px;
     right: 0;
+    height: 100%;
 }
 
 .side-panel {
@@ -214,8 +217,7 @@ body,
 }
 
 .left-pane {
-    padding: 10px;
-    padding-left: var(--page-boundary-padding);
+    padding: 10px var(--page-boundary-padding);
     display: flex;
     flex-direction: column;
     flex-grow: 1;

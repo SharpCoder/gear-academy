@@ -20,20 +20,22 @@ const Navigation = ({ tutorials, title }) => {
     });
 
     return (
-        <div className="header">
-            <div className="title">{title}</div>
-            <button
-                aria-label={"View the menu"}
-                onClick={() => {
-                    setMenuOpened(!menuOpened);
-                }}>
-                <FontAwesomeIcon icon={faBars} size={"2x"} aria-hidden={"true"} />
-            </button>
+        <React.Fragment>
+            <div className="header">
+                <div className="title">{title}</div>
+                <button
+                    aria-label={"View the menu"}
+                    onClick={() => {
+                        setMenuOpened(!menuOpened);
+                    }}>
+                    <FontAwesomeIcon icon={faBars} size={"2x"} aria-hidden={"true"} />
+                </button>
 
-            <SidePanel open={menuOpened}>
-                <Explorer tutorials={tutorials} setSelectedTutorial={key => (window.location.hash = key)} />
-            </SidePanel>
-        </div>
+                <SidePanel open={menuOpened}>
+                    <Explorer tutorials={tutorials} setSelectedTutorial={key => (window.location.hash = key)} />
+                </SidePanel>
+            </div>
+        </React.Fragment>
     );
 };
 

@@ -1,5 +1,5 @@
 ---
-category: [Additional]
+category: [Gears, Additional]
 title: OpenScad
 weight: 90
 ---

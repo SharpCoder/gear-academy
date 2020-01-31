@@ -1,5 +1,5 @@
 ---
-category: []
+category: [Gears]
 title: Different Types of Gears
 weight: 30
 ---
