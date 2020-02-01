@@ -11,7 +11,8 @@ export default class GameEngine {
 
         this.timeStarted = new Date().getTime();
         this.ctx = canvas.getContext("2d");
-        this.timerId = setInterval(this.handleTick.bind(this), 15);
+        this.updateId = setInterval(this.handleUpdate.bind(this), 10);
+        this.timerId = setInterval(this.handleTick.bind(this), 20);
         this.rootEl = new Drawable({});
     }
 
@@ -19,11 +20,13 @@ export default class GameEngine {
         return this.rootEl;
     }
 
-    handleTick() {
+    handleUpdate() {
         const time = new Date().getTime() - this.timeStarted;
         const gameEngine = this;
         this.rootEl.onUpdate(gameEngine, time);
+    }
 
+    handleTick() {
         this.ctx.save();
         this.ctx.fillStyle = BGFill;
         this.ctx.clearRect(0, 0, this.w, this.h);

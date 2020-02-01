@@ -26,6 +26,8 @@ Enter any valid positive number to change the pressure angle.
 
 @{PressureAngleComponent}
 
+@{ToggleDrivenGear}
+
 @{ResetGearButton}
 
 That should be it!

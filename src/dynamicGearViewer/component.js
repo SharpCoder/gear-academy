@@ -4,11 +4,17 @@ import BGImage from "../assets/axiom-pattern.png";
 import GameEngine from "./gameEngine";
 import ImageDrawable from "./gameEngine/drawables/image";
 import Gear from "./gameEngine/drawables/gear";
+import { calc_center_distance, calc_full_size } from "./gearUtils";
 
 const DynamicGearViewer = ({ context }) => {
     const canvasRef = useRef(null);
     const [isScrolling, setIsScrolling] = useState(false);
     const [screenSize, setScreenSize] = useState({ innerWidth: window.innerWidth, innerHeight: window.innerHeight });
+
+    const calculateDistance = N2 => {
+        return calc_full_size(context.N, context.P, context.pa) + calc_full_size(N2, context.P, context.pa);
+        // return calc_center_distance(context.N, N2, context.P) * 2 + calc_dr(context.N, context.P) / 2;
+    };
 
     useEffect(() => {
         const isNotScrolling = debounce(
@@ -52,15 +58,37 @@ const DynamicGearViewer = ({ context }) => {
                 N: context.N,
                 P: context.P,
                 pa: context.pa,
+                rpm: context.rpm,
+            });
+
+            const drivenGear = new Gear({
+                x: w / 2,
+                y: h / 2 - calculateDistance(context.N / 2),
+                N: context.N / 2,
+                P: context.P,
+                pa: context.pa,
+                rpm: context.rpm * -2,
+                visible: context.showDrivenGear,
             });
 
             // Add the gear
             gameEngine.getRootEl().addElement(gear);
+            gameEngine.getRootEl().addElement(drivenGear);
             context.addEventListener("onGearUpdated", () => {
                 gear.setAttributes({
                     N: context.N,
                     P: context.P,
                     pa: context.pa,
+                });
+
+                drivenGear.setAttributes({
+                    x: w / 2,
+                    y: h / 2 - calculateDistance(context.N / 2),
+                    N: context.N / 2,
+                    P: context.P,
+                    pa: context.pa,
+                    rpm: context.rpm * -2,
+                    visible: context.showDrivenGear,
                 });
             });
 

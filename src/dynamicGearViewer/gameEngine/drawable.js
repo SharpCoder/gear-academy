@@ -1,5 +1,5 @@
 export default class Drawable {
-    constructor({ x, y, vx, vy, w, h, rotation, children } = props) {
+    constructor({ x, y, vx, vy, w, h, rotation, visible, children } = props) {
         this.x = x || 0;
         this.y = y || 0;
         this.w = w || 0;
@@ -8,6 +8,7 @@ export default class Drawable {
         this.vx = vx || 0;
         this.vy = vy || 0;
         this.children = children || [];
+        this.visible = visible !== undefined ? undefined : true;
     }
 
     setAttributes(attributes) {
@@ -35,7 +36,8 @@ export default class Drawable {
 
     onDraw(ctx) {
         // Basic recursive rendering
-        for (const child of this.children) {
+        for (let i = 0; i < (this.children || []).length; i++) {
+            const child = this.children[i];
             if (child && child.onDraw && typeof child.onDraw === "function") {
                 child.onDraw(ctx);
             }

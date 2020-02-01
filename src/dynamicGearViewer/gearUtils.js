@@ -51,8 +51,12 @@ function calc_clearance(P) {
     return calc_dedendum(P) - calc_addendum(P);
 }
 
-function calc_center_distance(N1, N2, P) {
-    return (in_to_mm * (N1 + N2)) / (2 * P);
+export function calc_full_size(N, P) {
+    return calc_dp(N, P) + 2 * calc_addendum(P);
+}
+
+export function calc_center_distance(N1, N2, P) {
+    return (in_to_px * (N1 + N2)) / (2 * P);
 }
 
 /* Drawing Functions */
@@ -74,18 +78,17 @@ function circular_mirror(ctx, d, count) {
 }
 
 function drawPolygon(ctx, points) {
-    ctx.beginPath();
     map(points, point => {
         ctx.lineTo(point[0], point[1]);
     });
-    ctx.closePath();
-    ctx.fill();
 }
 
 function drawCircle(ctx, radius) {
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.closePath();
     ctx.fill();
+    ctx.stroke();
 }
 
 function drawInvoluteTooth(ctx, r, beta) {
@@ -134,11 +137,15 @@ export function spurGear(ctx, N, P, pa) {
 
     // Draw the inversion layer
     ctx.fillStyle = GearFill;
-    drawCircle(ctx, dp + 1.9 * a);
-    ctx.fill();
+    ctx.strokeStyle = BGFill;
+    ctx.lineWidth = 3;
+    drawCircle(ctx, dp + 2 * a);
+    ctx.clip();
 
+    ctx.strokeStyle = GearFill;
     // Draw the involute curves
     ctx.fillStyle = BGFill;
+    ctx.beginPath();
     circular_mirror(
         ctx,
         0,
@@ -146,6 +153,7 @@ export function spurGear(ctx, N, P, pa) {
     )(() => {
         drawInvoluteTooth(ctx, db, beta);
     });
+    ctx.closePath();
     ctx.fill();
 
     // Draw the base gear clip region
@@ -154,7 +162,7 @@ export function spurGear(ctx, N, P, pa) {
 
     // Draw a bore, for variety
     ctx.fillStyle = BGFill;
-    drawCircle(ctx, 35);
+    drawCircle(ctx, 15);
 
     ctx.restore();
 }

@@ -2,8 +2,7 @@ import "./index.css";
 
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { filter, get, keys, map } from "lodash";
-import { pathize, indexTutorials } from "./utils";
+import { indexTutorials } from "./utils";
 
 import { Navigation } from "./navigation";
 import { Footer } from "./footer";
@@ -44,9 +43,13 @@ const WebApp = () => {
     } else {
         return (
             <div className="flexy">
-                <Navigation title="Gear Academy" tutorials={parsedTutorials} />
+                <Navigation title="gears.academy" tutorials={parsedTutorials} />
                 <TutorialViewer context={appContext} currentTutorial={currentTutorial} items={parsedTutorials.items} />
-                <Footer>Fork us on github! etc etc.</Footer>
+                <Footer>
+                    <a className="fork-btn" target="_blank" href="https://github.com/SharpCoder/gear-academy">
+                        Fork us on github!
+                    </a>
+                </Footer>
             </div>
         );
     }

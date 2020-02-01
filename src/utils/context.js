@@ -10,6 +10,8 @@ export default class Context {
         this.N = 24;
         this.P = 4;
         this.pa = 14.5;
+        this.rpm = 2;
+        this.showDrivenGear = false;
         this.fireEvent("onGearUpdated");
     }
 
@@ -25,6 +27,11 @@ export default class Context {
 
     setPitch(number) {
         this.P = number;
+        this.fireEvent("onGearUpdated");
+    }
+
+    setDrivenGearVisibility(vis) {
+        this.showDrivenGear = vis;
         this.fireEvent("onGearUpdated");
     }
 

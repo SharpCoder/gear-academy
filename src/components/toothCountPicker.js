@@ -6,7 +6,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { BaseComponent } from "./baseComponent";
 
 const ToothCountPicker = ({ context }) => {
-    const [selected, setSelected] = useState(24);
+    const [selected, setSelected] = useState(context.N);
 
     const handleChange = event => {
         const { value } = event.target;

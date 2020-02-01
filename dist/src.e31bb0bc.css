@@ -137,3 +137,143 @@ body,
         height: 500px !important;
     }
 }
+
+.side-panel-wrapper {
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    height: 100%;
+}
+
+.side-panel {
+    right: -400px;
+    width: 400px;
+    height: calc(100vh - 50px);
+    background-color: var(--accent-bg-color);
+    position: absolute;
+}
+
+.open {
+    animation-name: slide-open;
+    animation-duration: 0.5s;
+    right: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.close {
+    right: -400px;
+    animation-name: slide-closed;
+    animation-duration: 0.5s;
+}
+
+@keyframes slide-open {
+    from {
+        right: -400px;
+    }
+    to {
+        right: 0px;
+    }
+}
+
+@keyframes slide-closed {
+    from {
+        right: 0px;
+    }
+    to {
+        right: -400px;
+    }
+}
+
+.explorer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    padding-top: 42px;
+    color: var(--accent-fg-color);
+}
+
+.explorer .crumb-header {
+    font-weight: bold;
+}
+
+.explorer .crumb-node {
+    font-weight: normal;
+    padding: 12px 2px;
+    padding-left: var(--page-boundary-padding);
+    width: 100%;
+}
+
+.explorer .crumb-node:visited {
+    color: var(--main-fg-color);
+}
+
+.explorer .crumb-node:hover {
+    cursor: pointer;
+    color: #cecece;
+}
+
+.explorer .selected {
+    background-color: var(--main-bg-color);
+    color: var(--main-fg-color) !important;
+}
+
+.tutorial-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: calc(100vh - 83px);
+}
+
+.left-pane {
+    padding: 10px var(--page-boundary-padding);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.left-pane,
+.right-pane {
+    flex-grow: 1;
+    flex-basis: 200px;
+    height: 100%;
+}
+
+.textual-content-area {
+    flex-grow: 1;
+}
+
+.textual-content-area p,
+.textual-content-area h3,
+.textual-content-area h4,
+.textual-content-area h5,
+.textual-content-area h6 {
+    padding: 10px 0px;
+}
+
+.page-navigator {
+    font-size: x-large;
+    align-self: center;
+    padding: 12px;
+}
+
+.page-navigator button {
+    font-size: xx-large;
+    border: 0;
+    background-color: transparent;
+}
+
+.page-navigator button:enabled {
+    cursor: pointer;
+}
+
+.page-navigator span {
+    padding: 4px;
+}
+
+
+/*# sourceMappingURL=/src.e31bb0bc.css.map */
