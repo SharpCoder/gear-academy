@@ -14,12 +14,17 @@ export default function transformHtml(html) {
     const response = {
         html: "",
         reactComponents: {},
+        reactComponentProps: {},
     };
 
     // Tokenize the HTML
     let result = "";
     let inLoop = false;
     let component = "";
+
+    let loadStack = false;
+    let stackId = null;
+    let _html = "";
 
     for (let i = 0; i < (html || "").length; i++) {
         let c = html.charAt(i);
@@ -31,12 +36,43 @@ export default function transformHtml(html) {
             component = "";
         } else if (inLoop && c == endToken) {
             inLoop = false;
+
+            // Special directive, 'if'
+            // NOTE: TODO: this should probably be a more grammatically-based
+            // parser instead of awful if statements. Next time you add something here
+            // please refactor.
             const id = uuidv4();
+
+            if (component.indexOf(" ") >= 0) {
+                const components = component.split(" ");
+                const condition = component.substr(component.indexOf(" ") + 1);
+                component = components[0];
+
+                if (component === "If") {
+                    stackId = id;
+                    loadStack = true;
+                    response.reactComponentProps[id] = {
+                        _html: "",
+                        condition,
+                    };
+                }
+            } else if (component === "EndIf") {
+                loadStack = false;
+                response.reactComponentProps[stackId]._html = _html;
+                _html = "";
+                component = "";
+                inLoop = false;
+                stackId = null;
+                continue;
+            }
+
             response.reactComponents[id] = componentLibrary[component];
             result += `<div id="${id}"></div>`;
             component = "";
         } else if (inLoop) {
             component += c;
+        } else if (loadStack) {
+            _html += c;
         } else {
             result += c;
         }

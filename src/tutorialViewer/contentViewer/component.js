@@ -8,10 +8,11 @@ const ContentViewer = ({ content, context }) => {
     useEffect(() => {
         for (const prop in postProcessed.reactComponents) {
             const el = postProcessed.reactComponents[prop];
+            const props = postProcessed.reactComponentProps[prop] || {};
             if (!el) {
                 console.error(`An imported component element is undefined`);
             } else {
-                ReactDOM.render(React.createElement(el, { context }), document.getElementById(prop));
+                ReactDOM.render(React.createElement(el, { context, ...props }), document.getElementById(prop));
             }
         }
     }, [postProcessed]);

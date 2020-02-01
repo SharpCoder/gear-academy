@@ -55140,7 +55140,7 @@ module.exports = {
 };
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{ResetOnLoad}</p>\n",
+  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
   meta: {
     category: ["Gears"],
     title: "What is a gear?",
@@ -77851,19 +77851,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ResetOnLoad = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _lodash = require("lodash");
-
-var _baseComponent = require("./baseComponent");
-
-var _Button = _interopRequireDefault(require("@material-ui/core/Button"));
+var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var ResetOnLoad = function ResetOnLoad(_ref) {
   var context = _ref.context;
@@ -77872,7 +77862,62 @@ var ResetOnLoad = function ResetOnLoad(_ref) {
 };
 
 exports.ResetOnLoad = ResetOnLoad;
-},{"react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","./baseComponent":"components/baseComponent.js","@material-ui/core/Button":"../node_modules/@material-ui/core/esm/Button/index.js"}],"components/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"components/if.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.If = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var If = function If(_ref) {
+  var context = _ref.context,
+      _html = _ref._html,
+      condition = _ref.condition;
+
+  var _useState = (0, _react.useState)(context[condition]),
+      _useState2 = _slicedToArray(_useState, 2),
+      visible = _useState2[0],
+      setVisible = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    var fn = function fn() {
+      setVisible(context[condition]);
+    };
+
+    context.addEventListener("onGearUpdated", fn);
+    return function () {
+      context.removeEventListener("onGearUpdated", fn);
+    };
+  }, []);
+
+  if (visible) {
+    return _react.default.createElement("div", {
+      dangerouslySetInnerHTML: {
+        __html: _html
+      }
+    });
+  } else {
+    return _react.default.createElement(_react.default.Fragment, null);
+  }
+};
+
+exports.If = If;
+},{"react":"../node_modules/react/index.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77914,6 +77959,12 @@ Object.defineProperty(exports, "ResetOnLoad", {
     return _resetOnLoad.ResetOnLoad;
   }
 });
+Object.defineProperty(exports, "If", {
+  enumerable: true,
+  get: function () {
+    return _if.If;
+  }
+});
 
 var _toothCountPicker = require("./toothCountPicker");
 
@@ -77926,7 +77977,9 @@ var _pressureAngleComponent = require("./pressureAngleComponent");
 var _toggleDrivenGear = require("./toggleDrivenGear");
 
 var _resetOnLoad = require("./resetOnLoad");
-},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js","./pressureAngleComponent":"components/pressureAngleComponent.js","./toggleDrivenGear":"components/toggleDrivenGear.js","./resetOnLoad":"components/resetOnLoad.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+
+var _if = require("./if");
+},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js","./pressureAngleComponent":"components/pressureAngleComponent.js","./toggleDrivenGear":"components/toggleDrivenGear.js","./resetOnLoad":"components/resetOnLoad.js","./if":"components/if.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -78047,12 +78100,16 @@ function transformHtml(html) {
 
   var response = {
     html: "",
-    reactComponents: {}
+    reactComponents: {},
+    reactComponentProps: {}
   }; // Tokenize the HTML
 
   var result = "";
   var inLoop = false;
   var component = "";
+  var loadStack = false;
+  var stackId = null;
+  var _html = "";
 
   for (var i = 0; i < (html || "").length; i++) {
     var c = html.charAt(i);
@@ -78063,13 +78120,43 @@ function transformHtml(html) {
       i++;
       component = "";
     } else if (inLoop && c == endToken) {
-      inLoop = false;
+      inLoop = false; // Special directive, 'if'
+      // NOTE: TODO: this should probably be a more grammatically-based
+      // parser instead of awful if statements. Next time you add something here
+      // please refactor.
+
       var id = uuidv4();
+
+      if (component.indexOf(" ") >= 0) {
+        var components = component.split(" ");
+        var condition = component.substr(component.indexOf(" ") + 1);
+        component = components[0];
+
+        if (component === "If") {
+          stackId = id;
+          loadStack = true;
+          response.reactComponentProps[id] = {
+            _html: "",
+            condition: condition
+          };
+        }
+      } else if (component === "EndIf") {
+        loadStack = false;
+        response.reactComponentProps[stackId]._html = _html;
+        _html = "";
+        component = "";
+        inLoop = false;
+        stackId = null;
+        continue;
+      }
+
       response.reactComponents[id] = componentLibrary[component];
       result += "<div id=\"".concat(id, "\"></div>");
       component = "";
     } else if (inLoop) {
       component += c;
+    } else if (loadStack) {
+      _html += c;
     } else {
       result += c;
     }
@@ -78098,6 +78185,12 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var ContentViewer = function ContentViewer(_ref) {
   var content = _ref.content,
       context = _ref.context;
@@ -78105,13 +78198,14 @@ var ContentViewer = function ContentViewer(_ref) {
   (0, _react.useEffect)(function () {
     for (var prop in postProcessed.reactComponents) {
       var el = postProcessed.reactComponents[prop];
+      var props = postProcessed.reactComponentProps[prop] || {};
 
       if (!el) {
         console.error("An imported component element is undefined");
       } else {
-        _reactDom.default.render(_react.default.createElement(el, {
+        _reactDom.default.render(_react.default.createElement(el, _objectSpread({
           context: context
-        }), document.getElementById(prop));
+        }, props)), document.getElementById(prop));
       }
     }
   }, [postProcessed]);
@@ -78253,7 +78347,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GearFill = exports.BGFill = void 0;
-var BGFill = "rgb(29,72,181, 1)";
+var BGFill = "#1d48b5";
 exports.BGFill = BGFill;
 var GearFill = "#caccca";
 exports.GearFill = GearFill;
@@ -79229,7 +79323,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61124" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63535" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
