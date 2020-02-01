@@ -78,13 +78,17 @@ body,
 .footer {
     z-index: 1;
     padding: 8px;
-    background-color: var(--accent-bg-color);
-    color: var(--accent-fg-color);
+    background-color: var(--main-bg-color);
     font-size: var(--small-size);
     text-align: right;
     padding-right: var(--page-boundary-padding);
     position: static;
     bottom: 0;
+}
+
+.footer,
+.footer a {
+    color: var(--main-fg-color);
 }
 
 .section {
@@ -115,10 +119,6 @@ body,
 .resize-bar {
     background-color: var(--accent-bg-color);
     width: 4px;
-}
-
-.fork-btn {
-    color: white;
 }
 
 @media screen and (max-width: 900px) {

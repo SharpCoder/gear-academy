@@ -55059,7 +55059,7 @@ module.exports = {
 };
 },{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Diametral Pitch</h2>\n<p>This is all about pitch! It\u2019s more or less the amount of teeth per inch of gear.</p>\n<p>@{PitchSlider}</p>\n",
+  html: "<h2>Diametral pitch</h2>\n<p>All gears have a pitch (or module, if you\u2019re dealing with metric) which specifies how many teeth per inch of gear there will be.</p>\n<p>What happens when you adjust the pitch slider?</p>\n<p>@{PitchSlider}</p>\n<p>The gear changes size! If you want to change how many teeth per inch of gear there is, then the spacing between each tooth will have to adjust accordingly. This is why the gear gets bigger or smaller.</p>\n<p>To put this into perspective, here is a table which describes how the pitch changes a standard gear (in terms of full diameter):</p>\n<table>\n<thead>\n<tr>\n<th>Teeth</th>\n<th>Pitch</th>\n<th>Full Diameter (in)</th>\n<th>Full Diameter (mm)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>24</td>\n<td>12</td>\n<td>2.167&quot;</td>\n<td>50.03mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>10</td>\n<td>2.6&quot;</td>\n<td>66.04mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>8</td>\n<td>3.25&quot;</td>\n<td>82.55mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>6</td>\n<td>4.33&quot;</td>\n<td>110.067mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>4</td>\n<td>6.5&quot;</td>\n<td>167.10mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>2</td>\n<td>13&quot;</td>\n<td>330.20mm</td>\n</tr>\n</tbody>\n</table>\n",
   meta: {
     category: ["Gears", "Spur Gears"],
     title: "Diametral Pitch",
@@ -55077,10 +55077,10 @@ module.exports = {
 };
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
+  html: "<h2>Kinds of gears</h2>\n<p>There are many types of gears out there, and each kind has its own particular use-case. Some notable examples include:</p>\n<ul>\n<li>Rack and pinion</li>\n<li>Helical</li>\n<li>Spur</li>\n<li>Bevel</li>\n<li>Worm</li>\n<li>Miter</li>\n<li>Screw</li>\n<li>Internal</li>\n</ul>\n<p>In the next section, we\u2019ll take a closer look at the Spur Gear and how it is designed.</p>\n",
   meta: {
     category: ["Gears"],
-    title: "Different Types of Gears",
+    title: "Different types of gears",
     weight: 30
   }
 };
@@ -55111,15 +55111,6 @@ module.exports = {
     weight: 100
   }
 };
-},{}],"../_learningContent/openscad.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
-  meta: {
-    category: ["Gears", "Additional"],
-    title: "OpenScad",
-    weight: 90
-  }
-};
 },{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
@@ -55127,6 +55118,15 @@ module.exports = {
     category: ["Gears", "Spur Gears"],
     title: "Pressure Angle",
     weight: 60
+  }
+};
+},{}],"../_learningContent/openscad.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
+  meta: {
+    category: ["Gears", "Additional"],
+    title: "OpenScad",
+    weight: 90
   }
 };
 },{}],"../_learningContent/resources.md":[function(require,module,exports) {
@@ -55140,7 +55140,7 @@ module.exports = {
 };
 },{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
+  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
   meta: {
     category: ["Gears"],
     title: "What is a gear?",
@@ -55156,12 +55156,12 @@ module.exports = {
   "gear-window-overview": require("./../gear-window-overview.md"),
   "intro": require("./../intro.md"),
   "math": require("./../math.md"),
-  "openscad": require("./../openscad.md"),
   "pressure-angle": require("./../pressure-angle.md"),
+  "openscad": require("./../openscad.md"),
   "resources": require("./../resources.md"),
   "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../openscad.md":"../_learningContent/openscad.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -79277,11 +79277,16 @@ var WebApp = function WebApp() {
       context: appContext,
       currentTutorial: currentTutorial,
       items: parsedTutorials.items
-    }), _react.default.createElement(_footer.Footer, null, _react.default.createElement("a", {
+    }), _react.default.createElement(_footer.Footer, null, _react.default.createElement("span", {
+      className: "author-tag"
+    }, "Created by \xA0", _react.default.createElement("a", {
+      target: "_blank",
+      href: "http://inventorjosh.com/about/"
+    }, "Joshua Cole"), "\xA0"), "| \xA0", _react.default.createElement("a", {
       className: "fork-btn",
       target: "_blank",
       href: "https://github.com/SharpCoder/gear-academy"
-    }, "Fork us on github!")));
+    }, "Fork this tutorial on github!")));
   }
 }; // TODO: separately, handle 404
 
@@ -79323,7 +79328,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63535" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65057" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

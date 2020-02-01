@@ -27,6 +27,6 @@ The smaller gear is turning at _double_ the speed of the bigger gear! This is on
 
 #### Direction
 
-Another fun fact about this new gear we've added is that it turns backwards! This is true for each subsequent gear that you add the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.
+Another fun fact about this new gear we've added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.
 @{EndIf}
 @{ResetOnLoad}

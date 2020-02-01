@@ -25,10 +25,21 @@
     flex-grow: 1;
 }
 
+.textual-content-area table,
 .textual-content-area p,
 .textual-content-area h3,
 .textual-content-area h4,
 .textual-content-area h5,
 .textual-content-area h6 {
     padding: 8px 0px;
+}
+
+.textual-content-area tr:hover {
+    cursor: pointer;
+    background-color: #efefef;
+}
+
+.textual-content-area td,
+.textual-content-area th {
+    padding: 2px 10px;
 }

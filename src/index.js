@@ -46,8 +46,16 @@ const WebApp = () => {
                 <Navigation title="gears.academy" tutorials={parsedTutorials} />
                 <TutorialViewer context={appContext} currentTutorial={currentTutorial} items={parsedTutorials.items} />
                 <Footer>
+                    <span className="author-tag">
+                        Created by &nbsp;
+                        <a target="_blank" href="http://inventorjosh.com/about/">
+                            Joshua Cole
+                        </a>
+                        &nbsp;
+                    </span>
+                    | &nbsp;
                     <a className="fork-btn" target="_blank" href="https://github.com/SharpCoder/gear-academy">
-                        Fork us on github!
+                        Fork this tutorial on github!
                     </a>
                 </Footer>
             </div>
