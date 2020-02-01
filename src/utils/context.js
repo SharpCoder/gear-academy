@@ -1,9 +1,19 @@
 import { map, remove } from "lodash";
+import { computeGearAttributes } from "../dynamicGearViewer/gearUtils";
 
 export default class Context {
     constructor() {
         this.listeners = {};
         this.reset();
+        this.addEventListener("onGearUpdated", this.recalc.bind(this));
+    }
+
+    recalc() {
+        const attributes = computeGearAttributes(this.N, this.P, this.pa);
+        for (const prop in attributes) {
+            this[prop] = attributes[prop];
+        }
+        console.log(attributes);
     }
 
     reset() {
@@ -12,6 +22,7 @@ export default class Context {
         this.pa = 14.5;
         this.rpm = 2;
         this.showDrivenGear = false;
+        this.recalc();
         this.fireEvent("onGearUpdated");
     }
 

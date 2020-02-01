@@ -14,6 +14,8 @@ _pause the gear_
 
 _resume_
 
+_x-ray renderer_
+
 _switch the view mode_
 
 _adjust the RPM_

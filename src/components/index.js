@@ -6,4 +6,15 @@ import { ToggleDrivenGear } from "./toggleDrivenGear";
 import { ResetOnLoad } from "./resetOnLoad";
 import { If } from "./if";
 
-export { ToothCountPicker, If, PitchSlider, ResetGearButton, PressureAngleComponent, ToggleDrivenGear, ResetOnLoad };
+import { ViewGearAttributes } from "./viewGearAttributes";
+
+export {
+    ViewGearAttributes,
+    ToothCountPicker,
+    If,
+    PitchSlider,
+    ResetGearButton,
+    PressureAngleComponent,
+    ToggleDrivenGear,
+    ResetOnLoad,
+};

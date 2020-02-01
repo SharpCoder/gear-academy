@@ -166,3 +166,5 @@ export function spurGear(ctx, N, P, pa) {
 
     ctx.restore();
 }
+
+export { in_to_px };

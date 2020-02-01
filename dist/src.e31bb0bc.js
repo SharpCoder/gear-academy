@@ -55096,15 +55096,6 @@ module.exports = {
     weight: 310
   }
 };
-},{}],"../content/3d-printing/330-optimizing-for-speed.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Designing for speed</h2>\n",
-  meta: {
-    category: ["Gears", "3D Printing"],
-    title: "Designing for speed",
-    weight: 330
-  }
-};
 },{}],"../content/3d-printing/320-optimizing-for-position.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Designing for positional accuracy</h2>\n",
@@ -55114,22 +55105,22 @@ module.exports = {
     weight: 320
   }
 };
-},{}],"../content/additional/110-control-testing.md":[function(require,module,exports) {
+},{}],"../content/3d-printing/330-optimizing-for-speed.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Gear playground</h2>\n<p>Here are all the different properties that you can change for the spur gear. Go ahead and play around with the controls.</p>\n<p>@{ToothCountPicker}</p>\n<p><strong>Pitch</strong>\n@{PitchSlider}</p>\n<p><strong>Pressure angle</strong>\n@{PressureAngleComponent}\n@{ToggleDrivenGear}\n@{ResetGearButton}</p>\n",
+  html: "<h2>Designing for speed</h2>\n",
   meta: {
-    category: ["Gears", "Additional"],
-    title: "Control Testing",
-    weight: 80
+    category: ["Gears", "3D Printing"],
+    title: "Designing for speed",
+    weight: 330
   }
 };
-},{}],"../content/additional/120-resources.md":[function(require,module,exports) {
+},{}],"../content/conclusion/1999-resources.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
+  html: "<h2>Further resources</h2>\n<p>Here are some additional resources for further learning on the subject of gears.</p>\n",
   meta: {
-    category: ["Gears", "Additional"],
-    title: "Resources",
-    weight: 120
+    category: ["Gears", "Conclusion"],
+    title: "Further resources",
+    weight: 1999
   }
 };
 },{}],"../content/conclusion/2000-thank-you.md":[function(require,module,exports) {
@@ -55139,6 +55130,60 @@ module.exports = {
     category: ["Gears", "Conclusion"],
     title: "Thank You!",
     weight: 2000
+  }
+};
+},{}],"../content/open-scad/200-generating-in-openscad.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Generating a gear in OpenScad</h2>\n",
+  meta: {
+    category: ["Gears", "OpenScad"],
+    title: "Generating a gear in OpenScad",
+    weight: 100
+  }
+};
+},{}],"../content/intro/12-gear-window-overview.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>x-ray renderer</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Gear Window Overview",
+    weight: 12
+  }
+};
+},{}],"../content/intro/10-introduction.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Introduction</h2>\n<p>Welcome to gears.academy!</p>\n<p>In this tutorial we will go over some fundamental concepts behind how gears work. Throughout these lessons, you will have access to various gear controls - like this one!</p>\n<p>@{ToothCountPicker}</p>\n<p>Feel free to play around with these components and watch how they affect the gear in real-time.</p>\n<p>You can use the navigation icon in the upper-right corner of the screen to jump to a specific section.</p>\n<p>When you\u2019re ready to move on, press the navigation buttons below.</p>\n<p><strong>&gt;</strong> for going forward.</p>\n<p><strong>&lt;</strong> for going backward.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Intro!",
+    weight: 10
+  }
+};
+},{}],"../content/intro/20-what-is-a-gear.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what happens when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay close attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "What is a gear?",
+    weight: 20
+  }
+};
+},{}],"../content/intro/30-gear-types.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Kinds of gears</h2>\n<p>There are many types of gears out there, and each kind has its own particular use-case. Some notable examples include:</p>\n<ul>\n<li>Rack and pinion</li>\n<li>Helical</li>\n<li>Spur</li>\n<li>Bevel</li>\n<li>Worm</li>\n<li>Miter</li>\n<li>Screw</li>\n<li>Internal</li>\n</ul>\n<p>In the next section, we\u2019ll take a closer look at the Spur Gear and how it is designed.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Different types of gears",
+    weight: 30
+  }
+};
+},{}],"../content/spur-gears/110-control-testing.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gear playground</h2>\n<p>Here are all the different properties that you can change for the spur gear. Go ahead and play around with the controls.</p>\n<p>@{ToothCountPicker}</p>\n<p><strong>Pitch</strong>\n@{PitchSlider}</p>\n<p><strong>Pressure angle</strong>\n@{PressureAngleComponent}\n@{ToggleDrivenGear}\n@{ResetGearButton}</p>\n",
+  meta: {
+    category: ["Gears", "Additional"],
+    title: "Control Testing",
+    weight: 80
   }
 };
 },{}],"../content/spur-gears/40-diametral-pitch.md":[function(require,module,exports) {
@@ -55160,9 +55205,18 @@ module.exports = {
     hidden: true
   }
 };
+},{}],"../content/spur-gears/60-pressure-angle.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure angle</h2>\n<p>When a gear meshes with another, the angular pressure upon which the teeth connect is called the \u201Cpressure angle\u201D. Why is this important?</p>\n<p>The curavture of the gear teeth is designed to evenly distribute the force across the entire length of the tooth. How much force is applied is a direct result of the pressure angle.</p>\n<p>If you try to connect gears with a different pressure angle, they will lock up because the point of contact will not be contiguous.</p>\n<p>Go ahead and change the value. What happens to the curvature of the gear teeth?</p>\n<p>@{PressureAngleComponent}</p>\n<p>The most common pressure angles are 14.5\xB0 and 20\xB0 but you don\u2019t have to stick with those values.</p>\n<p>If you adjust the pressure angle all the way to the right, you can see how the edges get sharper and the space between the teeth is reducing. This can actually cause some problems with meshing multiple gears together.</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Pressure Angle",
+    weight: 60
+  }
+};
 },{}],"../content/spur-gears/65-mathematical-formulas.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Math Formulas</h2>\n<p>This is some maths</p>\n",
+  html: "<h2>Math formulas</h2>\n<p>There are a number of equations which go in to the shaping of a gear. Let\u2019s go through each one based on the variables.\n@{ToothCountPicker}\n<strong>Pitch</strong>\n@{PitchSlider}\n<strong>Pressure angle</strong>\n@{PressureAngleComponent}</p>\n<p>@{ViewGearAttributes}</p>\n",
   meta: {
     category: ["Gears", "Spur Gears"],
     title: "Math Formulas",
@@ -55187,94 +55241,38 @@ module.exports = {
     weight: 80
   }
 };
-},{}],"../content/spur-gears/60-pressure-angle.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure angle</h2>\n<p>When a gear meshes with another, the angular pressure upon which the teeth connect is called the \u201Cpressure angle\u201D. Why is this important?</p>\n<p>The curavture of the gear teeth is designed to evenly distribute the force across the entire length of the tooth. How much force is applied is a direct result of the pressure angle.</p>\n<p>If you try to connect gears with a different pressure angle, they will lock up because the point of contact will not be contiguous.</p>\n<p>Go ahead and change the value. What happens to the curvature of the gear teeth?</p>\n<p>@{PressureAngleComponent}</p>\n<p>The most common pressure angles are 14.5\xB0 and 20\xB0 but you don\u2019t have to stick with those values.</p>\n<p>If you adjust the pressure angle all the way to the right, you can see how the edges get sharper and the space between the teeth is reducing. This can actually cause some problems with meshing multiple gears together.</p>\n",
-  meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Pressure Angle",
-    weight: 60
-  }
-};
-},{}],"../content/intro/10-introduction.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Introduction</h2>\n<p>Welcome to gears.academy!</p>\n<p>In this tutorial we will go over some fundamental concepts behind how gears work. Throughout these lessons, you will have access to various gear controls - like this one!</p>\n<p>@{ToothCountPicker}</p>\n<p>Feel free to play around with these components and watch how they affect the gear in real-time.</p>\n<p>You can use the navigation icon in the upper-right corner of the screen to jump to a specific section.</p>\n<p>When you\u2019re ready to move on, press the navigation buttons below.</p>\n<p><strong>&gt;</strong> for going forward.</p>\n<p><strong>&lt;</strong> for going backward.</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "Intro!",
-    weight: 10
-  }
-};
-},{}],"../content/intro/20-what-is-a-gear.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what happens when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay close attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "What is a gear?",
-    weight: 20
-  }
-};
-},{}],"../content/intro/12-gear-window-overview.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "Gear Window Overview",
-    weight: 12
-  }
-};
-},{}],"../content/intro/30-gear-types.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Kinds of gears</h2>\n<p>There are many types of gears out there, and each kind has its own particular use-case. Some notable examples include:</p>\n<ul>\n<li>Rack and pinion</li>\n<li>Helical</li>\n<li>Spur</li>\n<li>Bevel</li>\n<li>Worm</li>\n<li>Miter</li>\n<li>Screw</li>\n<li>Internal</li>\n</ul>\n<p>In the next section, we\u2019ll take a closer look at the Spur Gear and how it is designed.</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "Different types of gears",
-    weight: 30
-  }
-};
-},{}],"../content/open-scad/200-generating-in-openscad.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Generating a gear in OpenScad</h2>\n",
-  meta: {
-    category: ["Gears", "OpenScad"],
-    title: "Generating a gear in OpenScad",
-    weight: 100
-  }
-};
 },{}],"../content/**/*.md":[function(require,module,exports) {
 module.exports = {
   "3d-printing": {
     "300-3d-printing-strategies": require("./../3d-printing/300-3d-printing-strategies.md"),
     "310-mounting-to-a-shaft": require("./../3d-printing/310-mounting-to-a-shaft.md"),
-    "330-optimizing-for-speed": require("./../3d-printing/330-optimizing-for-speed.md"),
-    "320-optimizing-for-position": require("./../3d-printing/320-optimizing-for-position.md")
-  },
-  "additional": {
-    "110-control-testing": require("./../additional/110-control-testing.md"),
-    "120-resources": require("./../additional/120-resources.md")
+    "320-optimizing-for-position": require("./../3d-printing/320-optimizing-for-position.md"),
+    "330-optimizing-for-speed": require("./../3d-printing/330-optimizing-for-speed.md")
   },
   "conclusion": {
+    "1999-resources": require("./../conclusion/1999-resources.md"),
     "2000-thank-you": require("./../conclusion/2000-thank-you.md")
-  },
-  "spur-gears": {
-    "40-diametral-pitch": require("./../spur-gears/40-diametral-pitch.md"),
-    "50-gear-ratios": require("./../spur-gears/50-gear-ratios.md"),
-    "65-mathematical-formulas": require("./../spur-gears/65-mathematical-formulas.md"),
-    "70-involute-curvature": require("./../spur-gears/70-involute-curvature.md"),
-    "80-involute-mathematics": require("./../spur-gears/80-involute-mathematics.md"),
-    "60-pressure-angle": require("./../spur-gears/60-pressure-angle.md")
-  },
-  "intro": {
-    "10-introduction": require("./../intro/10-introduction.md"),
-    "20-what-is-a-gear": require("./../intro/20-what-is-a-gear.md"),
-    "12-gear-window-overview": require("./../intro/12-gear-window-overview.md"),
-    "30-gear-types": require("./../intro/30-gear-types.md")
   },
   "open-scad": {
     "200-generating-in-openscad": require("./../open-scad/200-generating-in-openscad.md")
+  },
+  "intro": {
+    "12-gear-window-overview": require("./../intro/12-gear-window-overview.md"),
+    "10-introduction": require("./../intro/10-introduction.md"),
+    "20-what-is-a-gear": require("./../intro/20-what-is-a-gear.md"),
+    "30-gear-types": require("./../intro/30-gear-types.md")
+  },
+  "spur-gears": {
+    "110-control-testing": require("./../spur-gears/110-control-testing.md"),
+    "40-diametral-pitch": require("./../spur-gears/40-diametral-pitch.md"),
+    "50-gear-ratios": require("./../spur-gears/50-gear-ratios.md"),
+    "60-pressure-angle": require("./../spur-gears/60-pressure-angle.md"),
+    "65-mathematical-formulas": require("./../spur-gears/65-mathematical-formulas.md"),
+    "70-involute-curvature": require("./../spur-gears/70-involute-curvature.md"),
+    "80-involute-mathematics": require("./../spur-gears/80-involute-mathematics.md")
   }
 };
-},{"./../3d-printing/300-3d-printing-strategies.md":"../content/3d-printing/300-3d-printing-strategies.md","./../3d-printing/310-mounting-to-a-shaft.md":"../content/3d-printing/310-mounting-to-a-shaft.md","./../3d-printing/330-optimizing-for-speed.md":"../content/3d-printing/330-optimizing-for-speed.md","./../3d-printing/320-optimizing-for-position.md":"../content/3d-printing/320-optimizing-for-position.md","./../additional/110-control-testing.md":"../content/additional/110-control-testing.md","./../additional/120-resources.md":"../content/additional/120-resources.md","./../conclusion/2000-thank-you.md":"../content/conclusion/2000-thank-you.md","./../spur-gears/40-diametral-pitch.md":"../content/spur-gears/40-diametral-pitch.md","./../spur-gears/50-gear-ratios.md":"../content/spur-gears/50-gear-ratios.md","./../spur-gears/65-mathematical-formulas.md":"../content/spur-gears/65-mathematical-formulas.md","./../spur-gears/70-involute-curvature.md":"../content/spur-gears/70-involute-curvature.md","./../spur-gears/80-involute-mathematics.md":"../content/spur-gears/80-involute-mathematics.md","./../spur-gears/60-pressure-angle.md":"../content/spur-gears/60-pressure-angle.md","./../intro/10-introduction.md":"../content/intro/10-introduction.md","./../intro/20-what-is-a-gear.md":"../content/intro/20-what-is-a-gear.md","./../intro/12-gear-window-overview.md":"../content/intro/12-gear-window-overview.md","./../intro/30-gear-types.md":"../content/intro/30-gear-types.md","./../open-scad/200-generating-in-openscad.md":"../content/open-scad/200-generating-in-openscad.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../3d-printing/300-3d-printing-strategies.md":"../content/3d-printing/300-3d-printing-strategies.md","./../3d-printing/310-mounting-to-a-shaft.md":"../content/3d-printing/310-mounting-to-a-shaft.md","./../3d-printing/320-optimizing-for-position.md":"../content/3d-printing/320-optimizing-for-position.md","./../3d-printing/330-optimizing-for-speed.md":"../content/3d-printing/330-optimizing-for-speed.md","./../conclusion/1999-resources.md":"../content/conclusion/1999-resources.md","./../conclusion/2000-thank-you.md":"../content/conclusion/2000-thank-you.md","./../open-scad/200-generating-in-openscad.md":"../content/open-scad/200-generating-in-openscad.md","./../intro/12-gear-window-overview.md":"../content/intro/12-gear-window-overview.md","./../intro/10-introduction.md":"../content/intro/10-introduction.md","./../intro/20-what-is-a-gear.md":"../content/intro/20-what-is-a-gear.md","./../intro/30-gear-types.md":"../content/intro/30-gear-types.md","./../spur-gears/110-control-testing.md":"../content/spur-gears/110-control-testing.md","./../spur-gears/40-diametral-pitch.md":"../content/spur-gears/40-diametral-pitch.md","./../spur-gears/50-gear-ratios.md":"../content/spur-gears/50-gear-ratios.md","./../spur-gears/60-pressure-angle.md":"../content/spur-gears/60-pressure-angle.md","./../spur-gears/65-mathematical-formulas.md":"../content/spur-gears/65-mathematical-formulas.md","./../spur-gears/70-involute-curvature.md":"../content/spur-gears/70-involute-curvature.md","./../spur-gears/80-involute-mathematics.md":"../content/spur-gears/80-involute-mathematics.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -78030,7 +78028,1210 @@ var If = function If(_ref) {
 };
 
 exports.If = If;
-},{"react":"../node_modules/react/index.js"}],"components/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"../node_modules/@material-ui/core/esm/Table/TableContext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @ignore - internal component.
+ */
+var TableContext = _react.default.createContext();
+
+if ("development" !== 'production') {
+  TableContext.displayName = 'TableContext';
+}
+
+var _default = TableContext;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"../node_modules/@material-ui/core/esm/Table/Table.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _TableContext = _interopRequireDefault(require("./TableContext"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      display: 'table',
+      width: '100%',
+      borderCollapse: 'collapse',
+      borderSpacing: 0,
+      '& caption': (0, _extends2.default)({}, theme.typography.body2, {
+        padding: theme.spacing(2),
+        color: theme.palette.text.secondary,
+        textAlign: 'left',
+        captionSide: 'bottom'
+      })
+    },
+
+    /* Styles applied to the root element if `stickyHeader={true}`. */
+    stickyHeader: {
+      borderCollapse: 'separate'
+    }
+  };
+};
+
+exports.styles = styles;
+
+var Table = _react.default.forwardRef(function Table(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'table' : _props$component,
+      _props$padding = props.padding,
+      padding = _props$padding === void 0 ? 'default' : _props$padding,
+      _props$size = props.size,
+      size = _props$size === void 0 ? 'medium' : _props$size,
+      _props$stickyHeader = props.stickyHeader,
+      stickyHeader = _props$stickyHeader === void 0 ? false : _props$stickyHeader,
+      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component", "padding", "size", "stickyHeader"]);
+
+  var table = _react.default.useMemo(function () {
+    return {
+      padding: padding,
+      size: size,
+      stickyHeader: stickyHeader
+    };
+  }, [padding, size, stickyHeader]);
+
+  return _react.default.createElement(_TableContext.default.Provider, {
+    value: table
+  }, _react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref,
+    className: (0, _clsx.default)(classes.root, className, stickyHeader && classes.stickyHeader)
+  }, other)));
+});
+
+"development" !== "production" ? Table.propTypes = {
+  /**
+   * The content of the table, normally `TableHead` and `TableBody`.
+   */
+  children: _propTypes.default.node.isRequired,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
+   * Allows TableCells to inherit padding of the Table.
+   */
+  padding: _propTypes.default.oneOf(['default', 'checkbox', 'none']),
+
+  /**
+   * Allows TableCells to inherit size of the Table.
+   */
+  size: _propTypes.default.oneOf(['small', 'medium']),
+
+  /**
+   * Set the header sticky.
+   *
+   * ⚠️ It doesn't work with IE 11.
+   */
+  stickyHeader: _propTypes.default.bool
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiTable'
+})(Table);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","./TableContext":"../node_modules/@material-ui/core/esm/Table/TableContext.js"}],"../node_modules/@material-ui/core/esm/Table/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _Table.default;
+  }
+});
+
+var _Table = _interopRequireDefault(require("./Table"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Table":"../node_modules/@material-ui/core/esm/Table/Table.js"}],"../node_modules/@material-ui/core/esm/Table/Tablelvl2Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @ignore - internal component.
+ */
+var Tablelvl2Context = _react.default.createContext();
+
+if ("development" !== 'production') {
+  Tablelvl2Context.displayName = 'Tablelvl2Context';
+}
+
+var _default = Tablelvl2Context;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"../node_modules/@material-ui/core/esm/TableBody/TableBody.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _Tablelvl2Context = _interopRequireDefault(require("../Table/Tablelvl2Context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = {
+  /* Styles applied to the root element. */
+  root: {
+    display: 'table-row-group'
+  }
+};
+exports.styles = styles;
+var tablelvl2 = {
+  variant: 'body'
+};
+
+var TableBody = _react.default.forwardRef(function TableBody(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'tbody' : _props$component,
+      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component"]);
+  return _react.default.createElement(_Tablelvl2Context.default.Provider, {
+    value: tablelvl2
+  }, _react.default.createElement(Component, (0, _extends2.default)({
+    className: (0, _clsx.default)(classes.root, className),
+    ref: ref
+  }, other)));
+});
+
+"development" !== "production" ? TableBody.propTypes = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiTableBody'
+})(TableBody);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","../Table/Tablelvl2Context":"../node_modules/@material-ui/core/esm/Table/Tablelvl2Context.js"}],"../node_modules/@material-ui/core/esm/TableBody/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _TableBody.default;
+  }
+});
+
+var _TableBody = _interopRequireDefault(require("./TableBody"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./TableBody":"../node_modules/@material-ui/core/esm/TableBody/TableBody.js"}],"../node_modules/@material-ui/core/esm/TableCell/TableCell.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _capitalize = _interopRequireDefault(require("../utils/capitalize"));
+
+var _colorManipulator = require("../styles/colorManipulator");
+
+var _TableContext = _interopRequireDefault(require("../Table/TableContext"));
+
+var _Tablelvl2Context = _interopRequireDefault(require("../Table/Tablelvl2Context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: (0, _extends2.default)({}, theme.typography.body2, {
+      display: 'table-cell',
+      verticalAlign: 'inherit',
+      // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+      // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+      borderBottom: "1px solid\n    ".concat(theme.palette.type === 'light' ? (0, _colorManipulator.lighten)((0, _colorManipulator.fade)(theme.palette.divider, 1), 0.88) : (0, _colorManipulator.darken)((0, _colorManipulator.fade)(theme.palette.divider, 1), 0.68)),
+      textAlign: 'left',
+      padding: 16
+    }),
+
+    /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
+    head: {
+      color: theme.palette.text.primary,
+      lineHeight: theme.typography.pxToRem(24),
+      fontWeight: theme.typography.fontWeightMedium
+    },
+
+    /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
+    body: {
+      color: theme.palette.text.primary
+    },
+
+    /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
+    footer: {
+      color: theme.palette.text.secondary,
+      lineHeight: theme.typography.pxToRem(21),
+      fontSize: theme.typography.pxToRem(12)
+    },
+
+    /* Styles applied to the root element if `size="small"`. */
+    sizeSmall: {
+      padding: '6px 24px 6px 16px',
+      '&:last-child': {
+        paddingRight: 16
+      },
+      '&$paddingCheckbox': {
+        width: 24,
+        // prevent the checkbox column from growing
+        padding: '0px 12px 0 16px',
+        '&:last-child': {
+          paddingLeft: 12,
+          paddingRight: 16
+        },
+        '& > *': {
+          padding: 0
+        }
+      }
+    },
+
+    /* Styles applied to the root element if `padding="checkbox"`. */
+    paddingCheckbox: {
+      width: 48,
+      // prevent the checkbox column from growing
+      padding: '0 0 0 4px',
+      '&:last-child': {
+        paddingLeft: 0,
+        paddingRight: 4
+      }
+    },
+
+    /* Styles applied to the root element if `padding="none"`. */
+    paddingNone: {
+      padding: 0,
+      '&:last-child': {
+        padding: 0
+      }
+    },
+
+    /* Styles applied to the root element if `align="left"`. */
+    alignLeft: {
+      textAlign: 'left'
+    },
+
+    /* Styles applied to the root element if `align="center"`. */
+    alignCenter: {
+      textAlign: 'center'
+    },
+
+    /* Styles applied to the root element if `align="right"`. */
+    alignRight: {
+      textAlign: 'right',
+      flexDirection: 'row-reverse'
+    },
+
+    /* Styles applied to the root element if `align="justify"`. */
+    alignJustify: {
+      textAlign: 'justify'
+    },
+
+    /* Styles applied to the root element if `context.table.stickyHeader={true}`. */
+    stickyHeader: {
+      position: 'sticky',
+      top: 0,
+      left: 0,
+      zIndex: 2,
+      backgroundColor: theme.palette.background.default
+    }
+  };
+};
+/**
+ * The component renders a `<th>` element when the parent context is a header
+ * or otherwise a `<td>` element.
+ */
+
+
+exports.styles = styles;
+
+var TableCell = _react.default.forwardRef(function TableCell(props, ref) {
+  var _props$align = props.align,
+      align = _props$align === void 0 ? 'inherit' : _props$align,
+      classes = props.classes,
+      className = props.className,
+      component = props.component,
+      paddingProp = props.padding,
+      scopeProp = props.scope,
+      sizeProp = props.size,
+      sortDirection = props.sortDirection,
+      variantProp = props.variant,
+      other = (0, _objectWithoutProperties2.default)(props, ["align", "classes", "className", "component", "padding", "scope", "size", "sortDirection", "variant"]);
+
+  var table = _react.default.useContext(_TableContext.default);
+
+  var tablelvl2 = _react.default.useContext(_Tablelvl2Context.default);
+
+  var Component;
+
+  if (component) {
+    Component = component;
+  } else {
+    Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
+  }
+
+  var scope = scopeProp;
+
+  if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
+    scope = 'col';
+  }
+
+  var padding = paddingProp || (table && table.padding ? table.padding : 'default');
+  var size = sizeProp || (table && table.size ? table.size : 'medium');
+  var variant = variantProp || tablelvl2 && tablelvl2.variant;
+  var ariaSort = null;
+
+  if (sortDirection) {
+    ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
+  }
+
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref,
+    className: (0, _clsx.default)(classes.root, classes[variant], className, align !== 'inherit' && classes["align".concat((0, _capitalize.default)(align))], padding !== 'default' && classes["padding".concat((0, _capitalize.default)(padding))], size !== 'medium' && classes["size".concat((0, _capitalize.default)(size))], {
+      head: table && table.stickyHeader && classes.stickyHeader
+    }[variant]),
+    "aria-sort": ariaSort,
+    scope: scope
+  }, other));
+});
+
+"development" !== "production" ? TableCell.propTypes = {
+  /**
+   * Set the text-align on the table cell content.
+   *
+   * Monetary or generally number fields **should be right aligned** as that allows
+   * you to add them up quickly in your head without having to worry about decimals.
+   */
+  align: _propTypes.default.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
+
+  /**
+   * The table cell contents.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
+   * Sets the padding applied to the cell.
+   * By default, the Table parent component set the value (`default`).
+   */
+  padding: _propTypes.default.oneOf(['default', 'checkbox', 'none']),
+
+  /**
+   * Set scope attribute.
+   */
+  scope: _propTypes.default.string,
+
+  /**
+   * Specify the size of the cell.
+   * By default, the Table parent component set the value (`medium`).
+   */
+  size: _propTypes.default.oneOf(['small', 'medium']),
+
+  /**
+   * Set aria-sort direction.
+   */
+  sortDirection: _propTypes.default.oneOf(['asc', 'desc', false]),
+
+  /**
+   * Specify the cell type.
+   * By default, the TableHead, TableBody or TableFooter parent component set the value.
+   */
+  variant: _propTypes.default.oneOf(['head', 'body', 'footer'])
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiTableCell'
+})(TableCell);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","../utils/capitalize":"../node_modules/@material-ui/core/esm/utils/capitalize.js","../styles/colorManipulator":"../node_modules/@material-ui/core/esm/styles/colorManipulator.js","../Table/TableContext":"../node_modules/@material-ui/core/esm/Table/TableContext.js","../Table/Tablelvl2Context":"../node_modules/@material-ui/core/esm/Table/Tablelvl2Context.js"}],"../node_modules/@material-ui/core/esm/TableCell/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _TableCell.default;
+  }
+});
+
+var _TableCell = _interopRequireDefault(require("./TableCell"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./TableCell":"../node_modules/@material-ui/core/esm/TableCell/TableCell.js"}],"../node_modules/@material-ui/core/esm/TableContainer/TableContainer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = {
+  /* Styles applied to the root element. */
+  root: {
+    width: '100%',
+    overflowX: 'auto'
+  }
+};
+exports.styles = styles;
+
+var TableContainer = _react.default.forwardRef(function TableContainer(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'div' : _props$component,
+      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component"]);
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref,
+    className: (0, _clsx.default)(classes.root, className)
+  }, other));
+});
+
+"development" !== "production" ? TableContainer.propTypes = {
+  /**
+   * The table itself, normally `<Table />`
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiTableContainer'
+})(TableContainer);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js"}],"../node_modules/@material-ui/core/esm/TableContainer/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _TableContainer.default;
+  }
+});
+
+var _TableContainer = _interopRequireDefault(require("./TableContainer"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./TableContainer":"../node_modules/@material-ui/core/esm/TableContainer/TableContainer.js"}],"../node_modules/@material-ui/core/esm/TableHead/TableHead.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _Tablelvl2Context = _interopRequireDefault(require("../Table/Tablelvl2Context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = {
+  /* Styles applied to the root element. */
+  root: {
+    display: 'table-header-group'
+  }
+};
+exports.styles = styles;
+var tablelvl2 = {
+  variant: 'head'
+};
+
+var TableHead = _react.default.forwardRef(function TableHead(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'thead' : _props$component,
+      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component"]);
+  return _react.default.createElement(_Tablelvl2Context.default.Provider, {
+    value: tablelvl2
+  }, _react.default.createElement(Component, (0, _extends2.default)({
+    className: (0, _clsx.default)(classes.root, className),
+    ref: ref
+  }, other)));
+});
+
+"development" !== "production" ? TableHead.propTypes = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiTableHead'
+})(TableHead);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","../Table/Tablelvl2Context":"../node_modules/@material-ui/core/esm/Table/Tablelvl2Context.js"}],"../node_modules/@material-ui/core/esm/TableHead/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _TableHead.default;
+  }
+});
+
+var _TableHead = _interopRequireDefault(require("./TableHead"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./TableHead":"../node_modules/@material-ui/core/esm/TableHead/TableHead.js"}],"../node_modules/@material-ui/core/esm/TableRow/TableRow.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _clsx = _interopRequireDefault(require("clsx"));
+
+var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
+
+var _Tablelvl2Context = _interopRequireDefault(require("../Table/Tablelvl2Context"));
+
+var _colorManipulator = require("../styles/colorManipulator");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      color: 'inherit',
+      display: 'table-row',
+      verticalAlign: 'middle',
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 0,
+      '&$hover:hover': {
+        backgroundColor: theme.palette.action.hover
+      },
+      '&$selected,&$selected:hover': {
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.selectedOpacity)
+      }
+    },
+
+    /* Pseudo-class applied to the root element if `selected={true}`. */
+    selected: {},
+
+    /* Pseudo-class applied to the root element if `hover={true}`. */
+    hover: {},
+
+    /* Styles applied to the root element if table variant="head". */
+    head: {},
+
+    /* Styles applied to the root element if table variant="footer". */
+    footer: {}
+  };
+};
+/**
+ * Will automatically set dynamic row height
+ * based on the material table element parent (head, body, etc).
+ */
+
+
+exports.styles = styles;
+
+var TableRow = _react.default.forwardRef(function TableRow(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'tr' : _props$component,
+      _props$hover = props.hover,
+      hover = _props$hover === void 0 ? false : _props$hover,
+      _props$selected = props.selected,
+      selected = _props$selected === void 0 ? false : _props$selected,
+      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component", "hover", "selected"]);
+
+  var tablelvl2 = _react.default.useContext(_Tablelvl2Context.default);
+
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref,
+    className: (0, _clsx.default)(classes.root, className, tablelvl2 && {
+      head: classes.head,
+      footer: classes.footer
+    }[tablelvl2.variant], hover && classes.hover, selected && classes.selected)
+  }, other));
+});
+
+"development" !== "production" ? TableRow.propTypes = {
+  /**
+   * Should be valid <tr> children such as `TableCell`.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
+   * If `true`, the table row will shade on hover.
+   */
+  hover: _propTypes.default.bool,
+
+  /**
+   * If `true`, the table row will have the selected shading.
+   */
+  selected: _propTypes.default.bool
+} : void 0;
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiTableRow'
+})(TableRow);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","clsx":"../node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"../node_modules/@material-ui/core/esm/styles/withStyles.js","../Table/Tablelvl2Context":"../node_modules/@material-ui/core/esm/Table/Tablelvl2Context.js","../styles/colorManipulator":"../node_modules/@material-ui/core/esm/styles/colorManipulator.js"}],"../node_modules/@material-ui/core/esm/TableRow/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _TableRow.default;
+  }
+});
+
+var _TableRow = _interopRequireDefault(require("./TableRow"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./TableRow":"../node_modules/@material-ui/core/esm/TableRow/TableRow.js"}],"dynamicGearViewer/constants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GearFill = exports.BGFill = void 0;
+var BGFill = "#1d48b5";
+exports.BGFill = BGFill;
+var GearFill = "#caccca";
+exports.GearFill = GearFill;
+},{}],"dynamicGearViewer/gearUtils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.calc_full_size = calc_full_size;
+exports.calc_center_distance = calc_center_distance;
+exports.computeGearAttributes = computeGearAttributes;
+exports.spurGear = spurGear;
+exports.in_to_px = void 0;
+
+var _lodash = require("lodash");
+
+var _constants = require("./constants");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* Constants */
+var PI = Math.PI;
+var in_to_mm = 25.4;
+var in_to_px = 25.4;
+exports.in_to_px = in_to_px;
+var deg_to_rad = PI / 180;
+var rad_to_deg = 180 / PI;
+/* Math Functions */
+
+function parametric_points() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : props,
+      fx = _ref.fx,
+      fy = _ref.fy,
+      t0 = _ref.t0,
+      t1 = _ref.t1,
+      delta = _ref.delta;
+
+  return (0, _lodash.map)((0, _lodash.range)(t0, t1, delta), function (t) {
+    return [fx(t), fy(t)];
+  });
+}
+
+function calc_module(P) {
+  return in_to_px / P;
+}
+
+function calc_addendum(P) {
+  return 1 / P * in_to_px;
+}
+
+function calc_dedendum(P) {
+  return 1.25 / P * in_to_px;
+}
+
+function calc_dp(N, P) {
+  return N / P * in_to_px;
+}
+
+function calc_db(N, P, pa) {
+  return calc_dp(N, P) * Math.cos(pa * deg_to_rad);
+}
+
+function calc_dr(N, P) {
+  return calc_dp(N, P) - 2 * calc_dedendum(P);
+}
+
+function calc_circular_pitch(P) {
+  return PI / P * in_to_px;
+}
+
+function calc_alpha(dp, db, pa) {
+  return Math.sqrt(Math.pow(dp, 2) - Math.pow(db, 2)) / db * rad_to_deg - pa;
+}
+
+function calc_clearance(P) {
+  return calc_dedendum(P) - calc_addendum(P);
+}
+
+function calc_full_size(N, P) {
+  return calc_dp(N, P) + 2 * calc_addendum(P);
+}
+
+function calc_center_distance(N1, N2, P) {
+  return in_to_px * (N1 + N2) / (2 * P);
+}
+/* Drawing Functions */
+
+
+function circular_mirror(ctx, d, count) {
+  // Curry
+  return function (drawMethod) {
+    var aps = 360.0 / count;
+    (0, _lodash.map)((0, _lodash.range)(1, count + 1), function (step) {
+      var currentAngle = step * aps;
+      var unitX = Math.cos(currentAngle * deg_to_rad);
+      var unitY = Math.sin(currentAngle * deg_to_rad);
+      ctx.save();
+      ctx.translate(unitX * d, unitY * d);
+      ctx.rotate(currentAngle * deg_to_rad);
+      drawMethod();
+      ctx.restore();
+    });
+  };
+}
+
+function drawPolygon(ctx, points) {
+  (0, _lodash.map)(points, function (point) {
+    ctx.lineTo(point[0], point[1]);
+  });
+}
+
+function drawCircle(ctx, radius) {
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+}
+
+function drawInvoluteTooth(ctx, r, beta) {
+  var x = function x(t) {
+    return r * (Math.cos(t) + t * Math.sin(t));
+  };
+
+  var y = function y(t) {
+    return r * (Math.sin(t) - t * Math.cos(t));
+  };
+
+  var x2 = function x2(t) {
+    return r * (Math.cos(-t - beta) - t * Math.sin(-t - beta));
+  };
+
+  var y2 = function y2(t) {
+    return r * (Math.sin(-t - beta) + t * Math.cos(-t - beta));
+  };
+
+  var involute_1_points = parametric_points({
+    fx: x,
+    fy: y,
+    t0: 0,
+    t1: 1,
+    delta: 0.05
+  });
+  var involute_2_points = parametric_points({
+    fx: x2,
+    fy: y2,
+    t0: 0,
+    t1: 1,
+    delta: 0.05
+  });
+  drawPolygon(ctx, (0, _lodash.concat)([[0, 0]], involute_1_points, (0, _lodash.reverse)(involute_2_points), [[0, 0]]));
+}
+/* Exported Functions */
+
+
+function computeGearAttributes(N, P, pa) {
+  var baseAttr = {
+    dp: calc_dp(N, P),
+    db: calc_db(N, P, pa),
+    a: calc_addendum(P),
+    b: calc_dedendum(P),
+    p: calc_circular_pitch(P)
+  };
+  var formulaAttr = {
+    alpha: calc_alpha(baseAttr.dp, baseAttr.db, pa)
+  };
+  var calculatedAttr = {
+    beta: (360.0 / (4.0 * N) - formulaAttr.alpha) * 2 * deg_to_rad
+  };
+  return _objectSpread({}, baseAttr, {}, formulaAttr, {}, calculatedAttr);
+}
+
+function spurGear(ctx, N, P, pa) {
+  ctx.save();
+  ctx.fillStyle = _constants.GearFill; // Compute properties
+
+  var _computeGearAttribute = computeGearAttributes(N, P, pa),
+      db = _computeGearAttribute.db,
+      dp = _computeGearAttribute.dp,
+      a = _computeGearAttribute.a,
+      b = _computeGearAttribute.b,
+      beta = _computeGearAttribute.beta; // Draw the inversion layer
+
+
+  ctx.fillStyle = _constants.GearFill;
+  ctx.strokeStyle = _constants.BGFill;
+  ctx.lineWidth = 3;
+  drawCircle(ctx, dp + 2 * a);
+  ctx.clip();
+  ctx.strokeStyle = _constants.GearFill; // Draw the involute curves
+
+  ctx.fillStyle = _constants.BGFill;
+  ctx.beginPath();
+  circular_mirror(ctx, 0, N)(function () {
+    drawInvoluteTooth(ctx, db, beta);
+  });
+  ctx.closePath();
+  ctx.fill(); // Draw the base gear clip region
+
+  ctx.fillStyle = _constants.GearFill;
+  drawCircle(ctx, dp - 2 * b); // Draw a bore, for variety
+
+  ctx.fillStyle = _constants.BGFill;
+  drawCircle(ctx, 15);
+  ctx.restore();
+}
+},{"lodash":"../node_modules/lodash/lodash.js","./constants":"dynamicGearViewer/constants.js"}],"components/viewGearAttributes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ViewGearAttributes = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _Table = _interopRequireDefault(require("@material-ui/core/Table"));
+
+var _TableBody = _interopRequireDefault(require("@material-ui/core/TableBody"));
+
+var _TableCell = _interopRequireDefault(require("@material-ui/core/TableCell"));
+
+var _TableContainer = _interopRequireDefault(require("@material-ui/core/TableContainer"));
+
+var _TableHead = _interopRequireDefault(require("@material-ui/core/TableHead"));
+
+var _TableRow = _interopRequireDefault(require("@material-ui/core/TableRow"));
+
+var _Paper = _interopRequireDefault(require("@material-ui/core/Paper"));
+
+var _gearUtils = require("../dynamicGearViewer/gearUtils");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var r = function r(num) {
+  return Math.round(num * 100) * 100 / 10000;
+};
+
+var ViewGearAttributes = function ViewGearAttributes(_ref) {
+  var context = _ref.context;
+
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      rows = _useState2[0],
+      setRows = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    var fn = function fn() {
+      setRows([{
+        name: "Addendum",
+        formula: "(1 / P)",
+        value: r(context.a / _gearUtils.in_to_px),
+        unit: '"'
+      }, {
+        name: "Dedendum",
+        formula: "(1.25 / P)",
+        value: r(context.b / _gearUtils.in_to_px),
+        unit: '"'
+      }, {
+        name: "Base Diameter",
+        formula: "Pitch Diameter * cos(pa)",
+        value: r(context.db / _gearUtils.in_to_px),
+        unit: '"'
+      }, {
+        name: "Pitch Diameter",
+        formula: "(N / P)",
+        value: r(context.dp / _gearUtils.in_to_px),
+        unit: '"'
+      }, {
+        name: "Circular Pitch",
+        formula: "(3.1415 / P)",
+        value: r(context.p),
+        unit: "°"
+      }]);
+    };
+
+    fn();
+    context.addEventListener("onGearUpdated", fn);
+    return function () {
+      context.removeEventListener("onGearUpdated", fn);
+    };
+  }, []);
+  return _react.default.createElement(_TableContainer.default, {
+    component: _Paper.default
+  }, _react.default.createElement(_Table.default, {
+    "aria-label": "simple table"
+  }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, null, "Attribute"), _react.default.createElement(_TableCell.default, null, "Formula"), _react.default.createElement(_TableCell.default, {
+    align: "right"
+  }, "Value"))), _react.default.createElement(_TableBody.default, null, rows.map(function (row) {
+    return _react.default.createElement(_TableRow.default, {
+      key: row.name
+    }, _react.default.createElement(_TableCell.default, {
+      component: "th",
+      scope: "row"
+    }, row.name), _react.default.createElement(_TableCell.default, {
+      component: "th",
+      scope: "row"
+    }, row.formula), _react.default.createElement(_TableCell.default, {
+      align: "right"
+    }, row.value, row.unit));
+  }))));
+};
+
+exports.ViewGearAttributes = ViewGearAttributes;
+},{"react":"../node_modules/react/index.js","@material-ui/core/Table":"../node_modules/@material-ui/core/esm/Table/index.js","@material-ui/core/TableBody":"../node_modules/@material-ui/core/esm/TableBody/index.js","@material-ui/core/TableCell":"../node_modules/@material-ui/core/esm/TableCell/index.js","@material-ui/core/TableContainer":"../node_modules/@material-ui/core/esm/TableContainer/index.js","@material-ui/core/TableHead":"../node_modules/@material-ui/core/esm/TableHead/index.js","@material-ui/core/TableRow":"../node_modules/@material-ui/core/esm/TableRow/index.js","@material-ui/core/Paper":"../node_modules/@material-ui/core/esm/Paper/index.js","../dynamicGearViewer/gearUtils":"dynamicGearViewer/gearUtils.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -78078,6 +79279,12 @@ Object.defineProperty(exports, "If", {
     return _if.If;
   }
 });
+Object.defineProperty(exports, "ViewGearAttributes", {
+  enumerable: true,
+  get: function () {
+    return _viewGearAttributes.ViewGearAttributes;
+  }
+});
 
 var _toothCountPicker = require("./toothCountPicker");
 
@@ -78092,7 +79299,9 @@ var _toggleDrivenGear = require("./toggleDrivenGear");
 var _resetOnLoad = require("./resetOnLoad");
 
 var _if = require("./if");
-},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js","./pressureAngleComponent":"components/pressureAngleComponent.js","./toggleDrivenGear":"components/toggleDrivenGear.js","./resetOnLoad":"components/resetOnLoad.js","./if":"components/if.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
+
+var _viewGearAttributes = require("./viewGearAttributes");
+},{"./toothCountPicker":"components/toothCountPicker.js","./pitchSlider":"components/pitchSlider.js","./resetGearButton":"components/resetGearButton.js","./pressureAngleComponent":"components/pressureAngleComponent.js","./toggleDrivenGear":"components/toggleDrivenGear.js","./resetOnLoad":"components/resetOnLoad.js","./if":"components/if.js","./viewGearAttributes":"components/viewGearAttributes.js"}],"../node_modules/uuid/lib/rng-browser.js":[function(require,module,exports) {
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -78453,17 +79662,6 @@ function () {
 }();
 
 exports.default = Drawable;
-},{}],"dynamicGearViewer/constants.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.GearFill = exports.BGFill = void 0;
-var BGFill = "#1d48b5";
-exports.BGFill = BGFill;
-var GearFill = "#caccca";
-exports.GearFill = GearFill;
 },{}],"dynamicGearViewer/gameEngine/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -78610,213 +79808,7 @@ function (_Drawable) {
 }(_drawable.default);
 
 exports.default = ImageDrawable;
-},{"../drawable":"dynamicGearViewer/gameEngine/drawable.js"}],"dynamicGearViewer/gearUtils.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.calc_full_size = calc_full_size;
-exports.calc_center_distance = calc_center_distance;
-exports.computeGearAttributes = computeGearAttributes;
-exports.spurGear = spurGear;
-
-var _lodash = require("lodash");
-
-var _constants = require("./constants");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-/* Constants */
-var PI = Math.PI;
-var in_to_mm = 25.4;
-var in_to_px = 25.4;
-var deg_to_rad = PI / 180;
-var rad_to_deg = 180 / PI;
-/* Math Functions */
-
-function parametric_points() {
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : props,
-      fx = _ref.fx,
-      fy = _ref.fy,
-      t0 = _ref.t0,
-      t1 = _ref.t1,
-      delta = _ref.delta;
-
-  return (0, _lodash.map)((0, _lodash.range)(t0, t1, delta), function (t) {
-    return [fx(t), fy(t)];
-  });
-}
-
-function calc_module(P) {
-  return in_to_px / P;
-}
-
-function calc_addendum(P) {
-  return 1 / P * in_to_px;
-}
-
-function calc_dedendum(P) {
-  return 1.25 / P * in_to_px;
-}
-
-function calc_dp(N, P) {
-  return N / P * in_to_px;
-}
-
-function calc_db(N, P, pa) {
-  return calc_dp(N, P) * Math.cos(pa * deg_to_rad);
-}
-
-function calc_dr(N, P) {
-  return calc_dp(N, P) - 2 * calc_dedendum(P);
-}
-
-function calc_circular_pitch(P) {
-  return PI / P * in_to_px;
-}
-
-function calc_alpha(dp, db, pa) {
-  return Math.sqrt(Math.pow(dp, 2) - Math.pow(db, 2)) / db * rad_to_deg - pa;
-}
-
-function calc_clearance(P) {
-  return calc_dedendum(P) - calc_addendum(P);
-}
-
-function calc_full_size(N, P) {
-  return calc_dp(N, P) + 2 * calc_addendum(P);
-}
-
-function calc_center_distance(N1, N2, P) {
-  return in_to_px * (N1 + N2) / (2 * P);
-}
-/* Drawing Functions */
-
-
-function circular_mirror(ctx, d, count) {
-  // Curry
-  return function (drawMethod) {
-    var aps = 360.0 / count;
-    (0, _lodash.map)((0, _lodash.range)(1, count + 1), function (step) {
-      var currentAngle = step * aps;
-      var unitX = Math.cos(currentAngle * deg_to_rad);
-      var unitY = Math.sin(currentAngle * deg_to_rad);
-      ctx.save();
-      ctx.translate(unitX * d, unitY * d);
-      ctx.rotate(currentAngle * deg_to_rad);
-      drawMethod();
-      ctx.restore();
-    });
-  };
-}
-
-function drawPolygon(ctx, points) {
-  (0, _lodash.map)(points, function (point) {
-    ctx.lineTo(point[0], point[1]);
-  });
-}
-
-function drawCircle(ctx, radius) {
-  ctx.beginPath();
-  ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
-}
-
-function drawInvoluteTooth(ctx, r, beta) {
-  var x = function x(t) {
-    return r * (Math.cos(t) + t * Math.sin(t));
-  };
-
-  var y = function y(t) {
-    return r * (Math.sin(t) - t * Math.cos(t));
-  };
-
-  var x2 = function x2(t) {
-    return r * (Math.cos(-t - beta) - t * Math.sin(-t - beta));
-  };
-
-  var y2 = function y2(t) {
-    return r * (Math.sin(-t - beta) + t * Math.cos(-t - beta));
-  };
-
-  var involute_1_points = parametric_points({
-    fx: x,
-    fy: y,
-    t0: 0,
-    t1: 1,
-    delta: 0.05
-  });
-  var involute_2_points = parametric_points({
-    fx: x2,
-    fy: y2,
-    t0: 0,
-    t1: 1,
-    delta: 0.05
-  });
-  drawPolygon(ctx, (0, _lodash.concat)([[0, 0]], involute_1_points, (0, _lodash.reverse)(involute_2_points), [[0, 0]]));
-}
-/* Exported Functions */
-
-
-function computeGearAttributes(N, P, pa) {
-  var baseAttr = {
-    dp: calc_dp(N, P),
-    db: calc_db(N, P, pa),
-    a: calc_addendum(P),
-    b: calc_dedendum(P),
-    p: calc_circular_pitch(P)
-  };
-  var formulaAttr = {
-    alpha: calc_alpha(baseAttr.dp, baseAttr.db, pa)
-  };
-  var calculatedAttr = {
-    beta: (360.0 / (4.0 * N) - formulaAttr.alpha) * 2 * deg_to_rad
-  };
-  return _objectSpread({}, baseAttr, {}, formulaAttr, {}, calculatedAttr);
-}
-
-function spurGear(ctx, N, P, pa) {
-  ctx.save();
-  ctx.fillStyle = _constants.GearFill; // Compute properties
-
-  var _computeGearAttribute = computeGearAttributes(N, P, pa),
-      db = _computeGearAttribute.db,
-      dp = _computeGearAttribute.dp,
-      a = _computeGearAttribute.a,
-      b = _computeGearAttribute.b,
-      beta = _computeGearAttribute.beta; // Draw the inversion layer
-
-
-  ctx.fillStyle = _constants.GearFill;
-  ctx.strokeStyle = _constants.BGFill;
-  ctx.lineWidth = 3;
-  drawCircle(ctx, dp + 2 * a);
-  ctx.clip();
-  ctx.strokeStyle = _constants.GearFill; // Draw the involute curves
-
-  ctx.fillStyle = _constants.BGFill;
-  ctx.beginPath();
-  circular_mirror(ctx, 0, N)(function () {
-    drawInvoluteTooth(ctx, db, beta);
-  });
-  ctx.closePath();
-  ctx.fill(); // Draw the base gear clip region
-
-  ctx.fillStyle = _constants.GearFill;
-  drawCircle(ctx, dp - 2 * b); // Draw a bore, for variety
-
-  ctx.fillStyle = _constants.BGFill;
-  drawCircle(ctx, 15);
-  ctx.restore();
-}
-},{"lodash":"../node_modules/lodash/lodash.js","./constants":"dynamicGearViewer/constants.js"}],"dynamicGearViewer/gameEngine/drawables/gear.js":[function(require,module,exports) {
+},{"../drawable":"dynamicGearViewer/gameEngine/drawable.js"}],"dynamicGearViewer/gameEngine/drawables/gear.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -79231,6 +80223,8 @@ exports.default = void 0;
 
 var _lodash = require("lodash");
 
+var _gearUtils = require("../dynamicGearViewer/gearUtils");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -79245,9 +80239,21 @@ function () {
 
     this.listeners = {};
     this.reset();
+    this.addEventListener("onGearUpdated", this.recalc.bind(this));
   }
 
   _createClass(Context, [{
+    key: "recalc",
+    value: function recalc() {
+      var attributes = (0, _gearUtils.computeGearAttributes)(this.N, this.P, this.pa);
+
+      for (var prop in attributes) {
+        this[prop] = attributes[prop];
+      }
+
+      console.log(attributes);
+    }
+  }, {
     key: "reset",
     value: function reset() {
       this.N = 24;
@@ -79255,6 +80261,7 @@ function () {
       this.pa = 14.5;
       this.rpm = 2;
       this.showDrivenGear = false;
+      this.recalc();
       this.fireEvent("onGearUpdated");
     }
   }, {
@@ -79308,7 +80315,7 @@ function () {
 }();
 
 exports.default = Context;
-},{"lodash":"../node_modules/lodash/lodash.js"}],"index.js":[function(require,module,exports) {
+},{"lodash":"../node_modules/lodash/lodash.js","../dynamicGearViewer/gearUtils":"dynamicGearViewer/gearUtils.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./index.css");
@@ -79441,7 +80448,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57584" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58792" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
