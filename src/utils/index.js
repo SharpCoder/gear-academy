@@ -25,7 +25,9 @@ export function indexTutorials(tutorials) {
     for (const hashText in get(tutorials, "default")) {
         const hash = `#${hashText}`;
         const { html, meta } = get(tutorials, ["default", hashText]);
-        const { weight, category, title } = meta;
+        const { weight, category, title, hidden } = meta;
+
+        if (hidden) continue;
 
         response.cached[hash] = html;
         response.items.push({

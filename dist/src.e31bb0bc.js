@@ -50998,7 +50998,9 @@ function indexTutorials(tutorials) {
 
     var weight = meta.weight,
         category = meta.category,
-        title = meta.title;
+        title = meta.title,
+        hidden = meta.hidden;
+    if (hidden) continue;
     response.cached[hash] = html;
     response.items.push({
       hash: hash,
@@ -55050,11 +55052,21 @@ Object.defineProperty(exports, "Footer", {
 var _component = require("./component");
 },{"./component":"footer/component.js"}],"../_learningContent/control-testing.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<h5>Pressure Angle</h5>\n<p>Enter any valid positive number to change the pressure angle.\n@{PressureAngleComponent}\n@{ToggleDrivenGear}\n@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
+  html: "<h2>Gear playground</h2>\n<p>Here are all the different properties that you can change for the spur gear. Go ahead and play around with the controls.</p>\n<p>@{ToothCountPicker}</p>\n<p><strong>Pitch</strong>\n@{PitchSlider}</p>\n<p><strong>Pressure angle</strong>\n@{PressureAngleComponent}\n@{ToggleDrivenGear}\n@{ResetGearButton}</p>\n",
   meta: {
     category: ["Gears", "Additional"],
     title: "Control Testing",
     weight: 80
+  }
+};
+},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Gearing Ratios",
+    weight: 50,
+    hidden: true
   }
 };
 },{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
@@ -55066,15 +55078,6 @@ module.exports = {
     weight: 40
   }
 };
-},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
-  meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Gearing Ratios",
-    weight: 50
-  }
-};
 },{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Kinds of gears</h2>\n<p>There are many types of gears out there, and each kind has its own particular use-case. Some notable examples include:</p>\n<ul>\n<li>Rack and pinion</li>\n<li>Helical</li>\n<li>Spur</li>\n<li>Bevel</li>\n<li>Worm</li>\n<li>Miter</li>\n<li>Screw</li>\n<li>Internal</li>\n</ul>\n<p>In the next section, we\u2019ll take a closer look at the Spur Gear and how it is designed.</p>\n",
@@ -55082,15 +55085,6 @@ module.exports = {
     category: ["Gears"],
     title: "Different types of gears",
     weight: 30
-  }
-};
-},{}],"../_learningContent/gear-window-overview.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "Gear Window Overview",
-    weight: 12
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
@@ -55108,16 +55102,8 @@ module.exports = {
   meta: {
     category: ["Gears", "Additional"],
     title: "Mathematics",
-    weight: 100
-  }
-};
-},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Pressure Angle</h2>\n<p>This is the pressure on which the gear teeth connect.</p>\n",
-  meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Pressure Angle",
-    weight: 60
+    weight: 100,
+    hidden: true
   }
 };
 },{}],"../_learningContent/openscad.md":[function(require,module,exports) {
@@ -55129,6 +55115,42 @@ module.exports = {
     weight: 90
   }
 };
+},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Pressure angle</h2>\n<p>When a gear meshes with another, the angular pressure upon which the teeth connect is called the \u201Cpressure angle\u201D. Why is this important?</p>\n<p>The curavture of the gear teeth is designed to evenly distribute the force across the entire length of the tooth. How much force is applied is a direct result of the pressure angle.</p>\n<p>If you try to connect gears with a different pressure angle, they will lock up because the point of contact will not be contiguous.</p>\n<p>Go ahead and change the value. What happens to the curvature of the gear teeth?</p>\n<p>@{PressureAngleComponent}</p>\n<p>The most common pressure angles are 14.5\xB0 and 20\xB0 but you don\u2019t have to stick with those values.</p>\n<p>If you adjust the pressure angle all the way to the right, you can see how the edges get sharper and the space between the teeth is reducing. This can actually cause some problems with meshing multiple gears together.</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Pressure Angle",
+    weight: 60
+  }
+};
+},{}],"../_learningContent/gear-window-overview.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Gear Window Overview",
+    weight: 12
+  }
+};
+},{}],"../_learningContent/thank-you.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Thank you</h2>\n<p>I hope you enjoyed this brief overview of gears. If you would like to contribute additional content (or corrections) please feel free to submit feedback through the <a href=\"https://github.com/SharpCoder/gear-academy\">github page</a>.</p>\n<p>Although this demonstration is basic, I will be adding further content covering even more topics in the near future.</p>\n<p>If you found this useful, please let me know on twitter <a href=\"https://twitter.com/inventor_josh\">@inventor_josh</a></p>\n<p>Cheers!</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Thank You!",
+    weight: 2000
+  }
+};
+},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what happens when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay close attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "What is a gear?",
+    weight: 20
+  }
+};
 },{}],"../_learningContent/resources.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
@@ -55138,30 +55160,22 @@ module.exports = {
     weight: 70
   }
 };
-},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "What is a gear?",
-    weight: 20
-  }
-};
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
   "control-testing": require("./../control-testing.md"),
-  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-ratios": require("./../gear-ratios.md"),
+  "diametral-pitch": require("./../diametral-pitch.md"),
   "gear-types": require("./../gear-types.md"),
-  "gear-window-overview": require("./../gear-window-overview.md"),
   "intro": require("./../intro.md"),
   "math": require("./../math.md"),
-  "pressure-angle": require("./../pressure-angle.md"),
   "openscad": require("./../openscad.md"),
-  "resources": require("./../resources.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md")
+  "pressure-angle": require("./../pressure-angle.md"),
+  "gear-window-overview": require("./../gear-window-overview.md"),
+  "thank-you": require("./../thank-you.md"),
+  "what-is-a-gear": require("./../what-is-a-gear.md"),
+  "resources": require("./../resources.md")
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../openscad.md":"../_learningContent/openscad.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../thank-you.md":"../_learningContent/thank-you.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../resources.md":"../_learningContent/resources.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -79328,7 +79342,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65057" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53493" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

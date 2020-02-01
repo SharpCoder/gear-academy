@@ -2,6 +2,7 @@
 category: [Gears, Spur Gears]
 title: Gearing Ratios
 weight: 50
+hidden: true
 ---
 
 ## Gearing Ratios

@@ -4,27 +4,16 @@ title: Control Testing
 weight: 80
 ---
 
-## Debugging Playground
+## Gear playground
 
-This is a place to test out all the different components and controls that are injected throughout the tutorial.
+Here are all the different properties that you can change for the spur gear. Go ahead and play around with the controls.
 
-Intended for temporary development purposes only.
-
-##### Tooth Count Picker
-
-Use this component to select the amount of teeth on the gear.
 @{ToothCountPicker}
 
-##### Pitch Slider
-
-Use this component to adjust the pitch of the gear.
+**Pitch**
 @{PitchSlider}
 
-##### Pressure Angle
-
-Enter any valid positive number to change the pressure angle.
+**Pressure angle**
 @{PressureAngleComponent}
 @{ToggleDrivenGear}
 @{ResetGearButton}
-
-That should be it!
