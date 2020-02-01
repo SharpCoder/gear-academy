@@ -1,5 +1,5 @@
 ---
-category: [Gears, Spur Gears]
+category: [Gears, Conclusion]
 title: Thank You!
 weight: 2000
 ---

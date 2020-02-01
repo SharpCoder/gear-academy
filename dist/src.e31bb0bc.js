@@ -50970,6 +50970,14 @@ exports.indexTutorials = indexTutorials;
 
 var _lodash = require("lodash");
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function pathize(title) {
   return (title || "").toLowerCase().replace(/[^a-z0-9 ]/gi, "").split(" ").join("-");
 }
@@ -50989,12 +50997,32 @@ function indexTutorials(tutorials) {
     items: []
   };
 
-  for (var hashText in (0, _lodash.get)(tutorials, "default")) {
-    var hash = "#".concat(hashText);
+  for (var hashValue in (0, _lodash.get)(tutorials, "default")) {
+    var hashText = hashValue; // Strip out the convenience number at the start, if applicable.
+    // This will facilitate SEO and make it easier to see what the structure
+    // looks like while creating content
 
-    var _get = (0, _lodash.get)(tutorials, ["default", hashText]),
-        html = _get.html,
-        meta = _get.meta;
+    if (hashText.indexOf("-") >= 0) {
+      if (!isNaN(parseInt(hashText.split("-")[0], 10))) {
+        hashText = hashText.substr(hashText.indexOf("-") + 1);
+      }
+    }
+
+    var hash = "#".concat(hashText);
+    var tutorial = (0, _lodash.get)(tutorials, ["default", hashValue]);
+    var html = tutorial.html,
+        meta = tutorial.meta; // This allows the learningContent to be organized recursively
+    // into folders and still come out in the intended structure.
+    // Mostly just a convenience for content writing.
+
+    if (meta === undefined && _typeof(tutorial) === "object") {
+      var subIndex = indexTutorials({
+        default: tutorial
+      });
+      response.cached = _objectSpread({}, response.cached, {}, subIndex.cached);
+      response.items = (0, _lodash.concat)(response.items, subIndex.items);
+      continue;
+    }
 
     var weight = meta.weight,
         category = meta.category,
@@ -55050,7 +55078,43 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"../_learningContent/control-testing.md":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"../content/3d-printing/300-3d-printing-strategies.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Strategies for 3D Printing</h2>\n",
+  meta: {
+    category: ["Gears", "3D Printing"],
+    title: "Strategies for 3D Printing",
+    weight: 300
+  }
+};
+},{}],"../content/3d-printing/310-mounting-to-a-shaft.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Affixing to a shaft</h2>\n",
+  meta: {
+    category: ["Gears", "3D Printing"],
+    title: "Affixing to a Shaft",
+    weight: 310
+  }
+};
+},{}],"../content/3d-printing/330-optimizing-for-speed.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Designing for speed</h2>\n",
+  meta: {
+    category: ["Gears", "3D Printing"],
+    title: "Designing for speed",
+    weight: 330
+  }
+};
+},{}],"../content/3d-printing/320-optimizing-for-position.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Designing for positional accuracy</h2>\n",
+  meta: {
+    category: ["Gears", "3D Printing"],
+    title: "Designing for positional accuracy",
+    weight: 320
+  }
+};
+},{}],"../content/additional/110-control-testing.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gear playground</h2>\n<p>Here are all the different properties that you can change for the spur gear. Go ahead and play around with the controls.</p>\n<p>@{ToothCountPicker}</p>\n<p><strong>Pitch</strong>\n@{PitchSlider}</p>\n<p><strong>Pressure angle</strong>\n@{PressureAngleComponent}\n@{ToggleDrivenGear}\n@{ResetGearButton}</p>\n",
   meta: {
@@ -55059,7 +55123,34 @@ module.exports = {
     weight: 80
   }
 };
-},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+},{}],"../content/additional/120-resources.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
+  meta: {
+    category: ["Gears", "Additional"],
+    title: "Resources",
+    weight: 120
+  }
+};
+},{}],"../content/conclusion/2000-thank-you.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Thank you</h2>\n<p>I hope you enjoyed this brief overview of gears. If you would like to contribute additional content (or corrections) please feel free to submit feedback through the <a href=\"https://github.com/SharpCoder/gear-academy\">github page</a>.</p>\n<p>Although this demonstration is basic, I will be adding further content covering even more topics in the near future.</p>\n<p>If you found this useful, please let me know on twitter <a href=\"https://twitter.com/inventor_josh\">@inventor_josh</a></p>\n<p>Cheers!</p>\n",
+  meta: {
+    category: ["Gears", "Conclusion"],
+    title: "Thank You!",
+    weight: 2000
+  }
+};
+},{}],"../content/spur-gears/40-diametral-pitch.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Diametral pitch</h2>\n<p>All gears have a pitch (or module, if you\u2019re dealing with metric) which specifies how many teeth per inch of gear there will be.</p>\n<p>What happens when you adjust the pitch slider?</p>\n<p>@{PitchSlider}</p>\n<p>The gear changes size! If you want to change how many teeth per inch of gear there is, then the spacing between each tooth will have to adjust accordingly. This is why the gear gets bigger or smaller.</p>\n<p>To put this into perspective, here is a table which describes how the pitch changes a standard gear (in terms of full diameter):</p>\n<table>\n<thead>\n<tr>\n<th>Teeth</th>\n<th>Pitch</th>\n<th>Full Diameter (in)</th>\n<th>Full Diameter (mm)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>24</td>\n<td>12</td>\n<td>2.167&quot;</td>\n<td>50.03mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>10</td>\n<td>2.6&quot;</td>\n<td>66.04mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>8</td>\n<td>3.25&quot;</td>\n<td>82.55mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>6</td>\n<td>4.33&quot;</td>\n<td>110.067mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>4</td>\n<td>6.5&quot;</td>\n<td>167.10mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>2</td>\n<td>13&quot;</td>\n<td>330.20mm</td>\n</tr>\n</tbody>\n</table>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Diametral Pitch",
+    weight: 40
+  }
+};
+},{}],"../content/spur-gears/50-gear-ratios.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
   meta: {
@@ -55069,53 +55160,34 @@ module.exports = {
     hidden: true
   }
 };
-},{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
+},{}],"../content/spur-gears/65-mathematical-formulas.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Diametral pitch</h2>\n<p>All gears have a pitch (or module, if you\u2019re dealing with metric) which specifies how many teeth per inch of gear there will be.</p>\n<p>What happens when you adjust the pitch slider?</p>\n<p>@{PitchSlider}</p>\n<p>The gear changes size! If you want to change how many teeth per inch of gear there is, then the spacing between each tooth will have to adjust accordingly. This is why the gear gets bigger or smaller.</p>\n<p>To put this into perspective, here is a table which describes how the pitch changes a standard gear (in terms of full diameter):</p>\n<table>\n<thead>\n<tr>\n<th>Teeth</th>\n<th>Pitch</th>\n<th>Full Diameter (in)</th>\n<th>Full Diameter (mm)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>24</td>\n<td>12</td>\n<td>2.167&quot;</td>\n<td>50.03mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>10</td>\n<td>2.6&quot;</td>\n<td>66.04mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>8</td>\n<td>3.25&quot;</td>\n<td>82.55mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>6</td>\n<td>4.33&quot;</td>\n<td>110.067mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>4</td>\n<td>6.5&quot;</td>\n<td>167.10mm</td>\n</tr>\n<tr>\n<td>24</td>\n<td>2</td>\n<td>13&quot;</td>\n<td>330.20mm</td>\n</tr>\n</tbody>\n</table>\n",
+  html: "<h2>Math Formulas</h2>\n<p>This is some maths</p>\n",
   meta: {
     category: ["Gears", "Spur Gears"],
-    title: "Diametral Pitch",
-    weight: 40
+    title: "Math Formulas",
+    weight: 65
   }
 };
-},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+},{}],"../content/spur-gears/70-involute-curvature.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Kinds of gears</h2>\n<p>There are many types of gears out there, and each kind has its own particular use-case. Some notable examples include:</p>\n<ul>\n<li>Rack and pinion</li>\n<li>Helical</li>\n<li>Spur</li>\n<li>Bevel</li>\n<li>Worm</li>\n<li>Miter</li>\n<li>Screw</li>\n<li>Internal</li>\n</ul>\n<p>In the next section, we\u2019ll take a closer look at the Spur Gear and how it is designed.</p>\n",
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
   meta: {
-    category: ["Gears"],
-    title: "Different types of gears",
-    weight: 30
+    category: ["Gears", "Spur Gears"],
+    title: "Involute Curvature",
+    weight: 70
   }
 };
-},{}],"../_learningContent/intro.md":[function(require,module,exports) {
+},{}],"../content/spur-gears/80-involute-mathematics.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Introduction</h2>\n<p>Welcome to gears.academy!</p>\n<p>In this tutorial we will go over some fundamental concepts behind how gears work. Throughout these lessons, you will have access to various gear controls - like this one!</p>\n<p>@{ToothCountPicker}</p>\n<p>Feel free to play around with these components and watch how they affect the gear in real-time.</p>\n<p>You can use the navigation icon in the upper-right corner of the screen to jump to a specific section.</p>\n<p>When you\u2019re ready to move on, press the navigation buttons below.</p>\n<p><strong>&gt;</strong> for going forward.</p>\n<p><strong>&lt;</strong> for going backward.</p>\n",
+  html: "<h2>Involute mathematics</h2>\n",
   meta: {
-    category: ["Gears"],
-    title: "Intro!",
-    weight: 10
+    category: ["Gears", "Spur Gears"],
+    title: "Involute Mathematics",
+    weight: 80
   }
 };
-},{}],"../_learningContent/math.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Mathematics</h2>\n<p>This is some maths</p>\n",
-  meta: {
-    category: ["Gears", "Additional"],
-    title: "Mathematics",
-    weight: 100,
-    hidden: true
-  }
-};
-},{}],"../_learningContent/openscad.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
-  meta: {
-    category: ["Gears", "Additional"],
-    title: "OpenScad",
-    weight: 90
-  }
-};
-},{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
+},{}],"../content/spur-gears/60-pressure-angle.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Pressure angle</h2>\n<p>When a gear meshes with another, the angular pressure upon which the teeth connect is called the \u201Cpressure angle\u201D. Why is this important?</p>\n<p>The curavture of the gear teeth is designed to evenly distribute the force across the entire length of the tooth. How much force is applied is a direct result of the pressure angle.</p>\n<p>If you try to connect gears with a different pressure angle, they will lock up because the point of contact will not be contiguous.</p>\n<p>Go ahead and change the value. What happens to the curvature of the gear teeth?</p>\n<p>@{PressureAngleComponent}</p>\n<p>The most common pressure angles are 14.5\xB0 and 20\xB0 but you don\u2019t have to stick with those values.</p>\n<p>If you adjust the pressure angle all the way to the right, you can see how the edges get sharper and the space between the teeth is reducing. This can actually cause some problems with meshing multiple gears together.</p>\n",
   meta: {
@@ -55124,25 +55196,16 @@ module.exports = {
     weight: 60
   }
 };
-},{}],"../_learningContent/gear-window-overview.md":[function(require,module,exports) {
+},{}],"../content/intro/10-introduction.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
+  html: "<h2>Introduction</h2>\n<p>Welcome to gears.academy!</p>\n<p>In this tutorial we will go over some fundamental concepts behind how gears work. Throughout these lessons, you will have access to various gear controls - like this one!</p>\n<p>@{ToothCountPicker}</p>\n<p>Feel free to play around with these components and watch how they affect the gear in real-time.</p>\n<p>You can use the navigation icon in the upper-right corner of the screen to jump to a specific section.</p>\n<p>When you\u2019re ready to move on, press the navigation buttons below.</p>\n<p><strong>&gt;</strong> for going forward.</p>\n<p><strong>&lt;</strong> for going backward.</p>\n",
   meta: {
     category: ["Gears"],
-    title: "Gear Window Overview",
-    weight: 12
+    title: "Intro!",
+    weight: 10
   }
 };
-},{}],"../_learningContent/thank-you.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Thank you</h2>\n<p>I hope you enjoyed this brief overview of gears. If you would like to contribute additional content (or corrections) please feel free to submit feedback through the <a href=\"https://github.com/SharpCoder/gear-academy\">github page</a>.</p>\n<p>Although this demonstration is basic, I will be adding further content covering even more topics in the near future.</p>\n<p>If you found this useful, please let me know on twitter <a href=\"https://twitter.com/inventor_josh\">@inventor_josh</a></p>\n<p>Cheers!</p>\n",
-  meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Thank You!",
-    weight: 2000
-  }
-};
-},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
+},{}],"../content/intro/20-what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what happens when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay close attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{If showDrivenGear}</p>\n<h4>Speed</h4>\n<p>The smaller gear is turning at <em>double</em> the speed of the bigger gear! This is one example of transmitting speed from one shaft to another.</p>\n<h4>Direction</h4>\n<p>Another fun fact about this new gear we\u2019ve added is that it turns backwards! This is true for each subsequent gear that you add to the system. Once a gear meshes with another, it will be driving momentum in the opposite direction.\n@{EndIf}\n@{ResetOnLoad}</p>\n",
   meta: {
@@ -55151,31 +55214,67 @@ module.exports = {
     weight: 20
   }
 };
-},{}],"../_learningContent/resources.md":[function(require,module,exports) {
+},{}],"../content/intro/12-gear-window-overview.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Resources</h2>\n<p>This is some resources</p>\n",
+  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
   meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Resources",
-    weight: 70
+    category: ["Gears"],
+    title: "Gear Window Overview",
+    weight: 12
   }
 };
-},{}],"../_learningContent/**/*.md":[function(require,module,exports) {
+},{}],"../content/intro/30-gear-types.md":[function(require,module,exports) {
 module.exports = {
-  "control-testing": require("./../control-testing.md"),
-  "gear-ratios": require("./../gear-ratios.md"),
-  "diametral-pitch": require("./../diametral-pitch.md"),
-  "gear-types": require("./../gear-types.md"),
-  "intro": require("./../intro.md"),
-  "math": require("./../math.md"),
-  "openscad": require("./../openscad.md"),
-  "pressure-angle": require("./../pressure-angle.md"),
-  "gear-window-overview": require("./../gear-window-overview.md"),
-  "thank-you": require("./../thank-you.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md"),
-  "resources": require("./../resources.md")
+  html: "<h2>Kinds of gears</h2>\n<p>There are many types of gears out there, and each kind has its own particular use-case. Some notable examples include:</p>\n<ul>\n<li>Rack and pinion</li>\n<li>Helical</li>\n<li>Spur</li>\n<li>Bevel</li>\n<li>Worm</li>\n<li>Miter</li>\n<li>Screw</li>\n<li>Internal</li>\n</ul>\n<p>In the next section, we\u2019ll take a closer look at the Spur Gear and how it is designed.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Different types of gears",
+    weight: 30
+  }
 };
-},{"./../control-testing.md":"../_learningContent/control-testing.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-types.md":"../_learningContent/gear-types.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../thank-you.md":"../_learningContent/thank-you.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../resources.md":"../_learningContent/resources.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{}],"../content/open-scad/200-generating-in-openscad.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Generating a gear in OpenScad</h2>\n",
+  meta: {
+    category: ["Gears", "OpenScad"],
+    title: "Generating a gear in OpenScad",
+    weight: 100
+  }
+};
+},{}],"../content/**/*.md":[function(require,module,exports) {
+module.exports = {
+  "3d-printing": {
+    "300-3d-printing-strategies": require("./../3d-printing/300-3d-printing-strategies.md"),
+    "310-mounting-to-a-shaft": require("./../3d-printing/310-mounting-to-a-shaft.md"),
+    "330-optimizing-for-speed": require("./../3d-printing/330-optimizing-for-speed.md"),
+    "320-optimizing-for-position": require("./../3d-printing/320-optimizing-for-position.md")
+  },
+  "additional": {
+    "110-control-testing": require("./../additional/110-control-testing.md"),
+    "120-resources": require("./../additional/120-resources.md")
+  },
+  "conclusion": {
+    "2000-thank-you": require("./../conclusion/2000-thank-you.md")
+  },
+  "spur-gears": {
+    "40-diametral-pitch": require("./../spur-gears/40-diametral-pitch.md"),
+    "50-gear-ratios": require("./../spur-gears/50-gear-ratios.md"),
+    "65-mathematical-formulas": require("./../spur-gears/65-mathematical-formulas.md"),
+    "70-involute-curvature": require("./../spur-gears/70-involute-curvature.md"),
+    "80-involute-mathematics": require("./../spur-gears/80-involute-mathematics.md"),
+    "60-pressure-angle": require("./../spur-gears/60-pressure-angle.md")
+  },
+  "intro": {
+    "10-introduction": require("./../intro/10-introduction.md"),
+    "20-what-is-a-gear": require("./../intro/20-what-is-a-gear.md"),
+    "12-gear-window-overview": require("./../intro/12-gear-window-overview.md"),
+    "30-gear-types": require("./../intro/30-gear-types.md")
+  },
+  "open-scad": {
+    "200-generating-in-openscad": require("./../open-scad/200-generating-in-openscad.md")
+  }
+};
+},{"./../3d-printing/300-3d-printing-strategies.md":"../content/3d-printing/300-3d-printing-strategies.md","./../3d-printing/310-mounting-to-a-shaft.md":"../content/3d-printing/310-mounting-to-a-shaft.md","./../3d-printing/330-optimizing-for-speed.md":"../content/3d-printing/330-optimizing-for-speed.md","./../3d-printing/320-optimizing-for-position.md":"../content/3d-printing/320-optimizing-for-position.md","./../additional/110-control-testing.md":"../content/additional/110-control-testing.md","./../additional/120-resources.md":"../content/additional/120-resources.md","./../conclusion/2000-thank-you.md":"../content/conclusion/2000-thank-you.md","./../spur-gears/40-diametral-pitch.md":"../content/spur-gears/40-diametral-pitch.md","./../spur-gears/50-gear-ratios.md":"../content/spur-gears/50-gear-ratios.md","./../spur-gears/65-mathematical-formulas.md":"../content/spur-gears/65-mathematical-formulas.md","./../spur-gears/70-involute-curvature.md":"../content/spur-gears/70-involute-curvature.md","./../spur-gears/80-involute-mathematics.md":"../content/spur-gears/80-involute-mathematics.md","./../spur-gears/60-pressure-angle.md":"../content/spur-gears/60-pressure-angle.md","./../intro/10-introduction.md":"../content/intro/10-introduction.md","./../intro/20-what-is-a-gear.md":"../content/intro/20-what-is-a-gear.md","./../intro/12-gear-window-overview.md":"../content/intro/12-gear-window-overview.md","./../intro/30-gear-types.md":"../content/intro/30-gear-types.md","./../open-scad/200-generating-in-openscad.md":"../content/open-scad/200-generating-in-openscad.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -79224,7 +79323,7 @@ var _navigation = require("./navigation");
 
 var _footer = require("./footer");
 
-var tutorials = _interopRequireWildcard(require("../_learningContent/**/*.md"));
+var tutorials = _interopRequireWildcard(require("../content/**/*.md"));
 
 var _tutorialViewer = require("./tutorialViewer");
 
@@ -79314,7 +79413,7 @@ if (window.location.hash === "") {
 var mountNode = document.getElementById("app");
 
 _reactDom.default.render(_react.default.createElement(WebApp, null), mountNode);
-},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./utils":"utils/index.js","./navigation":"navigation/index.js","./footer":"footer/index.js","../_learningContent/**/*.md":"../_learningContent/**/*.md","./tutorialViewer":"tutorialViewer/index.js","./utils/context":"utils/context.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index.css":"index.css","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./utils":"utils/index.js","./navigation":"navigation/index.js","./footer":"footer/index.js","../content/**/*.md":"../content/**/*.md","./tutorialViewer":"tutorialViewer/index.js","./utils/context":"utils/context.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -79342,7 +79441,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53493" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57584" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

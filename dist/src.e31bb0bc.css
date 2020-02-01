@@ -197,6 +197,7 @@ body,
 
 .explorer .crumb-header {
     font-weight: bold;
+    color: #aaa;
 }
 
 .explorer .crumb-node {
@@ -204,6 +205,7 @@ body,
     padding: 12px 2px;
     padding-left: var(--page-boundary-padding);
     width: 100%;
+    color: var(--accent-fg-color);
 }
 
 .explorer .crumb-node:visited {

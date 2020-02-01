@@ -7,7 +7,7 @@ import { indexTutorials } from "./utils";
 import { Navigation } from "./navigation";
 import { Footer } from "./footer";
 
-import * as tutorials from "../_learningContent/**/*.md";
+import * as tutorials from "../content/**/*.md";
 import { TutorialViewer } from "./tutorialViewer";
 import Context from "./utils/context";
 

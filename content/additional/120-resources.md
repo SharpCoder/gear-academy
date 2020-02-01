@@ -1,7 +1,7 @@
 ---
-category: [Gears, Spur Gears]
+category: [Gears, Additional]
 title: Resources
-weight: 70
+weight: 120
 ---
 
 ## Resources

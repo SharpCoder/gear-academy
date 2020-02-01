@@ -21,10 +21,34 @@ export function indexTutorials(tutorials) {
         cached: {},
         items: [],
     };
+    for (const hashValue in get(tutorials, "default")) {
+        let hashText = hashValue;
+        // Strip out the convenience number at the start, if applicable.
+        // This will facilitate SEO and make it easier to see what the structure
+        // looks like while creating content
+        if (hashText.indexOf("-") >= 0) {
+            if (!isNaN(parseInt(hashText.split("-")[0], 10))) {
+                hashText = hashText.substr(hashText.indexOf("-") + 1);
+            }
+        }
 
-    for (const hashText in get(tutorials, "default")) {
         const hash = `#${hashText}`;
-        const { html, meta } = get(tutorials, ["default", hashText]);
+        const tutorial = get(tutorials, ["default", hashValue]);
+        const { html, meta } = tutorial;
+
+        // This allows the learningContent to be organized recursively
+        // into folders and still come out in the intended structure.
+        // Mostly just a convenience for content writing.
+        if (meta === undefined && typeof tutorial === "object") {
+            const subIndex = indexTutorials({ default: tutorial });
+            response.cached = {
+                ...response.cached,
+                ...subIndex.cached,
+            };
+            response.items = concat(response.items, subIndex.items);
+            continue;
+        }
+
         const { weight, category, title, hidden } = meta;
 
         if (hidden) continue;
