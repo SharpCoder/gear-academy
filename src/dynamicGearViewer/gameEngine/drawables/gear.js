@@ -7,11 +7,12 @@ export default class Gear extends Drawable {
     constructor(props) {
         super(props);
 
-        const { N, P, pa, rpm } = props;
+        const { N, P, pa, rpm, visible } = props;
         this.N = N || 24;
         this.P = P || 4;
         this.pa = pa || 14.5;
         this.rpm = rpm;
+        this.visible = visible;
     }
 
     onUpdate(gameEngine, time) {
