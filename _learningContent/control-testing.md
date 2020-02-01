@@ -23,11 +23,8 @@ Use this component to adjust the pitch of the gear.
 ##### Pressure Angle
 
 Enter any valid positive number to change the pressure angle.
-
 @{PressureAngleComponent}
-
 @{ToggleDrivenGear}
-
 @{ResetGearButton}
 
 That should be it!

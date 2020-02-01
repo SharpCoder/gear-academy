@@ -59,6 +59,7 @@ const DynamicGearViewer = ({ context }) => {
                 P: context.P,
                 pa: context.pa,
                 rpm: context.rpm,
+                visible: true, // This is the primary gear, it should be always visible
             });
 
             const drivenGear = new Gear({

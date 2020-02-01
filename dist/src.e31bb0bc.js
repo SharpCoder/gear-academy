@@ -55048,13 +55048,13 @@ Object.defineProperty(exports, "Footer", {
 });
 
 var _component = require("./component");
-},{"./component":"footer/component.js"}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+},{"./component":"footer/component.js"}],"../_learningContent/control-testing.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<h5>Pressure Angle</h5>\n<p>Enter any valid positive number to change the pressure angle.\n@{PressureAngleComponent}\n@{ToggleDrivenGear}\n@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
   meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Gearing Ratios",
-    weight: 50
+    category: ["Gears", "Additional"],
+    title: "Control Testing",
+    weight: 80
   }
 };
 },{}],"../_learningContent/diametral-pitch.md":[function(require,module,exports) {
@@ -55066,6 +55066,24 @@ module.exports = {
     weight: 40
   }
 };
+},{}],"../_learningContent/gear-ratios.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Gearing Ratios",
+    weight: 50
+  }
+};
+},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Different Types of Gears",
+    weight: 30
+  }
+};
 },{}],"../_learningContent/gear-window-overview.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
@@ -55073,15 +55091,6 @@ module.exports = {
     category: ["Gears"],
     title: "Gear Window Overview",
     weight: 12
-  }
-};
-},{}],"../_learningContent/openscad.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
-  meta: {
-    category: ["Gears", "Additional"],
-    title: "OpenScad",
-    weight: 90
   }
 };
 },{}],"../_learningContent/intro.md":[function(require,module,exports) {
@@ -55102,22 +55111,13 @@ module.exports = {
     weight: 100
   }
 };
-},{}],"../_learningContent/control-testing.md":[function(require,module,exports) {
+},{}],"../_learningContent/openscad.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Debugging Playground</h2>\n<p>This is a place to test out all the different components and controls that are injected throughout the tutorial.</p>\n<p>Intended for temporary development purposes only.</p>\n<h5>Tooth Count Picker</h5>\n<p>Use this component to select the amount of teeth on the gear.\n@{ToothCountPicker}</p>\n<h5>Pitch Slider</h5>\n<p>Use this component to adjust the pitch of the gear.\n@{PitchSlider}</p>\n<h5>Pressure Angle</h5>\n<p>Enter any valid positive number to change the pressure angle.</p>\n<p>@{PressureAngleComponent}</p>\n<p>@{ToggleDrivenGear}</p>\n<p>@{ResetGearButton}</p>\n<p>That should be it!</p>\n",
+  html: "<h2>OpenScad</h2>\n<p>Here\u2019s some info on openscad</p>\n",
   meta: {
     category: ["Gears", "Additional"],
-    title: "Control Testing",
-    weight: 80
-  }
-};
-},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{ResetOnLoad}</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "What is a gear?",
-    weight: 20
+    title: "OpenScad",
+    weight: 90
   }
 };
 },{}],"../_learningContent/pressure-angle.md":[function(require,module,exports) {
@@ -55138,30 +55138,30 @@ module.exports = {
     weight: 70
   }
 };
-},{}],"../_learningContent/gear-types.md":[function(require,module,exports) {
+},{}],"../_learningContent/what-is-a-gear.md":[function(require,module,exports) {
 module.exports = {
-  html: "<h2>Different types of Gears</h2>\n<p>There are many types of gears. Helical, spur, etc.</p>\n",
+  html: "<h2>What is a gear?</h2>\n<p>The purpose of a gear is to transmit / interchange torque and speed from one shaft to another.</p>\n<p>Can you describe what is happening when we introduce a driven gear that is 1/2 the amount of teeth as the main gear?</p>\n<p>Pay attention to</p>\n<ul>\n<li>The speed of the new gear</li>\n<li>The direction of the new gear</li>\n</ul>\n<p>@{ToggleDrivenGear}</p>\n<p>What happens when you adjust the RPM?</p>\n<p>@{ResetOnLoad}</p>\n",
   meta: {
     category: ["Gears"],
-    title: "Different Types of Gears",
-    weight: 30
+    title: "What is a gear?",
+    weight: 20
   }
 };
 },{}],"../_learningContent/**/*.md":[function(require,module,exports) {
 module.exports = {
-  "gear-ratios": require("./../gear-ratios.md"),
+  "control-testing": require("./../control-testing.md"),
   "diametral-pitch": require("./../diametral-pitch.md"),
+  "gear-ratios": require("./../gear-ratios.md"),
+  "gear-types": require("./../gear-types.md"),
   "gear-window-overview": require("./../gear-window-overview.md"),
-  "openscad": require("./../openscad.md"),
   "intro": require("./../intro.md"),
   "math": require("./../math.md"),
-  "control-testing": require("./../control-testing.md"),
-  "what-is-a-gear": require("./../what-is-a-gear.md"),
+  "openscad": require("./../openscad.md"),
   "pressure-angle": require("./../pressure-angle.md"),
   "resources": require("./../resources.md"),
-  "gear-types": require("./../gear-types.md")
+  "what-is-a-gear": require("./../what-is-a-gear.md")
 };
-},{"./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../openscad.md":"../_learningContent/openscad.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../control-testing.md":"../_learningContent/control-testing.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../gear-types.md":"../_learningContent/gear-types.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../control-testing.md":"../_learningContent/control-testing.md","./../diametral-pitch.md":"../_learningContent/diametral-pitch.md","./../gear-ratios.md":"../_learningContent/gear-ratios.md","./../gear-types.md":"../_learningContent/gear-types.md","./../gear-window-overview.md":"../_learningContent/gear-window-overview.md","./../intro.md":"../_learningContent/intro.md","./../math.md":"../_learningContent/math.md","./../openscad.md":"../_learningContent/openscad.md","./../pressure-angle.md":"../_learningContent/pressure-angle.md","./../resources.md":"../_learningContent/resources.md","./../what-is-a-gear.md":"../_learningContent/what-is-a-gear.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -78657,11 +78657,13 @@ function (_Drawable) {
     var N = props.N,
         P = props.P,
         pa = props.pa,
-        rpm = props.rpm;
+        rpm = props.rpm,
+        visible = props.visible;
     _this.N = N || 24;
     _this.P = P || 4;
     _this.pa = pa || 14.5;
     _this.rpm = rpm;
+    _this.visible = visible;
     return _this;
   }
 
@@ -78791,7 +78793,9 @@ var DynamicGearViewer = function DynamicGearViewer(_ref) {
         N: context.N,
         P: context.P,
         pa: context.pa,
-        rpm: context.rpm
+        rpm: context.rpm,
+        visible: true // This is the primary gear, it should be always visible
+
       });
       var drivenGear = new _gear.default({
         x: w / 2,
@@ -79225,7 +79229,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51151" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61124" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
