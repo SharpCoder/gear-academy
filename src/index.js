@@ -67,7 +67,7 @@ const WebApp = () => {
 
 /* Handle default page loading */
 if (window.location.hash === "") {
-    window.location.assign("#intro");
+    window.location.assign("#introduction");
 }
 
 var mountNode = document.getElementById("app");
