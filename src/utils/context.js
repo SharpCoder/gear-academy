@@ -1,11 +1,10 @@
-import { map, remove } from "lodash";
+import { map, remove, debounce } from "lodash";
 import { computeGearAttributes } from "../dynamicGearViewer/gearUtils";
 
 export default class Context {
     constructor() {
         this.listeners = {};
         this.reset();
-        this.addEventListener("onGearUpdated", this.recalc.bind(this));
     }
 
     recalc() {
@@ -13,7 +12,6 @@ export default class Context {
         for (const prop in attributes) {
             this[prop] = attributes[prop];
         }
-        console.log(attributes);
     }
 
     reset() {
@@ -28,21 +26,25 @@ export default class Context {
 
     setPressureAngle(pa) {
         this.pa = pa;
+        this.recalc();
         this.fireEvent("onGearUpdated");
     }
 
     setToothCount(N) {
         this.N = N;
+        this.recalc();
         this.fireEvent("onGearUpdated");
     }
 
     setPitch(number) {
         this.P = number;
+        this.recalc();
         this.fireEvent("onGearUpdated");
     }
 
     setDrivenGearVisibility(vis) {
         this.showDrivenGear = vis;
+        this.recalc();
         this.fireEvent("onGearUpdated");
     }
 

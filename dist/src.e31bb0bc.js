@@ -55096,15 +55096,6 @@ module.exports = {
     weight: 310
   }
 };
-},{}],"../content/3d-printing/320-optimizing-for-position.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Designing for positional accuracy</h2>\n",
-  meta: {
-    category: ["Gears", "3D Printing"],
-    title: "Designing for positional accuracy",
-    weight: 320
-  }
-};
 },{}],"../content/3d-printing/330-optimizing-for-speed.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Designing for speed</h2>\n",
@@ -55112,6 +55103,15 @@ module.exports = {
     category: ["Gears", "3D Printing"],
     title: "Designing for speed",
     weight: 330
+  }
+};
+},{}],"../content/3d-printing/320-optimizing-for-position.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Designing for positional accuracy</h2>\n",
+  meta: {
+    category: ["Gears", "3D Printing"],
+    title: "Designing for positional accuracy",
+    weight: 320
   }
 };
 },{}],"../content/conclusion/1999-resources.md":[function(require,module,exports) {
@@ -55132,24 +55132,6 @@ module.exports = {
     weight: 2000
   }
 };
-},{}],"../content/open-scad/200-generating-in-openscad.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Generating a gear in OpenScad</h2>\n",
-  meta: {
-    category: ["Gears", "OpenScad"],
-    title: "Generating a gear in OpenScad",
-    weight: 100
-  }
-};
-},{}],"../content/intro/12-gear-window-overview.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>x-ray renderer</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
-  meta: {
-    category: ["Gears"],
-    title: "Gear Window Overview",
-    weight: 12
-  }
-};
 },{}],"../content/intro/10-introduction.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Introduction</h2>\n<p>Welcome to gears.academy!</p>\n<p>In this tutorial we will go over some fundamental concepts behind how gears work. Throughout these lessons, you will have access to various gear controls - like this one!</p>\n<p>@{ToothCountPicker}</p>\n<p>Feel free to play around with these components and watch how they affect the gear in real-time.</p>\n<p>You can use the navigation icon in the upper-right corner of the screen to jump to a specific section.</p>\n<p>When you\u2019re ready to move on, press the navigation buttons below.</p>\n<p><strong>&gt;</strong> for going forward.</p>\n<p><strong>&lt;</strong> for going backward.</p>\n",
@@ -55166,6 +55148,24 @@ module.exports = {
     category: ["Gears"],
     title: "What is a gear?",
     weight: 20
+  }
+};
+},{}],"../content/intro/12-gear-window-overview.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gear Viewer</h2>\n<p>You will notice a gear viewer is always framed on-screen. This will help visualize some of the attributes that comprise a gear.</p>\n<p>In addition to viewing changes in real-time, you can use these buttons to</p>\n<p><em>pause the gear</em></p>\n<p><em>resume</em></p>\n<p><em>x-ray renderer</em></p>\n<p><em>switch the view mode</em></p>\n<p><em>adjust the RPM</em></p>\n<p>Great! Now you\u2019re up to speed on the interface. Let\u2019s dive in to some information about gears.</p>\n",
+  meta: {
+    category: ["Gears"],
+    title: "Gear Window Overview",
+    weight: 12
+  }
+};
+},{}],"../content/open-scad/200-generating-in-openscad.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Generating a gear in OpenScad</h2>\n",
+  meta: {
+    category: ["Gears", "OpenScad"],
+    title: "Generating a gear in OpenScad",
+    weight: 100
   }
 };
 },{}],"../content/intro/30-gear-types.md":[function(require,module,exports) {
@@ -55223,15 +55223,6 @@ module.exports = {
     weight: 65
   }
 };
-},{}],"../content/spur-gears/70-involute-curvature.md":[function(require,module,exports) {
-module.exports = {
-  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
-  meta: {
-    category: ["Gears", "Spur Gears"],
-    title: "Involute Curvature",
-    weight: 70
-  }
-};
 },{}],"../content/spur-gears/80-involute-mathematics.md":[function(require,module,exports) {
 module.exports = {
   html: "<h2>Involute mathematics</h2>\n",
@@ -55241,26 +55232,35 @@ module.exports = {
     weight: 80
   }
 };
+},{}],"../content/spur-gears/70-involute-curvature.md":[function(require,module,exports) {
+module.exports = {
+  html: "<h2>Gearing Ratios</h2>\n<p>You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.</p>\n",
+  meta: {
+    category: ["Gears", "Spur Gears"],
+    title: "Involute Curvature",
+    weight: 70
+  }
+};
 },{}],"../content/**/*.md":[function(require,module,exports) {
 module.exports = {
   "3d-printing": {
     "300-3d-printing-strategies": require("./../3d-printing/300-3d-printing-strategies.md"),
     "310-mounting-to-a-shaft": require("./../3d-printing/310-mounting-to-a-shaft.md"),
-    "320-optimizing-for-position": require("./../3d-printing/320-optimizing-for-position.md"),
-    "330-optimizing-for-speed": require("./../3d-printing/330-optimizing-for-speed.md")
+    "330-optimizing-for-speed": require("./../3d-printing/330-optimizing-for-speed.md"),
+    "320-optimizing-for-position": require("./../3d-printing/320-optimizing-for-position.md")
   },
   "conclusion": {
     "1999-resources": require("./../conclusion/1999-resources.md"),
     "2000-thank-you": require("./../conclusion/2000-thank-you.md")
   },
-  "open-scad": {
-    "200-generating-in-openscad": require("./../open-scad/200-generating-in-openscad.md")
-  },
   "intro": {
-    "12-gear-window-overview": require("./../intro/12-gear-window-overview.md"),
     "10-introduction": require("./../intro/10-introduction.md"),
     "20-what-is-a-gear": require("./../intro/20-what-is-a-gear.md"),
+    "12-gear-window-overview": require("./../intro/12-gear-window-overview.md"),
     "30-gear-types": require("./../intro/30-gear-types.md")
+  },
+  "open-scad": {
+    "200-generating-in-openscad": require("./../open-scad/200-generating-in-openscad.md")
   },
   "spur-gears": {
     "110-control-testing": require("./../spur-gears/110-control-testing.md"),
@@ -55268,11 +55268,11 @@ module.exports = {
     "50-gear-ratios": require("./../spur-gears/50-gear-ratios.md"),
     "60-pressure-angle": require("./../spur-gears/60-pressure-angle.md"),
     "65-mathematical-formulas": require("./../spur-gears/65-mathematical-formulas.md"),
-    "70-involute-curvature": require("./../spur-gears/70-involute-curvature.md"),
-    "80-involute-mathematics": require("./../spur-gears/80-involute-mathematics.md")
+    "80-involute-mathematics": require("./../spur-gears/80-involute-mathematics.md"),
+    "70-involute-curvature": require("./../spur-gears/70-involute-curvature.md")
   }
 };
-},{"./../3d-printing/300-3d-printing-strategies.md":"../content/3d-printing/300-3d-printing-strategies.md","./../3d-printing/310-mounting-to-a-shaft.md":"../content/3d-printing/310-mounting-to-a-shaft.md","./../3d-printing/320-optimizing-for-position.md":"../content/3d-printing/320-optimizing-for-position.md","./../3d-printing/330-optimizing-for-speed.md":"../content/3d-printing/330-optimizing-for-speed.md","./../conclusion/1999-resources.md":"../content/conclusion/1999-resources.md","./../conclusion/2000-thank-you.md":"../content/conclusion/2000-thank-you.md","./../open-scad/200-generating-in-openscad.md":"../content/open-scad/200-generating-in-openscad.md","./../intro/12-gear-window-overview.md":"../content/intro/12-gear-window-overview.md","./../intro/10-introduction.md":"../content/intro/10-introduction.md","./../intro/20-what-is-a-gear.md":"../content/intro/20-what-is-a-gear.md","./../intro/30-gear-types.md":"../content/intro/30-gear-types.md","./../spur-gears/110-control-testing.md":"../content/spur-gears/110-control-testing.md","./../spur-gears/40-diametral-pitch.md":"../content/spur-gears/40-diametral-pitch.md","./../spur-gears/50-gear-ratios.md":"../content/spur-gears/50-gear-ratios.md","./../spur-gears/60-pressure-angle.md":"../content/spur-gears/60-pressure-angle.md","./../spur-gears/65-mathematical-formulas.md":"../content/spur-gears/65-mathematical-formulas.md","./../spur-gears/70-involute-curvature.md":"../content/spur-gears/70-involute-curvature.md","./../spur-gears/80-involute-mathematics.md":"../content/spur-gears/80-involute-mathematics.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
+},{"./../3d-printing/300-3d-printing-strategies.md":"../content/3d-printing/300-3d-printing-strategies.md","./../3d-printing/310-mounting-to-a-shaft.md":"../content/3d-printing/310-mounting-to-a-shaft.md","./../3d-printing/330-optimizing-for-speed.md":"../content/3d-printing/330-optimizing-for-speed.md","./../3d-printing/320-optimizing-for-position.md":"../content/3d-printing/320-optimizing-for-position.md","./../conclusion/1999-resources.md":"../content/conclusion/1999-resources.md","./../conclusion/2000-thank-you.md":"../content/conclusion/2000-thank-you.md","./../intro/10-introduction.md":"../content/intro/10-introduction.md","./../intro/20-what-is-a-gear.md":"../content/intro/20-what-is-a-gear.md","./../intro/12-gear-window-overview.md":"../content/intro/12-gear-window-overview.md","./../open-scad/200-generating-in-openscad.md":"../content/open-scad/200-generating-in-openscad.md","./../intro/30-gear-types.md":"../content/intro/30-gear-types.md","./../spur-gears/110-control-testing.md":"../content/spur-gears/110-control-testing.md","./../spur-gears/40-diametral-pitch.md":"../content/spur-gears/40-diametral-pitch.md","./../spur-gears/50-gear-ratios.md":"../content/spur-gears/50-gear-ratios.md","./../spur-gears/60-pressure-angle.md":"../content/spur-gears/60-pressure-angle.md","./../spur-gears/65-mathematical-formulas.md":"../content/spur-gears/65-mathematical-formulas.md","./../spur-gears/80-involute-mathematics.md":"../content/spur-gears/80-involute-mathematics.md","./../spur-gears/70-involute-curvature.md":"../content/spur-gears/70-involute-curvature.md"}],"tutorialViewer/tutorialViewer.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -79147,6 +79147,8 @@ var _Paper = _interopRequireDefault(require("@material-ui/core/Paper"));
 
 var _gearUtils = require("../dynamicGearViewer/gearUtils");
 
+var _lodash = require("lodash");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -79174,7 +79176,7 @@ var ViewGearAttributes = function ViewGearAttributes(_ref) {
       setRows = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    var fn = function fn() {
+    var fn = (0, _lodash.debounce)(function () {
       setRows([{
         name: "Addendum",
         formula: "(1 / P)",
@@ -79201,8 +79203,9 @@ var ViewGearAttributes = function ViewGearAttributes(_ref) {
         value: r(context.p),
         unit: "°"
       }]);
-    };
-
+    }, 100, {
+      trailing: true
+    });
     fn();
     context.addEventListener("onGearUpdated", fn);
     return function () {
@@ -79231,7 +79234,7 @@ var ViewGearAttributes = function ViewGearAttributes(_ref) {
 };
 
 exports.ViewGearAttributes = ViewGearAttributes;
-},{"react":"../node_modules/react/index.js","@material-ui/core/Table":"../node_modules/@material-ui/core/esm/Table/index.js","@material-ui/core/TableBody":"../node_modules/@material-ui/core/esm/TableBody/index.js","@material-ui/core/TableCell":"../node_modules/@material-ui/core/esm/TableCell/index.js","@material-ui/core/TableContainer":"../node_modules/@material-ui/core/esm/TableContainer/index.js","@material-ui/core/TableHead":"../node_modules/@material-ui/core/esm/TableHead/index.js","@material-ui/core/TableRow":"../node_modules/@material-ui/core/esm/TableRow/index.js","@material-ui/core/Paper":"../node_modules/@material-ui/core/esm/Paper/index.js","../dynamicGearViewer/gearUtils":"dynamicGearViewer/gearUtils.js"}],"components/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","@material-ui/core/Table":"../node_modules/@material-ui/core/esm/Table/index.js","@material-ui/core/TableBody":"../node_modules/@material-ui/core/esm/TableBody/index.js","@material-ui/core/TableCell":"../node_modules/@material-ui/core/esm/TableCell/index.js","@material-ui/core/TableContainer":"../node_modules/@material-ui/core/esm/TableContainer/index.js","@material-ui/core/TableHead":"../node_modules/@material-ui/core/esm/TableHead/index.js","@material-ui/core/TableRow":"../node_modules/@material-ui/core/esm/TableRow/index.js","@material-ui/core/Paper":"../node_modules/@material-ui/core/esm/Paper/index.js","../dynamicGearViewer/gearUtils":"dynamicGearViewer/gearUtils.js","lodash":"../node_modules/lodash/lodash.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -80239,7 +80242,6 @@ function () {
 
     this.listeners = {};
     this.reset();
-    this.addEventListener("onGearUpdated", this.recalc.bind(this));
   }
 
   _createClass(Context, [{
@@ -80250,8 +80252,6 @@ function () {
       for (var prop in attributes) {
         this[prop] = attributes[prop];
       }
-
-      console.log(attributes);
     }
   }, {
     key: "reset",
@@ -80268,24 +80268,28 @@ function () {
     key: "setPressureAngle",
     value: function setPressureAngle(pa) {
       this.pa = pa;
+      this.recalc();
       this.fireEvent("onGearUpdated");
     }
   }, {
     key: "setToothCount",
     value: function setToothCount(N) {
       this.N = N;
+      this.recalc();
       this.fireEvent("onGearUpdated");
     }
   }, {
     key: "setPitch",
     value: function setPitch(number) {
       this.P = number;
+      this.recalc();
       this.fireEvent("onGearUpdated");
     }
   }, {
     key: "setDrivenGearVisibility",
     value: function setDrivenGearVisibility(vis) {
       this.showDrivenGear = vis;
+      this.recalc();
       this.fireEvent("onGearUpdated");
     }
   }, {
@@ -80448,7 +80452,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58792" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59180" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

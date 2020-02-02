@@ -7,6 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { in_to_px } from "../dynamicGearViewer/gearUtils";
+import { debounce } from "lodash";
 
 const r = num => {
     return (Math.round(num * 100) * 100) / 10000;
@@ -16,20 +17,24 @@ const ViewGearAttributes = ({ context }) => {
     const [rows, setRows] = useState([]);
 
     useEffect(() => {
-        const fn = () => {
-            setRows([
-                { name: "Addendum", formula: "(1 / P)", value: r(context.a / in_to_px), unit: '"' },
-                { name: "Dedendum", formula: "(1.25 / P)", value: r(context.b / in_to_px), unit: '"' },
-                {
-                    name: "Base Diameter",
-                    formula: "Pitch Diameter * cos(pa)",
-                    value: r(context.db / in_to_px),
-                    unit: '"',
-                },
-                { name: "Pitch Diameter", formula: "(N / P)", value: r(context.dp / in_to_px), unit: '"' },
-                { name: "Circular Pitch", formula: "(3.1415 / P)", value: r(context.p), unit: "°" },
-            ]);
-        };
+        const fn = debounce(
+            () => {
+                setRows([
+                    { name: "Addendum", formula: "(1 / P)", value: r(context.a / in_to_px), unit: '"' },
+                    { name: "Dedendum", formula: "(1.25 / P)", value: r(context.b / in_to_px), unit: '"' },
+                    {
+                        name: "Base Diameter",
+                        formula: "Pitch Diameter * cos(pa)",
+                        value: r(context.db / in_to_px),
+                        unit: '"',
+                    },
+                    { name: "Pitch Diameter", formula: "(N / P)", value: r(context.dp / in_to_px), unit: '"' },
+                    { name: "Circular Pitch", formula: "(3.1415 / P)", value: r(context.p), unit: "°" },
+                ]);
+            },
+            100,
+            { trailing: true },
+        );
 
         fn();
         context.addEventListener("onGearUpdated", fn);
