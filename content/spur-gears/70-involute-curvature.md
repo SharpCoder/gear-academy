@@ -4,6 +4,6 @@ title: Involute Curvature
 weight: 70
 ---
 
-## Gearing Ratios
+## Invloute curvature
 
-You can do some simple fractions to figure out how your gearing ratio will affect the performance of your setup.
+One surprising aspect of gear teeth is how the involute curve actually works. For starters, the math describes the material you _subtract_ from the gear. That means the teeth are actually the bit left over.
